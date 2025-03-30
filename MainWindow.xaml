@@ -1,0 +1,90 @@
+﻿<Window
+    x:Class="WinFlux.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
+    xmlns:local="clr-namespace:WinFlux"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    Title="WinFlux"
+    Width="1100"
+    Height="600"
+    ui:WindowHelper.SystemBackdropType="Mica"
+    ui:WindowHelper.UseModernWindowStyle="True"
+    BorderThickness="0"
+    Icon="/Assets/icon.ico"
+    OverridesDefaultStyle="True"
+    SnapsToDevicePixels="True"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Grid>
+        <ui:NavigationView
+            x:Name="NavigationView"
+            IsBackButtonVisible="Collapsed"
+            OpenPaneLength="220"
+            PaneDisplayMode="Left"
+            SelectionChanged="NavigationView_SelectionChanged">
+            <ui:NavigationView.MenuItems>
+
+                <ui:NavigationViewItem Content="{DynamicResource ToolsMenuItem}" Tag="toolsPage">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:PathIcon Data="{StaticResource ToolsIconData}" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="{DynamicResource AppsMenuItem}" Tag="appsPage">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:PathIcon Data="{StaticResource AppsIconData}" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="{DynamicResource AppInstallerMenuItem}" Tag="appInstallerPage">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xE896;"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="{DynamicResource PrivacyMenuItem}" Tag="privacyPage">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:PathIcon Data="{StaticResource PrivacyIconData}"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="{DynamicResource TelemetryMenuItem}" Tag="telemetryPage">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:PathIcon Data="{StaticResource PrivacyIconData}"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="{DynamicResource GameOptimizationMenuItem}" Tag="gameOptimizationPage">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xE7FC;"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="{DynamicResource PerformanceMenuItem}" Tag="performancePage">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xE950;"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.MenuItems>
+            <ui:NavigationView.FooterMenuItems>
+                <ui:NavigationViewItem Content="{DynamicResource SettingsMenuItem}" Tag="settings">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:PathIcon Data="{StaticResource SettingsIconData}" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="{DynamicResource InformationMenuItem}" Tag="about">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:PathIcon Data="{StaticResource InfoIconData}" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.FooterMenuItems>
+
+
+            <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden" />
+        </ui:NavigationView>
+    </Grid>
+</Window>

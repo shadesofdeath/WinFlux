@@ -1,0 +1,59 @@
+<ui:Page
+    x:Class="WinFlux.Pages.GameOptimizationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    Title="{DynamicResource GameOptimizationPageTitle}">
+
+    <ui:ScrollViewerEx ForceUseSmoothScroll="True">
+        <ikw:SimpleStackPanel Margin="14,14,20,14" Spacing="8">
+            <TextBlock
+                Margin="4,0,0,0"
+                FontSize="24"
+                FontWeight="Medium"
+                Text="{DynamicResource GameOptimizationPageTitle}" />
+
+            <!-- Disable Fullscreen Optimizations -->
+            <ui:SettingsCard
+                Description="{DynamicResource GameOptimizationPageFullscreenOptDesc}"
+                Header="{DynamicResource GameOptimizationPageFullscreenOpt}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE7FC;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleFullscreenOpt" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Disable Mouse Acceleration -->
+            <ui:SettingsCard
+                Description="{DynamicResource GameOptimizationPageMouseAccelDesc}"
+                Header="{DynamicResource GameOptimizationPageMouseAccel}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE962;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleMouseAccel" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Disable Game Bar -->
+            <ui:SettingsCard
+                Description="{DynamicResource GameOptimizationPageGameBarDesc}"
+                Header="{DynamicResource GameOptimizationPageGameBar}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE7FC;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleGameBar" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Disable Game Mode -->
+            <ui:SettingsCard
+                Description="{DynamicResource GameOptimizationPageGameModeDesc}"
+                Header="{DynamicResource GameOptimizationPageGameMode}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE7FC;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleGameMode" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+        </ikw:SimpleStackPanel>
+    </ui:ScrollViewerEx>
+</ui:Page> 

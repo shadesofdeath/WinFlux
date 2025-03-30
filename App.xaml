@@ -1,0 +1,20 @@
+﻿<Application
+    x:Class="WinFlux.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:WinFlux"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemeResources />
+                <ui:XamlControlsResources />
+                <ResourceDictionary Source="Assets\Icons.xaml" />
+                <ResourceDictionary Source="/Resources/tr-TR.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--  Your other resources here (if exists)  -->
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

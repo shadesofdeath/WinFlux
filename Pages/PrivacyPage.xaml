@@ -1,0 +1,269 @@
+<ui:Page
+    x:Class="WinFlux.Pages.PrivacyPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    Title="{DynamicResource PrivacyPageTitle}">
+
+    <ui:ScrollViewerEx ForceUseSmoothScroll="True">
+        <ikw:SimpleStackPanel Margin="14,14,20,14" Spacing="8">
+            <TextBlock
+                Margin="4,0,0,0"
+                FontSize="24"
+                FontWeight="Medium"
+                Text="{DynamicResource PrivacyPageTitle}" />
+
+            <!--  Konum Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageLocationDesc}"
+                Header="{DynamicResource PrivacyPageLocation}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE1D2;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleLocation" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Kamera Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageCameraDesc}"
+                Header="{DynamicResource PrivacyPageCamera}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE722;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleCamera" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Mikrofon Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageMicrophoneDesc}"
+                Header="{DynamicResource PrivacyPageMicrophone}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE720;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleMicrophone" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Sistem Dosyaları Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageSystemFilesDesc}"
+                Header="{DynamicResource PrivacyPageSystemFiles}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE8B7;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleSystemFiles" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Hesap Bilgileri Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageAccountInfoDesc}"
+                Header="{DynamicResource PrivacyPageAccountInfo}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE77B;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleAccountInfo" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Kişiler Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageContactsDesc}"
+                Header="{DynamicResource PrivacyPageContacts}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE77B;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleContacts" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Arama Geçmişi Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageCallHistoryDesc}"
+                Header="{DynamicResource PrivacyPageCallHistory}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE92B;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleCallHistory" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Mesajlaşma Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageMessagingDesc}"
+                Header="{DynamicResource PrivacyPageMessaging}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE8BD;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleMessaging" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Bildirim Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageNotificationsDesc}"
+                Header="{DynamicResource PrivacyPageNotifications}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE7E7;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleNotifications" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  E-posta Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageEmailDesc}"
+                Header="{DynamicResource PrivacyPageEmail}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE715;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleEmail" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Görevler Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageTasksDesc}"
+                Header="{DynamicResource PrivacyPageTasks}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE7C1;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleTasks" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Tanılama Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageDiagnosticsDesc}"
+                Header="{DynamicResource PrivacyPageDiagnostics}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE9D9;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleDiagnostics" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Sesli Aktivasyon Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageVoiceActivationDesc}"
+                Header="{DynamicResource PrivacyPageVoiceActivation}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE720;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleVoiceActivation" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Telefon Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPagePhoneDesc}"
+                Header="{DynamicResource PrivacyPagePhone}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE717;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="togglePhone" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Güvenilir Cihazlar Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageTrustedDevicesDesc}"
+                Header="{DynamicResource PrivacyPageTrustedDevices}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE975;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleTrustedDevices" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Takvim Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageCalendarDesc}"
+                Header="{DynamicResource PrivacyPageCalendar}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE787;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleCalendar" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Hareket Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageMotionDesc}"
+                Header="{DynamicResource PrivacyPageMotion}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE805;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleMotion" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Radyo Erişimi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageRadioDesc}"
+                Header="{DynamicResource PrivacyPageRadio}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE804;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleRadio" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Bulut Senkronizasyonu  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageCloudSyncDesc}"
+                Header="{DynamicResource PrivacyPageCloudSync}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE753;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleCloudSync" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Etkinlik Özeti  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageActivityFeedDesc}"
+                Header="{DynamicResource PrivacyPageActivityFeed}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE91F;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleActivityFeed" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Ekran Kaydı  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageScreenRecordingDesc}"
+                Header="{DynamicResource PrivacyPageScreenRecording}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE7C8;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleScreenRecording" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Bildirim Merkezi  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageNotificationsTrayDesc}"
+                Header="{DynamicResource PrivacyPageNotificationsTray}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE7E7;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleNotificationsTray" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Harita İndirmeleri  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageMapDownloadsDesc}"
+                Header="{DynamicResource PrivacyPageMapDownloads}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE707;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleMapDownloads" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Kilit Ekranı Kamerası  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageLockscreenCameraDesc}"
+                Header="{DynamicResource PrivacyPageLockscreenCamera}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE1E9;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleLockscreenCamera" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!--  Biyometrik Kimlik Doğrulama  -->
+            <ui:SettingsCard
+                Description="{DynamicResource PrivacyPageBiometricsDesc}"
+                Header="{DynamicResource PrivacyPageBiometrics}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE1E2;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleBiometrics" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+        </ikw:SimpleStackPanel>
+    </ui:ScrollViewerEx>
+</ui:Page>

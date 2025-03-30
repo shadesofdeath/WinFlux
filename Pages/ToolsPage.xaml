@@ -1,0 +1,161 @@
+<ui:Page
+    x:Class="WinFlux.Pages.ToolsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    Title="{DynamicResource ToolsPageTitle}">
+    <ui:ScrollViewerEx ForceUseSmoothScroll="True">
+        <ikw:SimpleStackPanel Margin="14,14,20,14" Spacing="8">
+
+            <TextBlock
+                Margin="4,0,0,0"
+                FontSize="24"
+                FontWeight="Medium"
+                Text="{DynamicResource ToolsPageTitle}" />
+
+            <!--  Geçici Dosyaları Temizle  -->
+            <ui:SettingsCard
+                x:Name="TempFilesCard"
+                Description="{DynamicResource ToolsPageTempFilesDesc}"
+                Header="{DynamicResource ToolsPageTempFiles}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:PathIcon Data="{StaticResource BroomIconData}" />
+                </ui:SettingsCard.HeaderIcon>
+                <Button x:Name="btnCleanTemp" Click="btnCleanTemp_Click">
+                    <Button.Content>
+                        <ui:PathIcon
+                            Width="12"
+                            Data="{StaticResource PlayIconData}"
+                            Opacity="0.8" />
+                    </Button.Content>
+                </Button>
+            </ui:SettingsCard>
+
+            <!--  Disk Temizleme  -->
+            <ui:SettingsCard
+                x:Name="DiskCleanupCard"
+                Description="{DynamicResource ToolsPageDiskCleanupDesc}"
+                Header="{DynamicResource ToolsPageDiskCleanup}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:PathIcon Data="{StaticResource HddIconData}" />
+                </ui:SettingsCard.HeaderIcon>
+                <Button x:Name="btnDiskCleanup" Click="btnDiskCleanup_Click">
+                    <Button.Content>
+                        <ui:PathIcon
+                            Width="12"
+                            Data="{StaticResource PlayIconData}"
+                            Opacity="0.8" />
+                    </Button.Content>
+                </Button>
+            </ui:SettingsCard>
+            <!--  Geri Dönüşüm Kutusu  -->
+            <ui:SettingsCard
+                x:Name="RecycleBinCard"
+                Description="{DynamicResource ToolsPageRecycleBinDesc}"
+                Header="{DynamicResource ToolsPageRecycleBin}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:PathIcon Data="{StaticResource TrashIconData}" />
+                </ui:SettingsCard.HeaderIcon>
+                <Button x:Name="btnEmptyRecycleBin" Click="btnEmptyRecycleBin_Click">
+                    <Button.Content>
+                        <ui:PathIcon
+                            Width="12"
+                            Data="{StaticResource PlayIconData}"
+                            Opacity="0.8" />
+                    </Button.Content>
+                </Button>
+            </ui:SettingsCard>
+
+            <!--  Geri Yükleme Noktası  -->
+            <ui:SettingsCard
+                x:Name="RestorePointCard"
+                Description="{DynamicResource ToolsPageRestorePointDesc}"
+                Header="{DynamicResource ToolsPageRestorePoint}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.History}" />
+                </ui:SettingsCard.HeaderIcon>
+                <Button x:Name="btnCreateRestorePoint" Click="btnCreateRestorePoint_Click">
+                    <Button.Content>
+                        <ui:PathIcon
+                            Width="12"
+                            Data="{StaticResource PlayIconData}"
+                            Opacity="0.8" />
+                    </Button.Content>
+                </Button>
+            </ui:SettingsCard>
+
+            <!--  Sistem Bütünlüğü  -->
+            <ui:SettingsCard
+                x:Name="SystemFileCard"
+                Description="{DynamicResource ToolsPageSystemFileDesc}"
+                Header="{DynamicResource ToolsPageSystemFile}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:PathIcon Data="{StaticResource HealthIconData}" />
+                </ui:SettingsCard.HeaderIcon>
+                <Button x:Name="btnScanSystem" Click="btnScanSystem_Click">
+                    <Button.Content>
+                        <ui:PathIcon
+                            Width="12"
+                            Data="{StaticResource PlayIconData}"
+                            Opacity="0.8" />
+                    </Button.Content>
+                </Button>
+            </ui:SettingsCard>
+
+            <!--  Tarayıcı Geçmişi  -->
+            <ui:SettingsCard
+                x:Name="BrowserHistoryCard"
+                Description="{DynamicResource ToolsPageBrowserHistoryDesc}"
+                Header="{DynamicResource ToolsPageBrowserHistory}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:PathIcon Data="{StaticResource HistoryIconData}" />
+                </ui:SettingsCard.HeaderIcon>
+                <Button x:Name="btnClearBrowserData" Click="btnClearBrowserData_Click">
+                    <Button.Content>
+                        <ui:PathIcon
+                            Width="12"
+                            Data="{StaticResource PlayIconData}"
+                            Opacity="0.8" />
+                    </Button.Content>
+                </Button>
+            </ui:SettingsCard>
+
+            <!--  Ağ Sıfırlama  -->
+            <ui:SettingsCard
+                x:Name="NetworkResetCard"
+                Description="{DynamicResource ToolsPageNetworkResetDesc}"
+                Header="{DynamicResource ToolsPageNetworkReset}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.NetworkAdapter}" />
+                </ui:SettingsCard.HeaderIcon>
+                <Button x:Name="btnResetNetwork" Click="btnResetNetwork_Click">
+                    <Button.Content>
+                        <ui:PathIcon
+                            Width="12"
+                            Data="{StaticResource PlayIconData}"
+                            Opacity="0.8" />
+                    </Button.Content>
+                </Button>
+            </ui:SettingsCard>
+
+            <!--  MAS Etkinleştirme  -->
+            <ui:SettingsCard
+                x:Name="MASCard"
+                Description="{DynamicResource ToolsPageMASDesc}"
+                Header="{DynamicResource ToolsPageMAS}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:PathIcon Data="{StaticResource KeyIconData}" />
+                </ui:SettingsCard.HeaderIcon>
+                <Button x:Name="btnRunMAS" Click="btnRunMAS_Click">
+                    <Button.Content>
+                        <ui:PathIcon
+                            Width="12"
+                            Data="{StaticResource PlayIconData}"
+                            Opacity="0.8" />
+                    </Button.Content>
+                </Button>
+            </ui:SettingsCard>
+        </ikw:SimpleStackPanel>
+    </ui:ScrollViewerEx>
+</ui:Page>

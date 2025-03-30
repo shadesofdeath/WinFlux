@@ -1,0 +1,215 @@
+<ui:Page
+    x:Class="WinFlux.Pages.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    Title="{DynamicResource AboutPageTitle}"
+    d:DesignHeight="600"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <ScrollViewer Padding="24">
+        <Grid MaxWidth="860">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  App Information Header  -->
+            <StackPanel Grid.Row="0" Margin="0,0,0,24">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--  App Logo  -->
+                    <Border
+                        Grid.Column="0"
+                        Width="80"
+                        Height="80"
+                        Margin="0,0,16,0"
+                        Background="{DynamicResource ApplicationBackgroundThemeBrush}"
+                        BorderBrush="{DynamicResource ControlElevationBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="12">
+                        <Viewbox>
+                            <ui:ImageIcon Source="/Assets/icon.ico" />
+                        </Viewbox>
+                    </Border>
+
+                    <!--  App Title and Description  -->
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock
+                            Margin="0,0,0,4"
+                            FontWeight="SemiBold"
+                            Style="{StaticResource TitleTextBlockStyle}"
+                            Text="{DynamicResource AboutPageAppName}" />
+                        <TextBlock
+                            MaxWidth="400"
+                            HorizontalAlignment="Left"
+                            Opacity="0.65"
+                            Style="{StaticResource BodyTextBlockStyle}"
+                            Text="{DynamicResource AboutPageDescription}"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <!--  Main Content  -->
+            <ikw:SimpleStackPanel Grid.Row="1" Spacing="16">
+                <!--  Application Description  -->
+                <Border
+                    Padding="16"
+                    Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    CornerRadius="8">
+                    <ikw:SimpleStackPanel>
+                        <TextBlock
+                            Margin="0,0,0,8"
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            Text="{DynamicResource AboutPageAppDescriptionTitle}" />
+                        <TextBlock
+                            Width="Auto"
+                            Margin="0,0,0,8"
+                            Text="{DynamicResource AboutPageAppDescriptionPart1}"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            Width="Auto"
+                            Text="{DynamicResource AboutPageAppDescriptionPart2}"
+                            TextWrapping="Wrap" />
+                    </ikw:SimpleStackPanel>
+                </Border>
+
+                <!--  Developer Info and Links  -->
+                <Border
+                    Margin="0,8,0,0"
+                    Padding="16"
+                    Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    CornerRadius="8">
+                    <ikw:SimpleStackPanel Spacing="16">
+                        <!--  Information  -->
+                        <TextBlock
+                            Margin="0,0,0,8"
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            Text="{DynamicResource AboutPageDeveloper}" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <!--  Version  -->
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Margin="0,0,16,8"
+                                Style="{StaticResource BodyStrongTextBlockStyle}"
+                                Text="{DynamicResource AboutPageVersion}" />
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="0,0,0,8"
+                                Text="1.0.0"
+                                TextWrapping="Wrap" />
+
+                            <!--  Developer  -->
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Margin="0,0,16,8"
+                                Style="{StaticResource BodyStrongTextBlockStyle}"
+                                Text="{DynamicResource AboutPageDeveloper}" />
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="0,0,0,8"
+                                Text="{DynamicResource AboutPageDeveloperName}"
+                                TextWrapping="Wrap" />
+
+                            <!--  Website  -->
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Margin="0,0,16,8"
+                                Style="{StaticResource BodyStrongTextBlockStyle}"
+                                Text="{DynamicResource AboutPageWebsite}" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Margin="0,0,0,8">
+                                <Hyperlink NavigateUri="https://github.com/shadesofdeath" RequestNavigate="Hyperlink_RequestNavigate">
+                                    github.com/shadesofdeath
+                                </Hyperlink>
+                            </TextBlock>
+
+                            <!--  Support  -->
+                            <TextBlock
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Margin="0,0,16,0"
+                                Style="{StaticResource BodyStrongTextBlockStyle}"
+                                Text="{DynamicResource AboutPageSupport}" />
+                            <TextBlock
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Margin="0,0,0,0">
+                                <Hyperlink NavigateUri="https://ko-fi.com/shadesofdeath" RequestNavigate="Hyperlink_RequestNavigate">
+                                    ko-fi.com/shadesofdeath
+                                </Hyperlink>
+                            </TextBlock>
+                        </Grid>
+
+                        <!--  Social Links  -->
+                        <ikw:SimpleStackPanel
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <!--  GitHub Button  -->
+                            <Button
+                                x:Name="GithubButton"
+                                Click="SocialButton_Click"
+                                Style="{StaticResource AccentButtonStyle}"
+                                Tag="https://github.com/shadesofdeath">
+                                <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="8">
+                                    <ui:FontIcon
+                                        FontFamily="Segoe Fluent Icons"
+                                        FontSize="16"
+                                        Icon="{x:Static ui:SegoeFluentIcons.Code}" />
+                                    <TextBlock Text="{DynamicResource AboutPageGitHubButton}" />
+                                </ikw:SimpleStackPanel>
+                            </Button>
+
+                            <!--  Ko-Fi Button  -->
+                            <Button
+                                x:Name="KofiButton"
+                                Click="SocialButton_Click"
+                                Style="{StaticResource DefaultButtonStyle}"
+                                Tag="https://ko-fi.com/shadesofdeath">
+                                <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="8">
+                                    <ui:FontIcon
+                                        FontFamily="Segoe Fluent Icons"
+                                        FontSize="16"
+                                        Icon="{x:Static ui:SegoeFluentIcons.EmojiTabTextSmiles}" />
+                                    <TextBlock Text="{DynamicResource AboutPageKofiButton}" />
+                                </ikw:SimpleStackPanel>
+                            </Button>
+                        </ikw:SimpleStackPanel>
+                    </ikw:SimpleStackPanel>
+                </Border>
+            </ikw:SimpleStackPanel>
+        </Grid>
+    </ScrollViewer>
+</ui:Page> 

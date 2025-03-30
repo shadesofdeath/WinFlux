@@ -1,0 +1,2 @@
+C:\Users\shades\Desktop\WinFlux\bin\Release\net9.0-windows10.0.18362.0\publish\win-x64\WinFlux.pdb
+C:\Users\shades\Desktop\WinFlux\bin\Release\net9.0-windows10.0.18362.0\publish\win-x64\WinFlux.exe

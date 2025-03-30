@@ -1,0 +1,408 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!--  APP  -->
+    <system:String x:Key="HomeMenuItem">Home</system:String>
+    <system:String x:Key="ToolsMenuItem">Tools</system:String>
+    <system:String x:Key="AppsMenuItem">Applications</system:String>
+    <system:String x:Key="AppInstallerMenuItem">App Installer</system:String>
+    <system:String x:Key="SettingsMenuItem">Settings</system:String>
+    <system:String x:Key="PrivacyMenuItem">Privacy and Security</system:String>
+    <system:String x:Key="TelemetryMenuItem">Telemetry</system:String>
+    <system:String x:Key="GameOptimizationMenuItem">Game Optimization</system:String>
+    <system:String x:Key="PerformanceMenuItem">Performance</system:String>
+    <system:String x:Key="InformationMenuItem">About</system:String>
+    <system:String x:Key="SettingsPageTitle">Settings</system:String>
+    <system:String x:Key="SettingPageLanguage">Language</system:String>
+    <system:String x:Key="SettingPagePresets">Presets</system:String>
+    <system:String x:Key="SettingPageExportPresets">Export</system:String>
+    <system:String x:Key="SettingPageImportPresets">Import</system:String>
+    <system:String x:Key="ToggleOn">On</system:String>
+    <system:String x:Key="ToggleOff">Off</system:String>
+
+    <!--  Apps Page  -->
+    <system:String x:Key="ButtonSelect">Select</system:String>
+    <system:String x:Key="ButtonDeselect">Deselect</system:String>
+    <system:String x:Key="AppsPageTitle">Applications</system:String>
+    <system:String x:Key="AppsPageRefreshBtn">Refresh</system:String>
+    <system:String x:Key="AppsPageRemoveBtn">Remove</system:String>
+    <system:String x:Key="AppsPageSelectAllBtn">Select All</system:String>
+    <system:String x:Key="AppsPageColorListBtn">Color Information</system:String>
+    <system:String x:Key="AppsPageColorListInfo">Color Categories</system:String>
+    <system:String x:Key="AppsPageColorListInfoTxt1">Critical System Applications - Dangerous to Remove!</system:String>
+    <system:String x:Key="AppsPageColorListInfoTxt2">Driver Packages</system:String>
+    <system:String x:Key="AppsPageColorListInfoTxt3">Language Packages</system:String>
+    <system:String x:Key="AppsPageColorListInfoTxt4">Microsoft Store Applications</system:String>
+    <system:String x:Key="AppsPageColorListInfoTxt5">Xbox and Game Applications</system:String>
+    <system:String x:Key="AppsPageColorListInfoTxt6">Plugins</system:String>
+    <system:String x:Key="AppsPageColorListInfoTxt7">Optional Applications</system:String>
+    <system:String x:Key="AppsPageListAppName">Application Name</system:String>
+    <system:String x:Key="AppsPageListAppVersion">Version</system:String>
+
+    <!--  MessageBox Texts  -->
+    <system:String x:Key="AppsPageMessageBox_LoadError">Error loading application list:</system:String>
+    <system:String x:Key="AppsPageMessageBox_Error">Error</system:String>
+    <system:String x:Key="AppsPageMessageBox_Warning">Warning</system:String>
+    <system:String x:Key="AppsPageMessageBox_Confirmation">Confirmation</system:String>
+    <system:String x:Key="AppsPageMessageBox_CriticalAppsWarning">
+        WARNING: There are critical system applications among your selected applications!
+        Removing these applications may cause the system to malfunction.
+        Are you sure you want to continue? All responsibility is yours!
+    </system:String>
+    <system:String x:Key="AppsPageMessageBox_DeleteConfirmation">Are you sure you want to remove the selected applications?</system:String>
+    <system:String x:Key="AppsPageMessageBox_DeleteError">error removing:</system:String>
+    <system:String x:Key="AppsPageMessageBox_SelectApps">Please select applications to remove.</system:String>
+
+    <!--  General MessageBox Texts  -->
+    <system:String x:Key="MessageBox_Error">Error</system:String>
+    <system:String x:Key="MessageBox_Warning">Warning</system:String>
+    <system:String x:Key="MessageBox_Information">Information</system:String>
+    <system:String x:Key="MessageBox_Confirmation">Confirmation</system:String>
+    
+    <!--  Splash Screen  -->
+    <system:String x:Key="SplashScreen_Loading">Loading data...</system:String>
+    <system:String x:Key="SplashScreen_Step1">Starting application...</system:String>
+    <system:String x:Key="SplashScreen_Step2">Preparing system components...</system:String>
+    <system:String x:Key="SplashScreen_Step3">Loading application data...</system:String>
+    <system:String x:Key="SplashScreen_Step4">Preparing interface...</system:String>
+    <system:String x:Key="SplashScreen_Step5">Completing process...</system:String>
+    
+    <!--  TelemetryPage MessageBox Texts  -->
+    <system:String x:Key="TelemetryPageMessageBox_HostsFileUpdateError">Error updating hosts file:</system:String>
+    <system:String x:Key="TelemetryPageMessageBox_CommandError">Error executing command:</system:String>
+
+    <!--  Tools Page  -->
+    <system:String x:Key="ToolsPageTitle">Tools</system:String>
+
+    <system:String x:Key="ToolsPageTempFiles">Clean Temporary Files</system:String>
+    <system:String x:Key="ToolsPageTempFilesDesc">Deletes files in Windows Prefetch, User Temp, and Windows Temp folders.</system:String>
+
+    <system:String x:Key="ToolsPageDiskCleanup">Disk Cleanup</system:String>
+    <system:String x:Key="ToolsPageDiskCleanupDesc">Runs the Windows Disk Cleanup tool and cleans your system.</system:String>
+
+    <system:String x:Key="ToolsPageRecycleBin">Empty Recycle Bin</system:String>
+    <system:String x:Key="ToolsPageRecycleBinDesc">Permanently deletes all items in the recycle bin.</system:String>
+
+    <system:String x:Key="ToolsPageRestorePoint">Create Restore Point</system:String>
+    <system:String x:Key="ToolsPageRestorePointDesc">Creates a new restore point for the system.</system:String>
+
+    <system:String x:Key="ToolsPageSystemFile">Verify System Integrity</system:String>
+    <system:String x:Key="ToolsPageSystemFileDesc">Scans Windows system files and repairs corrupted ones.</system:String>
+
+    <system:String x:Key="ToolsPageBrowserHistory">Clear Browser History</system:String>
+    <system:String x:Key="ToolsPageBrowserHistoryDesc">Clears history, cache, and cookies from Chrome, Edge, Firefox, and Brave browsers.</system:String>
+
+    <system:String x:Key="ToolsPageNetworkReset">Reset Network Settings</system:String>
+    <system:String x:Key="ToolsPageNetworkResetDesc">Clears DNS cache, releases and renews IP addresses.</system:String>
+
+    <system:String x:Key="ToolsPageMAS">Microsoft Activation</system:String>
+    <system:String x:Key="ToolsPageMASDesc">Runs Microsoft Activation Scripts to activate Windows and Office.</system:String>
+
+    <!--  Privacy Page  -->
+    <system:String x:Key="PrivacyPageTitle">Privacy and Security</system:String>
+
+    <system:String x:Key="PrivacyPageAppAccess">App Access</system:String>
+    <system:String x:Key="PrivacyPageAppAccessDesc">Controls app access to system components.</system:String>
+
+    <system:String x:Key="PrivacyPageLocation">Location Access</system:String>
+    <system:String x:Key="PrivacyPageLocationDesc">Controls app access to your location information.</system:String>
+
+    <system:String x:Key="PrivacyPageCamera">Camera Access</system:String>
+    <system:String x:Key="PrivacyPageCameraDesc">Controls app access to camera hardware.</system:String>
+
+    <system:String x:Key="PrivacyPageMicrophone">Microphone Access</system:String>
+    <system:String x:Key="PrivacyPageMicrophoneDesc">Controls app access to microphone hardware.</system:String>
+
+    <system:String x:Key="PrivacyPageSystemFiles">File System Access</system:String>
+    <system:String x:Key="PrivacyPageSystemFilesDesc">Controls access to documents, pictures, videos libraries and broader file system access.</system:String>
+
+    <system:String x:Key="PrivacyPageAccountInfo">Account Information Access</system:String>
+    <system:String x:Key="PrivacyPageAccountInfoDesc">Controls app access to your Microsoft account information.</system:String>
+
+    <system:String x:Key="PrivacyPageContacts">Contacts Access</system:String>
+    <system:String x:Key="PrivacyPageContactsDesc">Controls app access to your contacts list.</system:String>
+
+    <system:String x:Key="PrivacyPageCallHistory">Call History Access</system:String>
+    <system:String x:Key="PrivacyPageCallHistoryDesc">Controls app access to your phone call history.</system:String>
+
+    <system:String x:Key="PrivacyPageMessaging">Messaging Access</system:String>
+    <system:String x:Key="PrivacyPageMessagingDesc">Controls app access to your messages.</system:String>
+
+    <system:String x:Key="PrivacyPageNotifications">Notification Access</system:String>
+    <system:String x:Key="PrivacyPageNotificationsDesc">Controls app access to system notifications.</system:String>
+
+    <system:String x:Key="PrivacyPageEmail">Email Access</system:String>
+    <system:String x:Key="PrivacyPageEmailDesc">Controls app access to your email accounts.</system:String>
+
+    <system:String x:Key="PrivacyPageTasks">Tasks Access</system:String>
+    <system:String x:Key="PrivacyPageTasksDesc">Controls app access to your task lists.</system:String>
+
+    <system:String x:Key="PrivacyPageDiagnostics">Diagnostics Access</system:String>
+    <system:String x:Key="PrivacyPageDiagnosticsDesc">Controls app access to system diagnostic data.</system:String>
+
+    <system:String x:Key="PrivacyPageVoiceActivation">Voice Activation Access</system:String>
+    <system:String x:Key="PrivacyPageVoiceActivationDesc">Controls voice command and activation features.</system:String>
+
+    <system:String x:Key="PrivacyPagePhone">Phone Access</system:String>
+    <system:String x:Key="PrivacyPagePhoneDesc">Controls app access to phone features.</system:String>
+
+    <system:String x:Key="PrivacyPageTrustedDevices">Trusted Devices Access</system:String>
+    <system:String x:Key="PrivacyPageTrustedDevicesDesc">Controls app access to trusted devices list.</system:String>
+
+    <system:String x:Key="PrivacyPageCalendar">Calendar Access</system:String>
+    <system:String x:Key="PrivacyPageCalendarDesc">Controls app access to your calendar events.</system:String>
+
+    <system:String x:Key="PrivacyPageMotion">Motion Access</system:String>
+    <system:String x:Key="PrivacyPageMotionDesc">Controls app access to motion sensors.</system:String>
+
+    <system:String x:Key="PrivacyPageRadio">Radio Access</system:String>
+    <system:String x:Key="PrivacyPageRadioDesc">Controls app access to Bluetooth, WiFi, and other wireless connections.</system:String>
+
+    <system:String x:Key="PrivacyPageCloudSync">Cloud Synchronization</system:String>
+    <system:String x:Key="PrivacyPageCloudSyncDesc">Controls synchronization of Windows settings with your Microsoft account.</system:String>
+
+    <system:String x:Key="PrivacyPageActivityFeed">Activity Feed</system:String>
+    <system:String x:Key="PrivacyPageActivityFeedDesc">Controls Windows Activity History and Timeline features.</system:String>
+
+    <system:String x:Key="PrivacyPageScreenRecording">Screen Recording</system:String>
+    <system:String x:Key="PrivacyPageScreenRecordingDesc">Controls Game DVR and screen recording features.</system:String>
+
+    <system:String x:Key="PrivacyPageNotificationsTray">Notification Center</system:String>
+    <system:String x:Key="PrivacyPageNotificationsTrayDesc">Controls Windows notification center and notification features.</system:String>
+
+    <system:String x:Key="PrivacyPageMapDownloads">Map Downloads</system:String>
+    <system:String x:Key="PrivacyPageMapDownloadsDesc">Controls automatic map updates and data download features.</system:String>
+
+    <system:String x:Key="PrivacyPageLockscreenCamera">Lock Screen Camera</system:String>
+    <system:String x:Key="PrivacyPageLockscreenCameraDesc">Controls lock screen camera usage for Windows Hello.</system:String>
+
+    <system:String x:Key="PrivacyPageBiometrics">Biometric Authentication</system:String>
+    <system:String x:Key="PrivacyPageBiometricsDesc">Controls Windows Hello and biometric authentication features.</system:String>
+
+    <!--  Telemetry Page  -->
+    <system:String x:Key="TelemetryPageTitle">Data Collection and Telemetry</system:String>
+    
+    <system:String x:Key="TelemetryPageWindowsTelemetry">Windows Telemetry and Data Collection</system:String>
+    <system:String x:Key="TelemetryPageWindowsTelemetryDesc">Controls diagnostic and usage data that Windows sends to Microsoft.</system:String>
+    
+    <system:String x:Key="TelemetryPageWindowsUpdate">Windows Update Data Collection</system:String>
+    <system:String x:Key="TelemetryPageWindowsUpdateDesc">Controls driver searching and peer-to-peer sharing of updates.</system:String>
+    
+    <system:String x:Key="TelemetryPageWindowsSearch">Windows Search Data Collection</system:String>
+    <system:String x:Key="TelemetryPageWindowsSearchDesc">Controls web search, Cortana, and sharing of search data.</system:String>
+    
+    <system:String x:Key="TelemetryPageOfficeTelemetry">Office Telemetry</system:String>
+    <system:String x:Key="TelemetryPageOfficeTelemetryDesc">Controls sending of Microsoft Office apps usage data to Microsoft.</system:String>
+    
+    <system:String x:Key="TelemetryPageAppExperience">App Experience Data Collection</system:String>
+    <system:String x:Key="TelemetryPageAppExperienceDesc">Controls Microsoft Compatibility Appraiser and other App Experience tasks.</system:String>
+    
+    <system:String x:Key="TelemetryPageFeedback">Feedback Data Collection</system:String>
+    <system:String x:Key="TelemetryPageFeedbackDesc">Controls Windows feedback and user survey features.</system:String>
+    
+    <system:String x:Key="TelemetryPageHandwriting">Handwriting Data Collection</system:String>
+    <system:String x:Key="TelemetryPageHandwritingDesc">Controls sending of handwriting data to Microsoft and error reports.</system:String>
+    
+    <system:String x:Key="TelemetryPageClipboard">Clipboard Data Collection</system:String>
+    <system:String x:Key="TelemetryPageClipboardDesc">Controls collection of clipboard data for personalization.</system:String>
+    
+    <system:String x:Key="TelemetryPageTargetedAds">Targeted Ads</system:String>
+    <system:String x:Key="TelemetryPageTargetedAdsDesc">Controls advertising ID and personalized ad features.</system:String>
+    
+    <system:String x:Key="TelemetryPagePrivacyConsent">Privacy Consent</system:String>
+    <system:String x:Key="TelemetryPagePrivacyConsentDesc">Controls Windows privacy policy consent status.</system:String>
+    
+    <system:String x:Key="TelemetryPageThirdPartyApps">3rd Party App Telemetry</system:String>
+    <system:String x:Key="TelemetryPageThirdPartyAppsDesc">Controls access to telemetry servers for 3rd party apps like Adobe.</system:String>
+    
+    <system:String x:Key="TelemetryPageNvidia">NVIDIA Telemetry</system:String>
+    <system:String x:Key="TelemetryPageNvidiaDesc">Controls data collection features of NVIDIA drivers and control panel.</system:String>
+    
+    <system:String x:Key="TelemetryPageVSCode">VS Code Telemetry</system:String>
+    <system:String x:Key="TelemetryPageVSCodeDesc">Controls data collection features of Visual Studio and VS Code.</system:String>
+    
+    <system:String x:Key="TelemetryPageMediaPlayer">Media Player Telemetry</system:String>
+    <system:String x:Key="TelemetryPageMediaPlayerDesc">Controls sharing of Windows Media Player usage data.</system:String>
+    
+    <system:String x:Key="TelemetryPagePowerShell">PowerShell Telemetry</system:String>
+    <system:String x:Key="TelemetryPagePowerShellDesc">Controls PowerShell sending usage data to Microsoft.</system:String>
+    
+    <system:String x:Key="TelemetryPageCCleaner">CCleaner Telemetry</system:String>
+    <system:String x:Key="TelemetryPageCCleanerDesc">Controls tracking and usage data collection features of CCleaner.</system:String>
+    
+    <system:String x:Key="TelemetryPageGoogleUpdates">Google Background Updates</system:String>
+    <system:String x:Key="TelemetryPageGoogleUpdatesDesc">Controls automatic update services for Google products.</system:String>
+    
+    <system:String x:Key="TelemetryPageAdobeUpdates">Adobe Background Updates</system:String>
+    <system:String x:Key="TelemetryPageAdobeUpdatesDesc">Controls automatic update services for Adobe products.</system:String>
+
+    <!--  Game Optimization Page  -->
+    <system:String x:Key="GameOptimizationPageTitle">Game Optimization</system:String>
+    
+    <system:String x:Key="GameOptimizationPageFullscreenOpt">Fullscreen Optimizations</system:String>
+    <system:String x:Key="GameOptimizationPageFullscreenOptDesc">Disables fullscreen optimizations to allow your games to run in native fullscreen mode.</system:String>
+    
+    <system:String x:Key="GameOptimizationPageMouseAccel">Mouse Acceleration</system:String>
+    <system:String x:Key="GameOptimizationPageMouseAccelDesc">Disables mouse acceleration for more accurate and consistent mouse movement.</system:String>
+    
+    <system:String x:Key="GameOptimizationPageGameBar">Game Bar</system:String>
+    <system:String x:Key="GameOptimizationPageGameBarDesc">Disables Windows Game Bar feature for performance gains.</system:String>
+    
+    <system:String x:Key="GameOptimizationPageGameMode">Game Mode</system:String>
+    <system:String x:Key="GameOptimizationPageGameModeDesc">Disables Windows Game Mode feature for better system resource utilization.</system:String>
+
+    <!--  Performance Page  -->
+    <system:String x:Key="PerformancePageTitle">Performance</system:String>
+    
+    <system:String x:Key="PerformancePageDNS">DNS Settings</system:String>
+    <system:String x:Key="PerformancePageDNSDesc">Optimize your internet connection by selecting fast and secure DNS servers.</system:String>
+    <system:String x:Key="PerformancePageDNSProvider">DNS Provider:</system:String>
+    <system:String x:Key="PerformancePageNetworkInterface">Network Interface:</system:String>
+    <system:String x:Key="PerformancePageDNSGoogle">Google DNS</system:String>
+    <system:String x:Key="PerformancePageDNSCloudflare">Cloudflare DNS</system:String>
+    <system:String x:Key="PerformancePageDNSOpenDNS">OpenDNS</system:String>
+    <system:String x:Key="PerformancePageDNSQuad9">Quad9 DNS</system:String>
+    <system:String x:Key="PerformancePageDNSApply">Apply</system:String>
+    
+    <system:String x:Key="PerformancePageUltimatePerformance">Ultimate Performance Power Plan</system:String>
+    <system:String x:Key="PerformancePageUltimatePerformanceDesc">Enables Windows' highest performance power plan.</system:String>
+    <system:String x:Key="PerformancePageUltimatePerformanceApply">Enable</system:String>
+    
+    <system:String x:Key="PerformancePageServices">Service Optimization</system:String>
+    <system:String x:Key="PerformancePageServicesDesc">Optimizes unnecessary Windows services to improve system performance.</system:String>
+    <system:String x:Key="PerformancePageServicesApply">Optimize</system:String>
+    
+    <system:String x:Key="PerformancePageHibernation">Disable Hibernation</system:String>
+    <system:String x:Key="PerformancePageHibernationDesc">Disables hibernation feature to free up disk space.</system:String>
+    
+    <system:String x:Key="PerformancePagePrefetch">Disable Prefetch</system:String>
+    <system:String x:Key="PerformancePagePrefetchDesc">Disables Prefetch and Sysmain services to improve system performance.</system:String>
+    
+    <system:String x:Key="PerformancePageStorageSense">Disable Storage Sense</system:String>
+    <system:String x:Key="PerformancePageStorageSenseDesc">Disables automatic disk cleanup feature.</system:String>
+    
+    <system:String x:Key="PerformancePageHAGS">Hardware Accelerated GPU Scheduling</system:String>
+    <system:String x:Key="PerformancePageHAGSDesc">Disables GPU hardware acceleration which may improve game performance.</system:String>
+    
+    <system:String x:Key="PerformancePageCoreIsolation">Disable Core Isolation</system:String>
+    <system:String x:Key="PerformancePageCoreIsolationDesc">Disables memory integrity and core isolation to improve performance.</system:String>
+    
+    <system:String x:Key="PerformancePageDefender">Limit Windows Defender Usage</system:String>
+    <system:String x:Key="PerformancePageDefenderDesc">Limits Defender CPU usage to 25% to improve system performance.</system:String>
+    
+    <system:String x:Key="PerformancePageSearch">Disable Windows Search Service</system:String>
+    <system:String x:Key="PerformancePageSearchDesc">Disables Windows Search service to improve system performance.</system:String>
+
+    <!--  Performance Page MessageBox Texts  -->
+    <system:String x:Key="PerformancePageMessageBox_SelectNetworkInterface">Please select a network interface.</system:String>
+    <system:String x:Key="PerformancePageMessageBox_SelectDNSProvider">Please select a DNS provider.</system:String>
+    <system:String x:Key="PerformancePageMessageBox_DNSApplied">DNS settings successfully applied.</system:String>
+    <system:String x:Key="PerformancePageMessageBox_UltimatePerformanceEnabled">Ultimate Performance power plan successfully enabled.</system:String>
+    <system:String x:Key="PerformancePageMessageBox_ServicesConfirmation">This operation will set Windows services to manual startup.\nSome services will be completely disabled.\n\nThis process may take several minutes.\nDo you want to continue?</system:String>
+    <system:String x:Key="PerformancePageMessageBox_ServicesOptimized">Services optimized. System restart is required for some changes to take effect.</system:String>
+    <system:String x:Key="PerformancePageMessageBox_NoNetworkInterfaces">No active network interfaces found.</system:String>
+
+    <!--  About Page  -->
+    <system:String x:Key="AboutPageTitle">About</system:String>
+    <system:String x:Key="AboutPageAppName">WinFlux</system:String>
+    <system:String x:Key="AboutPageDescription">Windows system optimization and customization tool</system:String>
+    <system:String x:Key="AboutPageAppDescriptionTitle">Application Description</system:String>
+    <system:String x:Key="AboutPageAppDescriptionPart1">WinFlux is a comprehensive tool designed to customize, optimize, and secure the Windows operating system.</system:String>
+    <system:String x:Key="AboutPageAppDescriptionPart2">The application offers features to improve system performance, remove unnecessary applications, adjust privacy and security settings, control telemetry data, and perform various system maintenance tasks.</system:String>
+    <system:String x:Key="AboutPageVersion">Version</system:String>
+    <system:String x:Key="AboutPageDeveloper">Developer</system:String>
+    <system:String x:Key="AboutPageDeveloperName">Berkay AY</system:String>
+    <system:String x:Key="AboutPageWebsite">Website</system:String>
+    <system:String x:Key="AboutPageRepository">Source Code</system:String>
+    <system:String x:Key="AboutPageSupport">Support</system:String>
+    <system:String x:Key="AboutPageCopyright">Copyright © 2024 Berkay AY. All rights reserved.</system:String>
+    <system:String x:Key="AboutPageGitHubButton">GitHub</system:String>
+    <system:String x:Key="AboutPageKofiButton">Ko-fi</system:String>
+
+    <!-- Preset MessageBox Texts -->
+    <system:String x:Key="PresetMessageBox_ExportSuccess">Presets successfully exported.</system:String>
+    <system:String x:Key="PresetMessageBox_ExportError">Error exporting presets:</system:String>
+    <system:String x:Key="PresetMessageBox_ImportSuccess">Presets successfully imported.</system:String>
+    <system:String x:Key="PresetMessageBox_ImportError">Error importing presets:</system:String>
+    <system:String x:Key="PresetMessageBox_ImportConfirmation">Are you sure you want to import presets? Your current settings will be changed.</system:String>
+    <system:String x:Key="PresetMessageBox_AppsPageWarning">This preset will remove some applications. Do you want to continue?</system:String>
+    <system:String x:Key="PresetMessageBox_Success">Success</system:String>
+    <system:String x:Key="PresetMessageBox_SavePresetTitle">Save Preset</system:String>
+    <system:String x:Key="PresetMessageBox_LoadPresetTitle">Load Preset</system:String>
+
+    <!-- App Installer Page -->
+    <system:String x:Key="AppInstallerPageTitle">App Installer</system:String>
+    <system:String x:Key="AppInstallerPageDescription">Easily install popular applications for your computer. WinFlux automates software installations using Winget or Chocolatey package managers.</system:String>
+    <system:String x:Key="AppInstallerPackageManager">Package Manager:</system:String>
+    <system:String x:Key="AppInstallerWinget">Winget</system:String>
+    <system:String x:Key="AppInstallerChocolatey">Chocolatey</system:String>
+    <system:String x:Key="AppInstallerInstallBtn">Install Selected</system:String>
+    <system:String x:Key="AppInstallerStatusReady">Ready</system:String>
+    <system:String x:Key="AppInstallerStatusInstalling">Installing...</system:String>
+    <system:String x:Key="AppInstallerInstallingTitle">Installing Applications</system:String>
+    
+    <!-- Categories -->
+    <system:String x:Key="AppInstallerCategoryBrowsers">Web Browsers</system:String>
+    <system:String x:Key="AppInstallerCategoryDevelopment">Development Tools</system:String>
+    <system:String x:Key="AppInstallerCategoryUtilities">Utilities</system:String>
+    <system:String x:Key="AppInstallerCategoryCommunication">Communication</system:String>
+    <system:String x:Key="AppInstallerCategoryGaming">Gaming</system:String>
+    
+    <!-- App Descriptions -->
+    <system:String x:Key="AppInstallerChromeDesc">Google's fast and secure web browser.</system:String>
+    <system:String x:Key="AppInstallerFirefoxDesc">Privacy-focused, open-source web browser.</system:String>
+    <system:String x:Key="AppInstallerBraveDesc">Fast, privacy-focused browser with built-in ad blocker.</system:String>
+    <system:String x:Key="AppInstallerVSCodeDesc">Lightweight but powerful source code editor.</system:String>
+    <system:String x:Key="AppInstallerGitDesc">Distributed version control system.</system:String>
+    <system:String x:Key="AppInstallerNodeJSDesc">JavaScript runtime environment.</system:String>
+    <system:String x:Key="AppInstaller7ZipDesc">File archiver with high compression ratio.</system:String>
+    <system:String x:Key="AppInstallerVLCDesc">Free and open-source cross-platform multimedia player.</system:String>
+    <system:String x:Key="AppInstallerNotepadDesc">Free source code editor and Notepad replacement.</system:String>
+    <system:String x:Key="AppInstallerDiscordDesc">For chatting with friends and communities.</system:String>
+    <system:String x:Key="AppInstallerTeamsDesc">Microsoft tool for collaborative work and video conferencing.</system:String>
+    <system:String x:Key="AppInstallerSlackDesc">Business-oriented messaging platform.</system:String>
+    <system:String x:Key="AppInstallerSteamDesc">Game, video streaming and social networking platform.</system:String>
+    <system:String x:Key="AppInstallerEpicDesc">Digital store and launcher for Epic Games.</system:String>
+    
+    <!-- Package Manager Messages -->
+    <system:String x:Key="AppInstallerBothMissing">Winget and Chocolatey package managers are not installed. Would you like to install them automatically?</system:String>
+    <system:String x:Key="AppInstallerWingetMissing">Winget package manager is not installed. Would you like to install it automatically?</system:String>
+    <system:String x:Key="AppInstallerChocolateyMissing">Chocolatey package manager is not installed. Would you like to install it automatically?</system:String>
+    <system:String x:Key="AppInstallerPackageManagersInstalled">Package managers successfully installed!</system:String>
+    <system:String x:Key="AppInstallerPackageManagerInstallError">Error installing package manager:</system:String>
+    
+    <!-- Installation Messages -->
+    <system:String x:Key="AppInstallerNoAppsSelected">Please select at least one application to install.</system:String>
+    <system:String x:Key="AppInstallerConfirmInstall">Are you sure you want to install the selected {0} applications with the {1} package manager?</system:String>
+    <system:String x:Key="AppInstallerInstallComplete">Applications successfully installed!</system:String>
+    <system:String x:Key="AppInstallerInstallError">Error installing applications:</system:String>
+    
+    <!-- PowerShell Script Messages -->
+    <system:String x:Key="AppInstallerWindowTitle">Application Installation</system:String>
+    <system:String x:Key="AppInstallerScriptTitle">App Installer</system:String>
+    <system:String x:Key="AppInstallerGeneratedBy">Generated by WinFlux - {0} Package Manager</system:String>
+    <system:String x:Key="AppInstallerProgressActivity">Installing Applications</system:String>
+    <system:String x:Key="AppInstallerDontCloseWarning">WARNING: Do not close this window while installation is in progress!</system:String>
+    <system:String x:Key="AppInstallerInstallingStatus">Installing {0}...</system:String>
+    <system:String x:Key="AppInstallerInstalling">Installing {0}...</system:String>
+    <system:String x:Key="AppInstallerSuccessMessage">{0} successfully installed.</system:String>
+    <system:String x:Key="AppInstallerFailedMessage">{0} installation failed.</system:String>
+    <system:String x:Key="AppInstallerAllCompleted">All installations completed!</system:String>
+    <system:String x:Key="AppInstallerPressAnyKey">Press any key to close...</system:String>
+    <system:String x:Key="AppInstallerEarlyTermination">Installation process was terminated before completion!</system:String>
+    
+    <!-- Progress and Error Messages -->
+    <system:String x:Key="AppInstallerStatusRunning">Installation process running</system:String>
+    <system:String x:Key="AppInstallerStatusCompleted">Installation completed</system:String>
+    <system:String x:Key="AppInstallerStatusFailed">Installation failed</system:String>
+    <system:String x:Key="AppInstallerProcessStartError">Failed to start installation process</system:String>
+    <system:String x:Key="AppInstallerProcessTerminated">Installation process terminated by user</system:String>
+    <system:String x:Key="AppInstallerProcessExitCode">Installation process exited with error code: {0}</system:String>
+    <system:String x:Key="AppInstallerUserCancelled">Installation process cancelled by user</system:String>
+    <system:String x:Key="AppInstallerError">Installation error</system:String>
+    <system:String x:Key="AppInstallerPowershellRunning">PowerShell window is shown. You can see the installation progress there.</system:String>
+    <system:String x:Key="AppInstallerCleanup">Performing cleanup...</system:String>
+    <system:String x:Key="PresetMessageBox_FileNotFound">File not found.</system:String>
+</ResourceDictionary>

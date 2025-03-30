@@ -1,0 +1,199 @@
+<ui:Page
+    x:Class="WinFlux.Pages.TelemetryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    Title="{DynamicResource TelemetryPageTitle}">
+
+    <ui:ScrollViewerEx ForceUseSmoothScroll="True">
+        <ikw:SimpleStackPanel Margin="14,14,20,14" Spacing="8">
+            <TextBlock
+                Margin="4,0,0,0"
+                FontSize="24"
+                FontWeight="Medium"
+                Text="{DynamicResource TelemetryPageTitle}" />
+
+            <!-- Windows Telemetry & Data Collection -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageWindowsTelemetryDesc}"
+                Header="{DynamicResource TelemetryPageWindowsTelemetry}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE946;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleWindowsTelemetry" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Windows Update Data Collection -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageWindowsUpdateDesc}"
+                Header="{DynamicResource TelemetryPageWindowsUpdate}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE895;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleWindowsUpdate" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Windows Search Data Collection -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageWindowsSearchDesc}"
+                Header="{DynamicResource TelemetryPageWindowsSearch}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE721;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleWindowsSearch" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Office Telemetry -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageOfficeTelemetryDesc}"
+                Header="{DynamicResource TelemetryPageOfficeTelemetry}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE7C3;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleOfficeTelemetry" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Application Experience Data Collection -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageAppExperienceDesc}"
+                Header="{DynamicResource TelemetryPageAppExperience}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE7F8;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleAppExperience" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Feedback Data Collection -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageFeedbackDesc}"
+                Header="{DynamicResource TelemetryPageFeedback}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE939;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleFeedback" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Handwriting Data Collection -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageHandwritingDesc}"
+                Header="{DynamicResource TelemetryPageHandwriting}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xED5F;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleHandwriting" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Clipboard Data Collection -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageClipboardDesc}"
+                Header="{DynamicResource TelemetryPageClipboard}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE8C8;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleClipboard" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Targeted Ads -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageTargetedAdsDesc}"
+                Header="{DynamicResource TelemetryPageTargetedAds}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xEA43;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleTargetedAds" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Privacy Consent -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPagePrivacyConsentDesc}"
+                Header="{DynamicResource TelemetryPagePrivacyConsent}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE8FB;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="togglePrivacyConsent" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- 3rd-party apps Telemetry -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageThirdPartyAppsDesc}"
+                Header="{DynamicResource TelemetryPageThirdPartyApps}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE71D;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleThirdPartyApps" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- NVIDIA Telemetry -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageNvidiaDesc}"
+                Header="{DynamicResource TelemetryPageNvidia}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE964;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleNvidia" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- VS Code Telemetry -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageVSCodeDesc}"
+                Header="{DynamicResource TelemetryPageVSCode}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE943;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleVSCode" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Media Player Telemetry -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageMediaPlayerDesc}"
+                Header="{DynamicResource TelemetryPageMediaPlayer}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE8B1;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleMediaPlayer" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- PowerShell Telemetry -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPagePowerShellDesc}"
+                Header="{DynamicResource TelemetryPagePowerShell}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE756;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="togglePowerShell" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- CCleaner Telemetry -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageCCleanerDesc}"
+                Header="{DynamicResource TelemetryPageCCleaner}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE896;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleCCleaner" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Google Background Updates -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageGoogleUpdatesDesc}"
+                Header="{DynamicResource TelemetryPageGoogleUpdates}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE774;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleGoogleUpdates" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Adobe Background Updates -->
+            <ui:SettingsCard
+                Description="{DynamicResource TelemetryPageAdobeUpdatesDesc}"
+                Header="{DynamicResource TelemetryPageAdobeUpdates}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE774;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleAdobeUpdates" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+        </ikw:SimpleStackPanel>
+    </ui:ScrollViewerEx>
+</ui:Page> 
