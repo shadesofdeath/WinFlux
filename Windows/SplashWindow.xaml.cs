@@ -13,7 +13,7 @@ namespace WinFlux.Windows
         private DispatcherTimer timer;
         private int totalSteps = 5;
         private int currentStep = 0;
-        private double stepDuration = 1000; // Her adım 600 ms sürsün, toplamda 3 saniye
+        private double stepDuration = 600; // Her adım 600 ms sürsün, toplamda 3 saniye
 
         // Adımlarda gösterilecek mesajlar
         private string[] loadingMessages;

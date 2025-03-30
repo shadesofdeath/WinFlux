@@ -25,7 +25,6 @@ namespace WinFlux.Services
                     TelemetrySettings = CollectTelemetrySettings(),
                     PerformanceSettings = CollectPerformanceSettings(),
                     GameSettings = CollectGameSettings(),
-                    AppSettings = CollectAppSettings(),
                     AppInstallerSettings = CollectAppInstallerSettings()
                 };
 
@@ -97,7 +96,6 @@ namespace WinFlux.Services
                 ApplyTelemetrySettings(preset.TelemetrySettings);
                 ApplyPerformanceSettings(preset.PerformanceSettings);
                 ApplyGameSettings(preset.GameSettings);
-                ApplyAppSettings(preset.AppSettings);
                 ApplyAppInstallerSettings(preset.AppInstallerSettings);
 
                 return true;
@@ -176,19 +174,6 @@ namespace WinFlux.Services
             return settings;
         }
 
-        private static AppSettings CollectAppSettings()
-        {
-            // Implement this to gather current app settings and list of apps to remove
-            var appSettings = new AppSettings();
-            
-            // Get selected apps from AppsPage if available
-            if (Pages.AppsPage.Instance != null)
-            {
-                appSettings.AppsToRemove = Pages.AppsPage.Instance.GetSelectedAppsForPreset();
-            }
-            
-            return appSettings;
-        }
         
         private static AppInstallerSettings CollectAppInstallerSettings()
         {
@@ -295,21 +280,6 @@ namespace WinFlux.Services
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     Pages.GameOptimizationPage.Instance.ApplyToggleSettings(toggles);
-                });
-            }
-        }
-
-        private static void ApplyAppSettings(AppSettings settings)
-        {
-            if (settings == null) return;
-            
-            // If there are apps to remove, use the AppsPage instance to handle it
-            if (settings.AppsToRemove.Count > 0 && Pages.AppsPage.Instance != null)
-            {
-                // Need to dispatch to UI thread since we might be running on background thread
-                Application.Current.Dispatcher.Invoke(async () =>
-                {
-                    await Pages.AppsPage.Instance.ApplyPresetAndUninstallApps(settings.AppsToRemove);
                 });
             }
         }

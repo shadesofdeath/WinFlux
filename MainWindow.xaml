@@ -8,12 +8,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
     Title="WinFlux"
-    Width="1100"
+    Width="1200"
     Height="600"
     ui:WindowHelper.SystemBackdropType="Mica"
     ui:WindowHelper.UseModernWindowStyle="True"
+    Background="{DynamicResource ApplicationBackgroundThemeBrush}"
+    BorderBrush="{DynamicResource ControlElevationBorderBrush}"
     BorderThickness="0"
-    Icon="/Assets/icon.ico"
     OverridesDefaultStyle="True"
     SnapsToDevicePixels="True"
     WindowStartupLocation="CenterScreen"
@@ -33,39 +34,39 @@
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
 
-                <ui:NavigationViewItem Content="{DynamicResource AppsMenuItem}" Tag="appsPage">
+                <ui:NavigationViewItem Content="{DynamicResource DebloatMenuItem}" Tag="debloatPage">
                     <ui:NavigationViewItem.Icon>
-                        <ui:PathIcon Data="{StaticResource AppsIconData}" />
+                        <ui:PathIcon Data="{StaticResource DebloatIconData}" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
 
                 <ui:NavigationViewItem Content="{DynamicResource AppInstallerMenuItem}" Tag="appInstallerPage">
                     <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon Glyph="&#xE896;"/>
+                        <ui:PathIcon Data="{StaticResource AppsIconData}" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
 
                 <ui:NavigationViewItem Content="{DynamicResource PrivacyMenuItem}" Tag="privacyPage">
                     <ui:NavigationViewItem.Icon>
-                        <ui:PathIcon Data="{StaticResource PrivacyIconData}"/>
+                        <ui:PathIcon Data="{StaticResource PrivacyIconData}" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
 
                 <ui:NavigationViewItem Content="{DynamicResource TelemetryMenuItem}" Tag="telemetryPage">
                     <ui:NavigationViewItem.Icon>
-                        <ui:PathIcon Data="{StaticResource PrivacyIconData}"/>
+                        <ui:PathIcon Data="{StaticResource TelemetryIconData}" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
 
                 <ui:NavigationViewItem Content="{DynamicResource GameOptimizationMenuItem}" Tag="gameOptimizationPage">
                     <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon Glyph="&#xE7FC;"/>
+                        <ui:FontIcon Glyph="&#xE7FC;" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
 
                 <ui:NavigationViewItem Content="{DynamicResource PerformanceMenuItem}" Tag="performancePage">
                     <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon Glyph="&#xE950;"/>
+                        <ui:PathIcon Data="{StaticResource SpeedIconData}" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>

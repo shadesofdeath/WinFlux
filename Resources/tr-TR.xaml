@@ -6,7 +6,7 @@
     <!--  APP  -->
     <system:String x:Key="HomeMenuItem">Ana Sayfa</system:String>
     <system:String x:Key="ToolsMenuItem">Araçlar</system:String>
-    <system:String x:Key="AppsMenuItem">Uygulamalar</system:String>
+    <system:String x:Key="DebloatMenuItem">Debloat</system:String>
     <system:String x:Key="AppInstallerMenuItem">Uygulama Yükleyici</system:String>
     <system:String x:Key="SettingsMenuItem">Ayarlar</system:String>
     <system:String x:Key="PrivacyMenuItem">Gizlilik ve Güvenlik</system:String>
@@ -22,45 +22,12 @@
     <system:String x:Key="ToggleOn">Açık</system:String>
     <system:String x:Key="ToggleOff">Kapalı</system:String>
 
-    <!--  Apps Page  -->
-    <system:String x:Key="ButtonSelect">Seç</system:String>
-    <system:String x:Key="ButtonDeselect">Kaldır</system:String>
-    <system:String x:Key="AppsPageTitle">Uygulamalar</system:String>
-    <system:String x:Key="AppsPageRefreshBtn">Yenile</system:String>
-    <system:String x:Key="AppsPageRemoveBtn">Kaldır</system:String>
-    <system:String x:Key="AppsPageSelectAllBtn">Tümünü Seç</system:String>
-    <system:String x:Key="AppsPageColorListBtn">Renk Bilgisi</system:String>
-    <system:String x:Key="AppsPageColorListInfo">Renk Kategorileri</system:String>
-    <system:String x:Key="AppsPageColorListInfoTxt1">Kritik Sistem Uygulamaları - Silmesi Tehlikeli!</system:String>
-    <system:String x:Key="AppsPageColorListInfoTxt2">Sürücü Paketleri</system:String>
-    <system:String x:Key="AppsPageColorListInfoTxt3">Dil Paketleri</system:String>
-    <system:String x:Key="AppsPageColorListInfoTxt4">Microsoft Store Uygulamaları</system:String>
-    <system:String x:Key="AppsPageColorListInfoTxt5">Xbox ve Oyun Uygulamaları</system:String>
-    <system:String x:Key="AppsPageColorListInfoTxt6">Eklentiler</system:String>
-    <system:String x:Key="AppsPageColorListInfoTxt7">İsteğe Bağlı Uygulamalar</system:String>
-    <system:String x:Key="AppsPageListAppName">Uygulama Adı</system:String>
-    <system:String x:Key="AppsPageListAppVersion">Sürüm</system:String>
-
-    <!--  MessageBox Texts  -->
-    <system:String x:Key="AppsPageMessageBox_LoadError">Uygulama listesi yüklenirken hata oluştu:</system:String>
-    <system:String x:Key="AppsPageMessageBox_Error">Hata</system:String>
-    <system:String x:Key="AppsPageMessageBox_Warning">Uyarı</system:String>
-    <system:String x:Key="AppsPageMessageBox_Confirmation">Onay</system:String>
-    <system:String x:Key="AppsPageMessageBox_CriticalAppsWarning">
-        DİKKAT: Seçtiğiniz uygulamalar arasında kritik sistem uygulamaları bulunmaktadır!
-        Bu uygulamaları kaldırmak sistemin düzgün çalışmamasına neden olabilir.
-        Devam etmek istediğinize emin misiniz? Tüm sorumluluk size aittir!
-    </system:String>
-    <system:String x:Key="AppsPageMessageBox_DeleteConfirmation">Seçili uygulamaları kaldırmak istediğinize emin misiniz?</system:String>
-    <system:String x:Key="AppsPageMessageBox_DeleteError">kaldırılırken hata oluştu:</system:String>
-    <system:String x:Key="AppsPageMessageBox_SelectApps">Lütfen kaldırılacak uygulamaları seçin.</system:String>
-
     <!--  General MessageBox Texts  -->
     <system:String x:Key="MessageBox_Error">Hata</system:String>
     <system:String x:Key="MessageBox_Warning">Uyarı</system:String>
     <system:String x:Key="MessageBox_Information">Bilgi</system:String>
     <system:String x:Key="MessageBox_Confirmation">Onay</system:String>
-    
+
     <!--  Splash Screen  -->
     <system:String x:Key="SplashScreen_Loading">Veriler yükleniyor...</system:String>
     <system:String x:Key="SplashScreen_Step1">Uygulama başlatılıyor...</system:String>
@@ -68,7 +35,7 @@
     <system:String x:Key="SplashScreen_Step3">Uygulama verileri yükleniyor...</system:String>
     <system:String x:Key="SplashScreen_Step4">Arayüz hazırlanıyor...</system:String>
     <system:String x:Key="SplashScreen_Step5">İşlem tamamlanıyor...</system:String>
-    
+
     <!--  TelemetryPage MessageBox Texts  -->
     <system:String x:Key="TelemetryPageMessageBox_HostsFileUpdateError">Hosts dosyası güncellenirken hata oluştu:</system:String>
     <system:String x:Key="TelemetryPageMessageBox_CommandError">Komut çalıştırılırken hata oluştu:</system:String>
@@ -183,79 +150,79 @@
 
     <!--  Telemetry Page  -->
     <system:String x:Key="TelemetryPageTitle">Veri Toplama ve Telemetri</system:String>
-    
+
     <system:String x:Key="TelemetryPageWindowsTelemetry">Windows Telemetri ve Veri Toplama</system:String>
     <system:String x:Key="TelemetryPageWindowsTelemetryDesc">Windows'un Microsoft'a gönderdiği teşhis ve kullanım verilerini kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPageWindowsUpdate">Windows Güncelleme Veri Toplama</system:String>
     <system:String x:Key="TelemetryPageWindowsUpdateDesc">Sürücü arama ve güncellemelerin eşler arası paylaşım özelliklerini kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPageWindowsSearch">Windows Arama Veri Toplama</system:String>
     <system:String x:Key="TelemetryPageWindowsSearchDesc">Web araması, Cortana ve arama verilerinin paylaşım özelliklerini kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPageOfficeTelemetry">Office Telemetri</system:String>
     <system:String x:Key="TelemetryPageOfficeTelemetryDesc">Microsoft Office uygulamalarının kullanım verilerinin Microsoft'a iletilmesini kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPageAppExperience">Uygulama Deneyimi Veri Toplama</system:String>
     <system:String x:Key="TelemetryPageAppExperienceDesc">Microsoft Uyumluluk Değerlendiricisi ve diğer Uygulama Deneyimi görevlerini kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPageFeedback">Geri Bildirim Veri Toplama</system:String>
     <system:String x:Key="TelemetryPageFeedbackDesc">Windows geri bildirimleri ve kullanıcı anketi özelliklerini kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPageHandwriting">El Yazısı Veri Toplama</system:String>
     <system:String x:Key="TelemetryPageHandwritingDesc">El yazısı verilerinin Microsoft'a gönderilmesini ve hata raporlarını kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPageClipboard">Pano Veri Toplama</system:String>
     <system:String x:Key="TelemetryPageClipboardDesc">Pano verilerinin kişiselleştirme için toplanmasını kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPageTargetedAds">Hedefli Reklamlar</system:String>
     <system:String x:Key="TelemetryPageTargetedAdsDesc">Reklam kimliği ve kişiselleştirilmiş reklam özelliklerini kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPagePrivacyConsent">Gizlilik Onayı</system:String>
     <system:String x:Key="TelemetryPagePrivacyConsentDesc">Windows gizlilik politikası onay durumunu kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPageThirdPartyApps">3. Parti Uygulama Telemetrisi</system:String>
     <system:String x:Key="TelemetryPageThirdPartyAppsDesc">Adobe gibi 3. parti uygulamaların telemetri sunucularına erişimini kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPageNvidia">NVIDIA Telemetri</system:String>
     <system:String x:Key="TelemetryPageNvidiaDesc">NVIDIA sürücüleri ve kontrol panelinin veri toplama özelliklerini kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPageVSCode">VS Code Telemetri</system:String>
     <system:String x:Key="TelemetryPageVSCodeDesc">Visual Studio ve VS Code'un veri toplama özelliklerini kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPageMediaPlayer">Media Player Telemetri</system:String>
     <system:String x:Key="TelemetryPageMediaPlayerDesc">Windows Media Player'ın kullanım verilerinin paylaşımını kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPagePowerShell">PowerShell Telemetri</system:String>
     <system:String x:Key="TelemetryPagePowerShellDesc">PowerShell'in Microsoft'a kullanım verisi göndermesini kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPageCCleaner">CCleaner Telemetri</system:String>
     <system:String x:Key="TelemetryPageCCleanerDesc">CCleaner'ın izleme ve kullanım verisi toplama özelliklerini kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPageGoogleUpdates">Google Arkaplan Güncellemeleri</system:String>
     <system:String x:Key="TelemetryPageGoogleUpdatesDesc">Google ürünlerinin otomatik güncelleme hizmetlerini kontrol eder.</system:String>
-    
+
     <system:String x:Key="TelemetryPageAdobeUpdates">Adobe Arkaplan Güncellemeleri</system:String>
     <system:String x:Key="TelemetryPageAdobeUpdatesDesc">Adobe ürünlerinin otomatik güncelleme hizmetlerini kontrol eder.</system:String>
 
     <!--  Game Optimization Page  -->
     <system:String x:Key="GameOptimizationPageTitle">Oyun Optimizasyonu</system:String>
-    
+
     <system:String x:Key="GameOptimizationPageFullscreenOpt">Tam Ekran Optimizasyonları</system:String>
     <system:String x:Key="GameOptimizationPageFullscreenOptDesc">Tam ekran optimizasyonlarını devre dışı bırakarak oyunlarınızın native tam ekran modunda çalışmasını sağlar.</system:String>
-    
+
     <system:String x:Key="GameOptimizationPageMouseAccel">Fare İvmesi</system:String>
     <system:String x:Key="GameOptimizationPageMouseAccelDesc">Fare ivmesini devre dışı bırakarak daha doğru ve tutarlı fare hareketi sağlar.</system:String>
-    
+
     <system:String x:Key="GameOptimizationPageGameBar">Game Bar</system:String>
     <system:String x:Key="GameOptimizationPageGameBarDesc">Windows Game Bar özelliğini devre dışı bırakarak performans kazancı sağlar.</system:String>
-    
+
     <system:String x:Key="GameOptimizationPageGameMode">Oyun Modu</system:String>
     <system:String x:Key="GameOptimizationPageGameModeDesc">Windows Oyun Modu özelliğini devre dışı bırakarak sistem kaynaklarının daha iyi kullanımını sağlar.</system:String>
 
     <!--  Performance Page  -->
     <system:String x:Key="PerformancePageTitle">Performans</system:String>
-    
+
     <system:String x:Key="PerformancePageDNS">DNS Ayarları</system:String>
     <system:String x:Key="PerformancePageDNSDesc">Hızlı ve güvenli DNS sunucularını seçerek internet bağlantınızı optimize edin.</system:String>
     <system:String x:Key="PerformancePageDNSProvider">DNS Sağlayıcı:</system:String>
@@ -265,33 +232,33 @@
     <system:String x:Key="PerformancePageDNSOpenDNS">OpenDNS</system:String>
     <system:String x:Key="PerformancePageDNSQuad9">Quad9 DNS</system:String>
     <system:String x:Key="PerformancePageDNSApply">Uygula</system:String>
-    
+
     <system:String x:Key="PerformancePageUltimatePerformance">Ultimate Performance Güç Planı</system:String>
     <system:String x:Key="PerformancePageUltimatePerformanceDesc">Windows'un en yüksek performans sağlayan güç planını etkinleştirir.</system:String>
     <system:String x:Key="PerformancePageUltimatePerformanceApply">Etkinleştir</system:String>
-    
+
     <system:String x:Key="PerformancePageServices">Servis Optimizasyonu</system:String>
     <system:String x:Key="PerformancePageServicesDesc">Gereksiz Windows servislerini optimize ederek sistem performansını artırır.</system:String>
     <system:String x:Key="PerformancePageServicesApply">Optimize Et</system:String>
-    
+
     <system:String x:Key="PerformancePageHibernation">Hazırda Bekletmeyi Devre Dışı Bırak</system:String>
     <system:String x:Key="PerformancePageHibernationDesc">Hazırda bekletme özelliğini devre dışı bırakarak disk alanını boşaltır.</system:String>
-    
+
     <system:String x:Key="PerformancePagePrefetch">Önbellek Devre Dışı Bırak</system:String>
     <system:String x:Key="PerformancePagePrefetchDesc">Prefetch ve Sysmain hizmetlerini devre dışı bırakarak sistem performansını artırır.</system:String>
-    
+
     <system:String x:Key="PerformancePageStorageSense">Storage Sense Devre Dışı Bırak</system:String>
     <system:String x:Key="PerformancePageStorageSenseDesc">Otomatik disk temizleme özelliğini devre dışı bırakır.</system:String>
-    
+
     <system:String x:Key="PerformancePageHAGS">Donanım Hızlandırmalı GPU Zamanlama</system:String>
     <system:String x:Key="PerformancePageHAGSDesc">GPU donanım hızlandırmasını devre dışı bırakarak oyun performansını artırabilir.</system:String>
-    
+
     <system:String x:Key="PerformancePageCoreIsolation">Çekirdek İzolasyonu Devre Dışı Bırak</system:String>
     <system:String x:Key="PerformancePageCoreIsolationDesc">Bellek bütünlüğü ve çekirdek izolasyonunu devre dışı bırakarak performansı artırır.</system:String>
-    
+
     <system:String x:Key="PerformancePageDefender">Windows Defender Kullanımını Sınırla</system:String>
     <system:String x:Key="PerformancePageDefenderDesc">Defender CPU kullanımını %25 ile sınırlandırarak sistem performansını artırır.</system:String>
-    
+
     <system:String x:Key="PerformancePageSearch">Windows Arama Hizmetini Devre Dışı Bırak</system:String>
     <system:String x:Key="PerformancePageSearchDesc">Windows Arama hizmetini devre dışı bırakarak sistem performansını artırır.</system:String>
 
@@ -321,7 +288,7 @@
     <system:String x:Key="AboutPageGitHubButton">GitHub</system:String>
     <system:String x:Key="AboutPageKofiButton">Ko-fi</system:String>
 
-    <!-- Preset MessageBox Texts -->
+    <!--  Preset MessageBox Texts  -->
     <system:String x:Key="PresetMessageBox_ExportSuccess">Hazır ayarlar başarıyla dışa aktarıldı.</system:String>
     <system:String x:Key="PresetMessageBox_ExportError">Hazır ayarlar dışa aktarılırken hata oluştu:</system:String>
     <system:String x:Key="PresetMessageBox_ImportSuccess">Hazır ayarlar başarıyla içe aktarıldı.</system:String>
@@ -332,7 +299,7 @@
     <system:String x:Key="PresetMessageBox_SavePresetTitle">Hazır Ayarları Kaydet</system:String>
     <system:String x:Key="PresetMessageBox_LoadPresetTitle">Hazır Ayarları Yükle</system:String>
 
-    <!-- App Installer Page -->
+    <!--  App Installer Page  -->
     <system:String x:Key="AppInstallerPageTitle">Uygulama Yükleyici</system:String>
     <system:String x:Key="AppInstallerPageDescription">Bilgisayarınız için popüler uygulamaları kolayca yükleyin. WinFlux, Winget veya Chocolatey paket yöneticilerini kullanarak yazılım kurulumlarını otomatikleştirir.</system:String>
     <system:String x:Key="AppInstallerPackageManager">Paket Yöneticisi:</system:String>
@@ -342,15 +309,15 @@
     <system:String x:Key="AppInstallerStatusReady">Hazır</system:String>
     <system:String x:Key="AppInstallerStatusInstalling">Yükleniyor...</system:String>
     <system:String x:Key="AppInstallerInstallingTitle">Uygulamalar Kuruluyor</system:String>
-    
-    <!-- Categories -->
+
+    <!--  Categories  -->
     <system:String x:Key="AppInstallerCategoryBrowsers">Web Tarayıcıları</system:String>
     <system:String x:Key="AppInstallerCategoryDevelopment">Geliştirme Araçları</system:String>
     <system:String x:Key="AppInstallerCategoryUtilities">Yardımcı Programlar</system:String>
     <system:String x:Key="AppInstallerCategoryCommunication">İletişim</system:String>
     <system:String x:Key="AppInstallerCategoryGaming">Oyun</system:String>
-    
-    <!-- App Descriptions -->
+
+    <!--  App Descriptions  -->
     <system:String x:Key="AppInstallerChromeDesc">Google'ın hızlı ve güvenli web tarayıcısı.</system:String>
     <system:String x:Key="AppInstallerFirefoxDesc">Gizlilik odaklı, açık kaynaklı web tarayıcısı.</system:String>
     <system:String x:Key="AppInstallerBraveDesc">Reklam engelleyici ile gelen hızlı, gizlilik odaklı tarayıcı.</system:String>
@@ -365,21 +332,21 @@
     <system:String x:Key="AppInstallerSlackDesc">İş odaklı mesajlaşma platformu.</system:String>
     <system:String x:Key="AppInstallerSteamDesc">Oyun, video yayını ve sosyal ağ platformu.</system:String>
     <system:String x:Key="AppInstallerEpicDesc">Epic Games oyunları için dijital mağaza ve başlatıcı.</system:String>
-    
-    <!-- Package Manager Messages -->
+
+    <!--  Package Manager Messages  -->
     <system:String x:Key="AppInstallerBothMissing">Winget ve Chocolatey paket yöneticileri kurulu değil. Bunları otomatik olarak kurmak ister misiniz?</system:String>
     <system:String x:Key="AppInstallerWingetMissing">Winget paket yöneticisi kurulu değil. Otomatik olarak kurmak ister misiniz?</system:String>
     <system:String x:Key="AppInstallerChocolateyMissing">Chocolatey paket yöneticisi kurulu değil. Otomatik olarak kurmak ister misiniz?</system:String>
     <system:String x:Key="AppInstallerPackageManagersInstalled">Paket yöneticileri başarıyla kuruldu!</system:String>
     <system:String x:Key="AppInstallerPackageManagerInstallError">Paket yöneticisi kurulurken bir hata oluştu:</system:String>
-    
-    <!-- Installation Messages -->
+
+    <!--  Installation Messages  -->
     <system:String x:Key="AppInstallerNoAppsSelected">Lütfen yüklemek istediğiniz en az bir uygulama seçin.</system:String>
     <system:String x:Key="AppInstallerConfirmInstall">Seçilen {0} uygulamayı {1} paket yöneticisi ile yüklemek istediğinizden emin misiniz?</system:String>
     <system:String x:Key="AppInstallerInstallComplete">Uygulamalar başarıyla yüklendi!</system:String>
     <system:String x:Key="AppInstallerInstallError">Uygulamaları yüklerken bir hata oluştu:</system:String>
-    
-    <!-- PowerShell Script Messages -->
+
+    <!--  PowerShell Script Messages  -->
     <system:String x:Key="AppInstallerWindowTitle">Uygulama Kurulumu</system:String>
     <system:String x:Key="AppInstallerScriptTitle">Uygulama Yükleyici</system:String>
     <system:String x:Key="AppInstallerGeneratedBy">WinFlux tarafından oluşturuldu - {0} Paket Yöneticisi</system:String>
@@ -392,8 +359,8 @@
     <system:String x:Key="AppInstallerAllCompleted">Tüm kurulumlar tamamlandı!</system:String>
     <system:String x:Key="AppInstallerPressAnyKey">Kapatmak için herhangi bir tuşa basın...</system:String>
     <system:String x:Key="AppInstallerEarlyTermination">Kurulum işlemi tamamlanmadan sonlandırıldı!</system:String>
-    
-    <!-- Progress and Error Messages -->
+
+    <!--  Progress and Error Messages  -->
     <system:String x:Key="AppInstallerStatusRunning">Kurulum işlemi çalışıyor</system:String>
     <system:String x:Key="AppInstallerStatusCompleted">Kurulum tamamlandı</system:String>
     <system:String x:Key="AppInstallerStatusFailed">Kurulum başarısız oldu</system:String>
@@ -405,4 +372,86 @@
     <system:String x:Key="AppInstallerPowershellRunning">PowerShell penceresi görüntüleniyor. Kurulum ilerlemesini orada görebilirsiniz.</system:String>
     <system:String x:Key="AppInstallerCleanup">Temizlik işlemleri yapılıyor...</system:String>
     <system:String x:Key="PresetMessageBox_FileNotFound">Dosya bulunamadı.</system:String>
+
+    <!--  Debloat Page  -->
+    <system:String x:Key="DebloatPageTitle">Uygulama Temizleyici</system:String>
+    <system:String x:Key="DebloatPageSelectAll">Tümünü Seç</system:String>
+    <system:String x:Key="DebloatPageDeselectAll">Tümünü Kaldır</system:String>
+    <system:String x:Key="DebloatPageRemoveSelected">Seçili Öğeleri Kaldır/Devre Dışı Bırak</system:String>
+    <system:String x:Key="DebloatPageThirdPartyTitle">3. Parti Uygulamaları Kaldır</system:String>
+    <system:String x:Key="DebloatPageThirdPartyDesc">Windows'la birlikte gelen üçüncü parti uygulamalar, sisteminizi yavaşlatabilir ve gereksiz yer kaplayabilir. Bu uygulamaları kaldırarak sistem performansınızı artırabilir ve disk alanından tasarruf edebilirsiniz.</system:String>
+    <system:String x:Key="DebloatPageMicrosoftTitle">Microsoft Uygulamalarını Kaldır</system:String>
+    <system:String x:Key="DebloatPageMicrosoftDesc">Windows ile gelen Microsoft uygulamaları, ihtiyacınız olmayabilir ve sisteminizde yer kaplayabilir. Bu uygulamaları kaldırarak disk alanından tasarruf edebilirsiniz.</system:String>
+    <system:String x:Key="DebloatPageXboxTitle">Xbox Uygulamalarını Kaldır</system:String>
+    <system:String x:Key="DebloatPageXboxDesc">Windows ile gelen Xbox uygulamaları, oyun oynamıyorsanız gereksiz yer kaplayabilir. Bu uygulamaları kaldırarak sisteminizi daha hafif hale getirebilirsiniz.</system:String>
+    <system:String x:Key="DebloatPageProcessing">İşleniyor</system:String>
+    <system:String x:Key="DebloatPageCompleted">Tamamlandı</system:String>
+    <system:String x:Key="DebloatPagePreparingScript">Script hazırlanıyor...</system:String>
+    <system:String x:Key="DebloatPageNoAppSelected">Herhangi bir uygulama seçilmedi</system:String>
+    <system:String x:Key="DebloatPageExitPrompt">Çıkmak için herhangi bir tuşa basın</system:String>
+    <system:String x:Key="DebloatPageStartingRemoval">Kaldırma işlemi başlatılıyor</system:String>
+    <system:String x:Key="DebloatPageRemovalSuccess">Başarıyla kaldırıldı</system:String>
+    <system:String x:Key="DebloatPageRemovalFailed">Kaldırma başarısız oldu</system:String>
+    <system:String x:Key="DebloatPageRemovalCompleted">Kaldırma işlemi tamamlandı</system:String>
+    <system:String x:Key="DebloatPageRunAsAdminWarning">Bu işlem yönetici hakları gerektirir. Komut dosyasını onaylamanız gerekecek.</system:String>
+    <system:String x:Key="DebloatPageAdminRights">Yönetici Hakları Gerekli</system:String>
+
+    <!--  Windows Features  -->
+    <system:String x:Key="DebloatPageWindowsFeaturesTitle">Windows Özelliklerini Devre Dışı Bırak</system:String>
+    <system:String x:Key="DebloatPageWindowsFeaturesDesc">Gereksiz Windows özelliklerini devre dışı bırakarak sisteminizi optimize edin ve performansını artırın.</system:String>
+    <system:String x:Key="DebloatPageConsumerFeatures">Tüketici Özelliklerini Devre Dışı Bırak</system:String>
+    <system:String x:Key="DebloatPageConsumerFeaturesDesc">Windows'taki önerilen uygulamalar, ipuçları ve tanıtım içeriği gibi tüketici özelliklerini devre dışı bırakır</system:String>
+    <system:String x:Key="DebloatPageRecall">Recall Özelliğini Devre Dışı Bırak</system:String>
+    <system:String x:Key="DebloatPageRecallDesc">Ekran aktivitenizi sürekli kaydeden Recall özelliğini devre dışı bırakır</system:String>
+    <system:String x:Key="DebloatPageInternetExplorer">Internet Explorer'ı Devre Dışı Bırak</system:String>
+    <system:String x:Key="DebloatPageInternetExplorerDesc">Eski Internet Explorer tarayıcısını devre dışı bırakır</system:String>
+    <system:String x:Key="DebloatPageHyperV">Hyper-V'yi Devre Dışı Bırak</system:String>
+    <system:String x:Key="DebloatPageHyperVDesc">Hyper-V sanallaştırma teknolojisini devre dışı bırakır</system:String>
+    <system:String x:Key="DebloatPageFaxScan">Faks ve Tarama'yı Devre Dışı Bırak</system:String>
+    <system:String x:Key="DebloatPageFaxScanDesc">Windows Faks ve Tarama özelliklerini devre dışı bırakır</system:String>
+    <system:String x:Key="DebloatPageMediaPlayer">Windows Media Player'ı Devre Dışı Bırak</system:String>
+    <system:String x:Key="DebloatPageMediaPlayerDesc">Windows Media Player'ı devre dışı bırakır</system:String>
+    <system:String x:Key="DebloatPageStore">Microsoft Store'u Kaldır</system:String>
+    <system:String x:Key="DebloatPageStoreDesc">Microsoft Store uygulamasını kaldırır</system:String>
+    <system:String x:Key="DebloatPageOneDrive">OneDrive'ı Kaldır</system:String>
+    <system:String x:Key="DebloatPageOneDriveDesc">OneDrive'ı kaldırır ve dosya senkronizasyonunu engeller</system:String>
+    <system:String x:Key="DebloatPageEdge">Edge Tarayıcısını Optimize Et</system:String>
+    <system:String x:Key="DebloatPageEdgeDesc">Microsoft Edge'in telemetri ve tanıtım özelliklerini devre dışı bırakır</system:String>
+    <system:String x:Key="DebloatPageEdgeRemove">Edge Tarayıcısını Kaldır</system:String>
+    <system:String x:Key="DebloatPageEdgeRemoveDesc">Microsoft Edge tarayıcısını tamamen kaldırır (alternatif bir tarayıcınız yoksa önerilmez)</system:String>
+    <system:String x:Key="DebloatPageCopilot">Copilot'u Kaldır</system:String>
+    <system:String x:Key="DebloatPageCopilotDesc">Microsoft Copilot'u ve ilgili özelliklerini kaldırır</system:String>
+    <system:String x:Key="DebloatPageWidgets">Widgets'ı Kaldır</system:String>
+    <system:String x:Key="DebloatPageWidgetsDesc">Windows'tan Widget özelliğini kaldırır</system:String>
+    <system:String x:Key="DebloatPageTaskbarWidgets">Görev Çubuğu Widget'larını Kaldır</system:String>
+    <system:String x:Key="DebloatPageTaskbarWidgetsDesc">Görev çubuğundan widget ve arama simgelerini kaldırır</system:String>
+    <system:String x:Key="DebloatPageError">Hata:</system:String>
+    <system:String x:Key="DebloatPageFeatureDisabled">Özellik başarıyla devre dışı bırakıldı.</system:String>
+    <system:String x:Key="DebloatPageFeatureNotFound">Özellik bulunamadı.</system:String>
+    <system:String x:Key="DebloatPageWindowsFeaturesCompleted">Windows özellikleri bölümü tamamlandı.</system:String>
+    <system:String x:Key="DebloatPageSystemAppsCompleted">Sistem uygulamaları bölümü tamamlandı.</system:String>
+    <system:String x:Key="DebloatPageRemovingStore">Microsoft Store Kaldırılıyor...</system:String>
+    <system:String x:Key="DebloatPageRemovingOneDrive">OneDrive Kaldırılıyor...</system:String>
+    <system:String x:Key="DebloatPageDebloatingEdge">Edge Bloatware Temizleniyor...</system:String>
+    <system:String x:Key="DebloatPageRemovingEdge">Edge Kaldırılıyor...</system:String>
+    <system:String x:Key="DebloatPageRemovingCopilot">Copilot Kaldırılıyor...</system:String>
+    <system:String x:Key="DebloatPageRemovingWidgets">Widgets Kaldırılıyor...</system:String>
+    <system:String x:Key="DebloatPageRemovingTaskbarWidgets">Görev Çubuğu Widgetları Kaldırılıyor...</system:String>
+    <system:String x:Key="DebloatPageOneDriveRemoved">OneDrive başarıyla kaldırıldı.</system:String>
+    <system:String x:Key="DebloatPageUninstallingOneDriveSystem32">OneDrive System32'den kaldırılıyor...</system:String>
+    <system:String x:Key="DebloatPageUninstallingOneDriveSysWOW64">OneDrive SysWOW64'den kaldırılıyor...</system:String>
+    <system:String x:Key="DebloatPageRemoveApps">Uygulamaları Kaldır</system:String>
+    <system:String x:Key="DebloatPageDisableFeatures">Özellikleri Devre Dışı Bırak</system:String>
+    <system:String x:Key="DebloatPageDisableFeaturesToolTip">Seçili Windows özelliklerini devre dışı bırakır (Internet Explorer, Hyper-V, vb.)</system:String>
+    <system:String x:Key="DebloatPageRemoveAppsToolTip">Seçili uygulamaları kaldırır (Store, OneDrive, Edge, vb.)</system:String>
+    <system:String x:Key="DebloatPageWindowsFeaturesSection">Windows Özellikleri İşleniyor...</system:String>
+    <system:String x:Key="DebloatPageSystemAppsSection">Sistem Uygulamaları İşleniyor...</system:String>
+    <system:String x:Key="DebloatPageDisablingConsumerFeatures">Tüketici Özellikleri Devre Dışı Bırakılıyor...</system:String>
+    <system:String x:Key="DebloatPageDisablingRecall">Anımsatma Devre Dışı Bırakılıyor...</system:String>
+    <system:String x:Key="DebloatPageDisablingInternetExplorer">Internet Explorer Devre Dışı Bırakılıyor...</system:String>
+    <system:String x:Key="DebloatPageDisablingHyperV">Hyper-V Devre Dışı Bırakılıyor...</system:String>
+    <system:String x:Key="DebloatPageDisablingFaxScan">Faks ve Tarama Devre Dışı Bırakılıyor...</system:String>
+    <system:String x:Key="DebloatPageDisablingMediaPlayer">Windows Media Player Devre Dışı Bırakılıyor...</system:String>
+    <system:String x:Key="DebloatPageThirdPartyAppsSection">3. Parti Uygulamalar İşleniyor...</system:String>
+    <system:String x:Key="DebloatPageThirdPartyAppsCompleted">3. parti uygulamalar bölümü tamamlandı.</system:String>
 </ResourceDictionary>

@@ -12,7 +12,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- Header Section -->
+        <!--  Header Section  -->
         <Grid Grid.Row="0" Margin="20,15,20,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -24,34 +24,40 @@
                     FontSize="28"
                     FontWeight="SemiBold"
                     Text="{DynamicResource AppInstallerPageTitle}" />
-                <TextBlock 
+                <TextBlock
                     Margin="0,5,0,0"
-                    TextWrapping="Wrap"
-                    Text="{DynamicResource AppInstallerPageDescription}" />
+                    Text="{DynamicResource AppInstallerPageDescription}"
+                    TextWrapping="Wrap" />
             </StackPanel>
         </Grid>
 
-        <!-- Search and Actions Section -->
+        <!--  Search and Actions Section  -->
         <Grid Grid.Row="1" Margin="20,5,20,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <!-- Search Box -->
-            <TextBox 
-                x:Name="searchBox" 
-                Tag="Search applications..." 
-                TextChanged="SearchBox_TextChanged"
+            <!--  Search Box  -->
+            <TextBox
+                x:Name="searchBox"
                 Width="300"
+                Margin="0,0,10,0"
                 HorizontalAlignment="Left"
-                Margin="0,0,10,0" />
+                ui:ControlHelper.CornerRadius="6"
+                ui:ControlHelper.PlaceholderText="Search.."
+                Tag="Search applications..."
+                TextChanged="SearchBox_TextChanged" />
 
-            <!-- Actions Menu -->
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                <ComboBox 
-                    x:Name="packageManagerComboBox" 
-                    Width="150" 
+            <!--  Actions Menu  -->
+            <StackPanel
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <ComboBox
+                    x:Name="packageManagerComboBox"
+                    Width="150"
                     Margin="0,0,10,0"
                     SelectedIndex="0"
                     SelectionChanged="PackageManagerComboBox_SelectionChanged">
@@ -59,65 +65,65 @@
                     <ComboBoxItem Content="{DynamicResource AppInstallerChocolatey}" />
                 </ComboBox>
 
-                <Button 
-                    x:Name="installButton" 
-                    Click="InstallButton_Click"
-                    Padding="15,5"
+                <Button
+                    x:Name="installButton"
+                    Height="36"
                     MinWidth="140"
-                    Height="36">
+                    Padding="15,5"
+                    Click="InstallButton_Click">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock 
-                            FontFamily="Segoe MDL2 Assets" 
-                            Text="&#xE896;" 
-                            Margin="0,0,8,0" 
-                            VerticalAlignment="Center"/>
+                        <TextBlock
+                            Margin="0,0,8,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe MDL2 Assets"
+                            Text="&#xE896;" />
                         <TextBlock Text="{DynamicResource AppInstallerInstallBtn}" />
                     </StackPanel>
                 </Button>
             </StackPanel>
         </Grid>
 
-        <!-- Main Content Area -->
+        <!--  Main Content Area  -->
         <Grid Grid.Row="2">
-            <!-- Main Content - Application Categories -->
+            <!--  Main Content - Application Categories  -->
             <ScrollViewer x:Name="mainContentScrollViewer">
                 <StackPanel x:Name="categoriesPanel" Margin="14,0,20,14">
-                    <!-- Categories will be dynamically created here -->
+                    <!--  Categories will be dynamically created here  -->
                 </StackPanel>
             </ScrollViewer>
 
-            <!-- Installation Progress Panel -->
+            <!--  Installation Progress Panel  -->
             <Grid x:Name="progressPanel" Visibility="Collapsed">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                
+
                 <TextBlock
                     Margin="20,20,20,10"
                     Style="{StaticResource SubtitleTextBlockStyle}"
                     Text="{DynamicResource AppInstallerProgressTitle}" />
-                
+
                 <StackPanel Grid.Row="1" Margin="20,0,20,0">
                     <TextBlock
                         x:Name="currentInstallingTextBlock"
                         Margin="0,0,0,10"
                         Style="{StaticResource BodyStrongTextBlockStyle}" />
-                    
+
                     <ProgressBar
                         x:Name="progressBar"
                         Margin="0,0,0,10"
                         IsIndeterminate="True" />
-                    
+
                     <TextBlock
                         x:Name="currentStatusTextBlock"
                         Margin="0,0,0,10"
                         Style="{StaticResource CaptionTextBlockStyle}" />
-                    
-                    <TextBlock 
+
+                    <TextBlock
+                        Margin="0,10,0,0"
                         Style="{StaticResource CaptionTextBlockStyle}"
-                        Margin="0,10,0,0" 
                         Text="{DynamicResource AppInstallerPowershellRunning}" />
                 </StackPanel>
             </Grid>

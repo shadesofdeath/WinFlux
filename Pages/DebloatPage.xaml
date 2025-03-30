@@ -1,0 +1,622 @@
+<ui:Page
+    x:Class="WinFlux.Pages.DebloatPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    Title="{DynamicResource DebloatPageTitle}">
+
+    <ui:ScrollViewerEx ForceUseSmoothScroll="True">
+        <ikw:SimpleStackPanel Margin="24,24,24,24" Spacing="12">
+            <TextBlock
+                Margin="0,0,0,8"
+                FontSize="24"
+                FontWeight="SemiBold"
+                Text="{DynamicResource DebloatPageTitle}" />
+
+            <!--  Tüm Butonlar  -->
+            <Grid Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <ikw:SimpleStackPanel
+                    Grid.Column="0"
+                    Orientation="Horizontal"
+                    Spacing="8">
+                    <Button x:Name="btnSelectAll" Click="btnSelectAll_Click">
+                        <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="8">
+                            <ui:FontIcon FontSize="16" Icon="{x:Static ui:SegoeFluentIcons.OEM}" />
+                            <TextBlock Text="{DynamicResource DebloatPageSelectAll}" />
+                        </ikw:SimpleStackPanel>
+                    </Button>
+
+                    <Button x:Name="btnDeselectAll" Click="btnDeselectAll_Click">
+                        <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="8">
+                            <ui:FontIcon FontSize="16" Icon="{x:Static ui:SegoeFluentIcons.OEM}" />
+                            <TextBlock Text="{DynamicResource DebloatPageDeselectAll}" />
+                        </ikw:SimpleStackPanel>
+                    </Button>
+                </ikw:SimpleStackPanel>
+
+                <Button
+                    x:Name="btnRemoveSelected"
+                    Grid.Column="2"
+                    Click="btnRemoveSelected_Click"
+                    Style="{StaticResource AccentButtonStyle}">
+                    <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="8">
+                        <ui:FontIcon FontSize="16" Icon="{x:Static ui:SegoeFluentIcons.Delete}" />
+                        <TextBlock Text="{DynamicResource DebloatPageRemoveSelected}" />
+                    </ikw:SimpleStackPanel>
+                </Button>
+            </Grid>
+
+            <!--  3rd Party Apps Card  -->
+            <Border
+                Padding="0"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="12">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Header  -->
+                    <Grid Grid.Row="0" Margin="24,24,24,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <ui:FontIcon
+                            Grid.Column="0"
+                            Margin="0,0,16,0"
+                            FontSize="28"
+                            Foreground="{DynamicResource SystemAccentColorLight1Brush}"
+                            Icon="{x:Static ui:SegoeFluentIcons.OEM}" />
+
+                        <ikw:SimpleStackPanel Grid.Column="1">
+                            <TextBlock
+                                FontSize="18"
+                                FontWeight="SemiBold"
+                                Text="{DynamicResource DebloatPageThirdPartyTitle}" />
+                            <TextBlock
+                                Margin="0,8,0,0"
+                                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                Text="{DynamicResource DebloatPageThirdPartyDesc}"
+                                TextWrapping="Wrap" />
+                        </ikw:SimpleStackPanel>
+                    </Grid>
+
+                    <!--  App Checkboxes  -->
+                    <Grid Grid.Row="1" Margin="24,16,24,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <ikw:SimpleStackPanel Grid.Column="0" Margin="0,0,16,0">
+                            <CheckBox
+                                x:Name="chkCandyCrush"
+                                Content="Candy Crush Saga"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkCandyCrushSoda"
+                                Content="Candy Crush Soda Saga"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkShazam"
+                                Content="Shazam"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkFlipboard"
+                                Content="Flipboard"
+                                IsChecked="True" />
+                        </ikw:SimpleStackPanel>
+
+                        <ikw:SimpleStackPanel Grid.Column="1" Margin="0,0,16,0">
+                            <CheckBox
+                                x:Name="chkTwitter"
+                                Content="Twitter"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkIHeartRadio"
+                                Content="iHeartRadio"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkDuolingo"
+                                Content="Duolingo"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkAdobePhotoshop"
+                                Content="Adobe Photoshop Express"
+                                IsChecked="True" />
+                        </ikw:SimpleStackPanel>
+
+                        <ikw:SimpleStackPanel Grid.Column="2">
+                            <CheckBox
+                                x:Name="chkPandora"
+                                Content="Pandora"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkEclipseManager"
+                                Content="Eclipse Manager"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkActiproSoftware"
+                                Content="Actipro Software"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkSpotify"
+                                Content="Spotify"
+                                IsChecked="True" />
+                        </ikw:SimpleStackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!--  Microsoft Apps Card  -->
+            <Border
+                Padding="0"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="12">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Header  -->
+                    <Grid Grid.Row="0" Margin="24,24,24,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <ui:FontIcon
+                            Grid.Column="0"
+                            Margin="0,0,16,0"
+                            FontSize="28"
+                            Foreground="{DynamicResource SystemAccentColorLight1Brush}"
+                            Icon="{x:Static ui:SegoeFluentIcons.OEM}" />
+
+                        <ikw:SimpleStackPanel Grid.Column="1">
+                            <TextBlock
+                                FontSize="18"
+                                FontWeight="SemiBold"
+                                Text="{DynamicResource DebloatPageMicrosoftTitle}" />
+                            <TextBlock
+                                Margin="0,8,0,0"
+                                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                Text="{DynamicResource DebloatPageMicrosoftDesc}"
+                                TextWrapping="Wrap" />
+                        </ikw:SimpleStackPanel>
+                    </Grid>
+
+                    <!--  App Checkboxes  -->
+                    <Grid Grid.Row="1" Margin="24,16,24,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <ikw:SimpleStackPanel Grid.Column="0" Margin="0,0,16,0">
+                            <CheckBox
+                                x:Name="chkMicrosoftFamily"
+                                Content="Microsoft Family Safety"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkOutlook"
+                                Content="Outlook for Windows"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkClipchamp"
+                                Content="Clipchamp"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chk3DBuilder"
+                                Content="3D Builder"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chk3DViewer"
+                                Content="3D Viewer"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkBingWeather"
+                                Content="Bing Weather"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkBingSports"
+                                Content="Bing Sports"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkBingFinance"
+                                Content="Bing Finance"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkHeifImageExtension"
+                                Content="HEIF Image Extension"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkWebpImageExtension"
+                                Content="WebP Image Extension"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkHEVCVideoExtension"
+                                Content="HEVC Video Extension"
+                                IsChecked="True" />
+                        </ikw:SimpleStackPanel>
+
+                        <ikw:SimpleStackPanel Grid.Column="1" Margin="0,0,16,0">
+                            <CheckBox
+                                x:Name="chkOfficeHub"
+                                Content="Office Hub"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkBingNews"
+                                Content="Bing News"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkOneNote"
+                                Content="OneNote"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkSway"
+                                Content="Sway"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkWindowsPhone"
+                                Content="Windows Phone"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkCommsPhone"
+                                Content="Communications Phone"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkYourPhone"
+                                Content="Your Phone"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkGetStarted"
+                                Content="Get Started"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkSolitaire"
+                                Content="Microsoft Solitaire Collection"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkStickyNotes"
+                                Content="Sticky Notes"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkRawImageExtension"
+                                Content="Raw Image Extension"
+                                IsChecked="True" />
+                        </ikw:SimpleStackPanel>
+
+                        <ikw:SimpleStackPanel Grid.Column="2">
+                            <CheckBox
+                                x:Name="chkCommsApps"
+                                Content="Communications Apps"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkSkype"
+                                Content="Skype"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkGroupMe"
+                                Content="GroupMe"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkToDo"
+                                Content="To-Do"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkMixedReality"
+                                Content="Mixed Reality Portal"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkFeedbackHub"
+                                Content="Feedback Hub"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkAlarmsClock"
+                                Content="Alarms &amp; Clock"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkCamera"
+                                Content="Camera"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkMSPaint"
+                                Content="MS Paint"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkMaps"
+                                Content="Maps"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkWebMediaExtensions"
+                                Content="Web Media Extensions"
+                                IsChecked="True" />
+                        </ikw:SimpleStackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!--  Xbox Apps Card  -->
+            <Border
+                Padding="0"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="12">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Header  -->
+                    <Grid Grid.Row="0" Margin="24,24,24,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <ui:FontIcon
+                            Grid.Column="0"
+                            Margin="0,0,16,0"
+                            FontSize="28"
+                            Foreground="{DynamicResource SystemAccentColorLight1Brush}"
+                            Icon="{x:Static ui:SegoeFluentIcons.OEM}" />
+
+                        <ikw:SimpleStackPanel Grid.Column="1">
+                            <TextBlock
+                                FontSize="18"
+                                FontWeight="SemiBold"
+                                Text="{DynamicResource DebloatPageXboxTitle}" />
+                            <TextBlock
+                                Margin="0,8,0,0"
+                                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                Text="{DynamicResource DebloatPageXboxDesc}"
+                                TextWrapping="Wrap" />
+                        </ikw:SimpleStackPanel>
+                    </Grid>
+
+                    <!--  App Checkboxes  -->
+                    <Grid Grid.Row="1" Margin="24,16,24,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <ikw:SimpleStackPanel Grid.Column="0" Margin="0,0,16,0">
+                            <CheckBox
+                                x:Name="chkXboxApp"
+                                Content="Xbox App"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkXboxTCUI"
+                                Content="Xbox TCUI"
+                                IsChecked="True" />
+                        </ikw:SimpleStackPanel>
+
+                        <ikw:SimpleStackPanel Grid.Column="1" Margin="0,0,16,0">
+                            <CheckBox
+                                x:Name="chkXboxGamingOverlay"
+                                Content="Xbox Gaming Overlay"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkXboxGameOverlay"
+                                Content="Xbox Game Overlay"
+                                IsChecked="True" />
+                        </ikw:SimpleStackPanel>
+
+                        <ikw:SimpleStackPanel Grid.Column="2">
+                            <CheckBox
+                                x:Name="chkXboxIdentityProvider"
+                                Content="Xbox Identity Provider"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkXboxSpeechToTextOverlay"
+                                Content="Xbox Speech To Text Overlay"
+                                IsChecked="True" />
+                            <CheckBox
+                                x:Name="chkGamingApp"
+                                Content="Gaming App"
+                                IsChecked="True" />
+                        </ikw:SimpleStackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!--  Windows Features Card  -->
+            <Border
+                Padding="0"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="12">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Header  -->
+                    <Grid Grid.Row="0" Margin="24,24,24,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <ui:FontIcon
+                            Grid.Column="0"
+                            Margin="0,0,16,0"
+                            FontSize="28"
+                            Foreground="{DynamicResource SystemAccentColorLight1Brush}"
+                            Icon="{x:Static ui:SegoeFluentIcons.OEM}" />
+
+                        <ikw:SimpleStackPanel Grid.Column="1">
+                            <TextBlock
+                                FontSize="18"
+                                FontWeight="SemiBold"
+                                Text="{DynamicResource DebloatPageWindowsFeaturesTitle}" />
+                            <TextBlock
+                                Margin="0,8,0,0"
+                                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                Text="{DynamicResource DebloatPageWindowsFeaturesDesc}"
+                                TextWrapping="Wrap" />
+                        </ikw:SimpleStackPanel>
+                    </Grid>
+
+                    <!--  Feature Checkboxes  -->
+                    <Grid Grid.Row="1" Margin="24,16,24,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Column 1  -->
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Margin="0,8,0,4"
+                            FontWeight="SemiBold"
+                            Text="{DynamicResource DebloatPageWindowsFeaturesTitle}" />
+                        <CheckBox
+                            x:Name="chkConsumerFeatures"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Content="{DynamicResource DebloatPageConsumerFeatures}"
+                            IsChecked="True"
+                            ToolTip="{DynamicResource DebloatPageConsumerFeaturesDesc}" />
+                        <CheckBox
+                            x:Name="chkRecall"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Content="{DynamicResource DebloatPageRecall}"
+                            IsChecked="True"
+                            ToolTip="{DynamicResource DebloatPageRecallDesc}" />
+                        <CheckBox
+                            x:Name="chkInternetExplorer"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Content="{DynamicResource DebloatPageInternetExplorer}"
+                            IsChecked="True"
+                            ToolTip="{DynamicResource DebloatPageInternetExplorerDesc}" />
+                        <CheckBox
+                            x:Name="chkHyperV"
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Content="{DynamicResource DebloatPageHyperV}"
+                            IsChecked="True"
+                            ToolTip="{DynamicResource DebloatPageHyperVDesc}" />
+
+                        <!--  Column 2  -->
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="0,8,0,4"
+                            FontWeight="SemiBold"
+                            Text="{DynamicResource DebloatPageWindowsFeaturesTitle}"
+                            Visibility="Hidden" />
+                        <CheckBox
+                            x:Name="chkFaxScan"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Content="{DynamicResource DebloatPageFaxScan}"
+                            IsChecked="True"
+                            ToolTip="{DynamicResource DebloatPageFaxScanDesc}" />
+                        <CheckBox
+                            x:Name="chkMediaPlayer"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Content="{DynamicResource DebloatPageMediaPlayer}"
+                            IsChecked="True"
+                            ToolTip="{DynamicResource DebloatPageMediaPlayerDesc}" />
+                        <CheckBox
+                            x:Name="chkStore"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Content="{DynamicResource DebloatPageStore}"
+                            IsChecked="True"
+                            ToolTip="{DynamicResource DebloatPageStoreDesc}" />
+                        <CheckBox
+                            x:Name="chkOneDrive"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Content="{DynamicResource DebloatPageOneDrive}"
+                            IsChecked="True"
+                            ToolTip="{DynamicResource DebloatPageOneDriveDesc}" />
+
+                        <!--  Column 3  -->
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Margin="0,8,0,4"
+                            FontWeight="SemiBold"
+                            Text="{DynamicResource DebloatPageWindowsFeaturesTitle}"
+                            Visibility="Hidden" />
+                        <CheckBox
+                            x:Name="chkEdge"
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Content="{DynamicResource DebloatPageEdge}"
+                            IsChecked="True"
+                            ToolTip="{DynamicResource DebloatPageEdgeDesc}" />
+                        <CheckBox
+                            x:Name="chkEdgeRemove"
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            Content="{DynamicResource DebloatPageEdgeRemove}"
+                            IsChecked="False"
+                            ToolTip="{DynamicResource DebloatPageEdgeRemoveDesc}" />
+                        <CheckBox
+                            x:Name="chkCopilot"
+                            Grid.Row="3"
+                            Grid.Column="2"
+                            Content="{DynamicResource DebloatPageCopilot}"
+                            IsChecked="True"
+                            ToolTip="{DynamicResource DebloatPageCopilotDesc}" />
+                        <CheckBox
+                            x:Name="chkWidgets"
+                            Grid.Row="4"
+                            Grid.Column="2"
+                            Content="{DynamicResource DebloatPageWidgets}"
+                            IsChecked="True"
+                            ToolTip="{DynamicResource DebloatPageWidgetsDesc}" />
+                        <CheckBox
+                            x:Name="chkTaskbarWidgets"
+                            Grid.Row="5"
+                            Grid.Column="2"
+                            Content="{DynamicResource DebloatPageTaskbarWidgets}"
+                            IsChecked="True"
+                            ToolTip="{DynamicResource DebloatPageTaskbarWidgetsDesc}" />
+                    </Grid>
+                </Grid>
+            </Border>
+        </ikw:SimpleStackPanel>
+    </ui:ScrollViewerEx>
+</ui:Page> 

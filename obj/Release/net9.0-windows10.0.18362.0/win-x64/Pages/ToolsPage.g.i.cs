@@ -203,7 +203,7 @@ namespace WinFlux.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WinFlux;component/pages/toolspage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WinFlux;V1.0.0.1;component/pages/toolspage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Pages\ToolsPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

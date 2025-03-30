@@ -23,7 +23,6 @@ C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\W
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\MainWindow.g.cs
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\Pages\AboutPage.g.cs
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\Pages\AppInstallerPage.g.cs
-C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\Pages\AppsPage.g.cs
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\Pages\GameOptimizationPage.g.cs
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\Pages\PerformancePage.g.cs
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\Pages\PrivacyPage.g.cs
@@ -33,12 +32,10 @@ C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\P
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\Windows\SplashWindow.g.cs
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\App.g.cs
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\WinFlux_Content.g.cs
-C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\GeneratedInternalTypeHelper.g.cs
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\WinFlux_MarkupCompile.cache
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\WinFlux_MarkupCompile.lref
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\App.baml
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\MainWindow.baml
-C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\Pages\AppsPage.baml
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\WinFlux.g.resources
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\WinFlux.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\WinFlux.AssemblyInfoInputs.cache
@@ -50,3 +47,5 @@ C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\r
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\WinFlux.pdb
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\WinFlux.genruntimeconfig.cache
 C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\ref\WinFlux.dll
+C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\Pages\DebloatPage.baml
+C:\Users\shades\Desktop\WinFlux\obj\Release\net9.0-windows10.0.18362.0\win-x64\Pages\DebloatPage.g.cs

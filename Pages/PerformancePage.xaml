@@ -14,128 +14,160 @@
                 FontWeight="Medium"
                 Text="{DynamicResource PerformancePageTitle}" />
 
-            <!-- DNS Settings -->
-            <ui:SettingsCard
-                Description="{DynamicResource PerformancePageDNSDesc}"
-                Header="{DynamicResource PerformancePageDNS}">
+            <!--  DNS Settings  -->
+            <ui:SettingsCard Description="{DynamicResource PerformancePageDNSDesc}" Header="{DynamicResource PerformancePageDNS}">
                 <ui:SettingsCard.HeaderIcon>
                     <ui:FontIcon Glyph="&#xE968;" />
                 </ui:SettingsCard.HeaderIcon>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource PerformancePageDNSProvider}" VerticalAlignment="Center" Margin="0,0,10,10"/>
-                    <ComboBox Grid.Row="0" Grid.Column="1" x:Name="dnsProviderComboBox" SelectedIndex="0" Margin="0,0,0,10">
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="0,0,10,10"
+                        VerticalAlignment="Center"
+                        Text="{DynamicResource PerformancePageDNSProvider}" />
+                    <ComboBox
+                        x:Name="dnsProviderComboBox"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="0,0,0,10"
+                        SelectedIndex="0">
                         <ComboBoxItem Content="{DynamicResource PerformancePageDNSGoogle}" />
                         <ComboBoxItem Content="{DynamicResource PerformancePageDNSCloudflare}" />
                         <ComboBoxItem Content="{DynamicResource PerformancePageDNSOpenDNS}" />
                         <ComboBoxItem Content="{DynamicResource PerformancePageDNSQuad9}" />
                     </ComboBox>
-                    
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource PerformancePageNetworkInterface}" VerticalAlignment="Center" Margin="0,0,10,10"/>
-                    <ComboBox Grid.Row="1" Grid.Column="1" x:Name="networkInterfaceComboBox" Margin="0,0,0,10" />
-                    
-                    <Button Grid.Row="2" Grid.Column="1" x:Name="applyDnsButton" Content="{DynamicResource PerformancePageDNSApply}" 
-                            Click="ApplyDnsButton_Click" HorizontalAlignment="Left" Padding="15,5" />
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,0,10,10"
+                        VerticalAlignment="Center"
+                        Text="{DynamicResource PerformancePageNetworkInterface}" />
+                    <ComboBox
+                        x:Name="networkInterfaceComboBox"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="0,0,0,10" />
+
+                    <Button
+                        x:Name="applyDnsButton"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Padding="15,5"
+                        HorizontalAlignment="Left"
+                        Click="ApplyDnsButton_Click"
+                        Content="{DynamicResource PerformancePageDNSApply}" />
                 </Grid>
             </ui:SettingsCard>
-            
-            <!-- Ultimate Performance Power Plan -->
-            <ui:SettingsCard
-                Description="{DynamicResource PerformancePageUltimatePerformanceDesc}"
-                Header="{DynamicResource PerformancePageUltimatePerformance}">
+
+            <!--  Ultimate Performance Power Plan  -->
+            <ui:SettingsCard Description="{DynamicResource PerformancePageUltimatePerformanceDesc}" Header="{DynamicResource PerformancePageUltimatePerformance}">
                 <ui:SettingsCard.HeaderIcon>
-                    <ui:FontIcon Glyph="&#xEBD2;" />
+                    <ui:PathIcon Data="{StaticResource SpeedIconData}" />
                 </ui:SettingsCard.HeaderIcon>
-                <Button x:Name="ultimatePerformanceButton" Content="{DynamicResource PerformancePageUltimatePerformanceApply}" Click="UltimatePerformanceButton_Click" />
+                <Button
+                    x:Name="ultimatePerformanceButton"
+                    Click="UltimatePerformanceButton_Click"
+                    Content="{DynamicResource PerformancePageUltimatePerformanceApply}" />
             </ui:SettingsCard>
-            
-            <!-- Services Optimization -->
-            <ui:SettingsCard
-                Description="{DynamicResource PerformancePageServicesDesc}"
-                Header="{DynamicResource PerformancePageServices}">
+
+            <!--  Services Optimization  -->
+            <ui:SettingsCard Description="{DynamicResource PerformancePageServicesDesc}" Header="{DynamicResource PerformancePageServices}">
                 <ui:SettingsCard.HeaderIcon>
                     <ui:FontIcon Glyph="&#xE90F;" />
                 </ui:SettingsCard.HeaderIcon>
-                <Button x:Name="optimizeServicesButton" Content="{DynamicResource PerformancePageServicesApply}" Click="OptimizeServicesButton_Click" />
+                <Button
+                    x:Name="optimizeServicesButton"
+                    Click="OptimizeServicesButton_Click"
+                    Content="{DynamicResource PerformancePageServicesApply}" />
             </ui:SettingsCard>
-            
-            <!-- Disable Hibernation -->
-            <ui:SettingsCard
-                Description="{DynamicResource PerformancePageHibernationDesc}"
-                Header="{DynamicResource PerformancePageHibernation}">
+
+            <!--  Disable Hibernation  -->
+            <ui:SettingsCard Description="{DynamicResource PerformancePageHibernationDesc}" Header="{DynamicResource PerformancePageHibernation}">
                 <ui:SettingsCard.HeaderIcon>
                     <ui:FontIcon Glyph="&#xEC32;" />
                 </ui:SettingsCard.HeaderIcon>
-                <ui:ToggleSwitch x:Name="toggleHibernation" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+                <ui:ToggleSwitch
+                    x:Name="toggleHibernation"
+                    OffContent="{DynamicResource ToggleOff}"
+                    OnContent="{DynamicResource ToggleOn}" />
             </ui:SettingsCard>
-            
-            <!-- Disable Prefetch -->
-            <ui:SettingsCard
-                Description="{DynamicResource PerformancePagePrefetchDesc}"
-                Header="{DynamicResource PerformancePagePrefetch}">
+
+            <!--  Disable Prefetch  -->
+            <ui:SettingsCard Description="{DynamicResource PerformancePagePrefetchDesc}" Header="{DynamicResource PerformancePagePrefetch}">
                 <ui:SettingsCard.HeaderIcon>
                     <ui:FontIcon Glyph="&#xEBC6;" />
                 </ui:SettingsCard.HeaderIcon>
-                <ui:ToggleSwitch x:Name="togglePrefetch" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+                <ui:ToggleSwitch
+                    x:Name="togglePrefetch"
+                    OffContent="{DynamicResource ToggleOff}"
+                    OnContent="{DynamicResource ToggleOn}" />
             </ui:SettingsCard>
-            
-            <!-- Disable Storage Sense -->
-            <ui:SettingsCard
-                Description="{DynamicResource PerformancePageStorageSenseDesc}"
-                Header="{DynamicResource PerformancePageStorageSense}">
+
+            <!--  Disable Storage Sense  -->
+            <ui:SettingsCard Description="{DynamicResource PerformancePageStorageSenseDesc}" Header="{DynamicResource PerformancePageStorageSense}">
                 <ui:SettingsCard.HeaderIcon>
-                    <ui:FontIcon Glyph="&#xE9EF;" />
+                    <ui:PathIcon Data="{StaticResource StorageIconData}" />
                 </ui:SettingsCard.HeaderIcon>
-                <ui:ToggleSwitch x:Name="toggleStorageSense" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+                <ui:ToggleSwitch
+                    x:Name="toggleStorageSense"
+                    OffContent="{DynamicResource ToggleOff}"
+                    OnContent="{DynamicResource ToggleOn}" />
             </ui:SettingsCard>
-            
-            <!-- Disable HAGS -->
-            <ui:SettingsCard
-                Description="{DynamicResource PerformancePageHAGSDesc}"
-                Header="{DynamicResource PerformancePageHAGS}">
+
+            <!--  Disable HAGS  -->
+            <ui:SettingsCard Description="{DynamicResource PerformancePageHAGSDesc}" Header="{DynamicResource PerformancePageHAGS}">
                 <ui:SettingsCard.HeaderIcon>
                     <ui:FontIcon Glyph="&#xE139;" />
                 </ui:SettingsCard.HeaderIcon>
-                <ui:ToggleSwitch x:Name="toggleHAGS" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+                <ui:ToggleSwitch
+                    x:Name="toggleHAGS"
+                    OffContent="{DynamicResource ToggleOff}"
+                    OnContent="{DynamicResource ToggleOn}" />
             </ui:SettingsCard>
-            
-            <!-- Disable Core Isolation -->
-            <ui:SettingsCard
-                Description="{DynamicResource PerformancePageCoreIsolationDesc}"
-                Header="{DynamicResource PerformancePageCoreIsolation}">
+
+            <!--  Disable Core Isolation  -->
+            <ui:SettingsCard Description="{DynamicResource PerformancePageCoreIsolationDesc}" Header="{DynamicResource PerformancePageCoreIsolation}">
                 <ui:SettingsCard.HeaderIcon>
                     <ui:FontIcon Glyph="&#xEA18;" />
                 </ui:SettingsCard.HeaderIcon>
-                <ui:ToggleSwitch x:Name="toggleCoreIsolation" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+                <ui:ToggleSwitch
+                    x:Name="toggleCoreIsolation"
+                    OffContent="{DynamicResource ToggleOff}"
+                    OnContent="{DynamicResource ToggleOn}" />
             </ui:SettingsCard>
-            
-            <!-- Limit Windows Defender Usage -->
-            <ui:SettingsCard
-                Description="{DynamicResource PerformancePageDefenderDesc}"
-                Header="{DynamicResource PerformancePageDefender}">
+
+            <!--  Limit Windows Defender Usage  -->
+            <ui:SettingsCard Description="{DynamicResource PerformancePageDefenderDesc}" Header="{DynamicResource PerformancePageDefender}">
                 <ui:SettingsCard.HeaderIcon>
                     <ui:FontIcon Glyph="&#xE83D;" />
                 </ui:SettingsCard.HeaderIcon>
-                <ui:ToggleSwitch x:Name="toggleDefender" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+                <ui:ToggleSwitch
+                    x:Name="toggleDefender"
+                    OffContent="{DynamicResource ToggleOff}"
+                    OnContent="{DynamicResource ToggleOn}" />
             </ui:SettingsCard>
-            
-            <!-- Disable Search -->
-            <ui:SettingsCard
-                Description="{DynamicResource PerformancePageSearchDesc}"
-                Header="{DynamicResource PerformancePageSearch}">
+
+            <!--  Disable Search  -->
+            <ui:SettingsCard Description="{DynamicResource PerformancePageSearchDesc}" Header="{DynamicResource PerformancePageSearch}">
                 <ui:SettingsCard.HeaderIcon>
                     <ui:FontIcon Glyph="&#xE721;" />
                 </ui:SettingsCard.HeaderIcon>
-                <ui:ToggleSwitch x:Name="toggleSearch" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+                <ui:ToggleSwitch
+                    x:Name="toggleSearch"
+                    OffContent="{DynamicResource ToggleOff}"
+                    OnContent="{DynamicResource ToggleOn}" />
             </ui:SettingsCard>
 
         </ikw:SimpleStackPanel>

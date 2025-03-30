@@ -107,7 +107,7 @@ namespace WinFlux.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WinFlux;component/pages/gameoptimizationpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WinFlux;V1.0.0.1;component/pages/gameoptimizationpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\GameOptimizationPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

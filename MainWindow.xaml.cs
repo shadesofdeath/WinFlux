@@ -48,7 +48,7 @@ namespace WinFlux
                 Application.Current.Dispatcher.Invoke(() => {
                     // Diğer uygulama sayfaları
                     InitializePageIfNeeded("toolsPage");
-                    InitializePageIfNeeded("appsPage");
+                    InitializePageIfNeeded("debloatPage");
                     InitializePageIfNeeded("privacyPage");
                     InitializePageIfNeeded("telemetryPage");
                     InitializePageIfNeeded("gameOptimizationPage");
@@ -71,8 +71,8 @@ namespace WinFlux
                     case "toolsPage":
                         page = new Pages.ToolsPage();
                         break;
-                    case "appsPage":
-                        page = new Pages.AppsPage();
+                    case "debloatPage":
+                        page = new Pages.DebloatPage();
                         break;
                     case "appInstallerPage":
                         page = new Pages.AppInstallerPage();
