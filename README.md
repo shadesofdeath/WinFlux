@@ -1,7 +1,7 @@
 # WinFlux
 
 <div align="center">
-  <img src="Assets/logo.png" alt="WinFlux Logo" width="200"/>
+  <img src="Assets/icon.png" alt="WinFlux Logo" width="200"/>
   <br>
   <h3>Windows System Optimization and Customization Tool</h3>
   <p>Enhance your Windows experience with a powerful, user-friendly toolkit</p>
