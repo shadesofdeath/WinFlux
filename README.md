@@ -60,8 +60,7 @@ WinFlux is a comprehensive Windows utility designed to optimize your system perf
 #### Option 1: Download the latest release
 1. Go to the [Releases](https://github.com/shadesofdeath/WinFlux/releases) page
 2. Download the latest release package
-3. Extract the ZIP file to your preferred location
-4. Run `WinFlux.exe`
+3. Run `WinFlux.exe`
 
 #### Option 2: Build from source
 1. Clone the repository:
