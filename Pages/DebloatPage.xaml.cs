@@ -737,22 +737,43 @@ namespace WinFlux.Pages
                     scriptBuilder.AppendLine("# Remove Widgets");
                     scriptBuilder.AppendLine("Write-Cyan \"" + GetLocalizedString("DebloatPageRemovingWidgets") + "\"");
                     scriptBuilder.AppendLine("try {");
-                    scriptBuilder.AppendLine("    # Remove widgets app");
-                    scriptBuilder.AppendLine("    Get-AppxPackage *WebExperience* | Remove-AppxPackage -ErrorAction SilentlyContinue");
-                    scriptBuilder.AppendLine("    # Disable widgets in registry");
+                    scriptBuilder.AppendLine("    # Remove widgets app with error handling");
+                    scriptBuilder.AppendLine("    $widgets = Get-AppxPackage *WebExperience* -ErrorAction SilentlyContinue");
+                    scriptBuilder.AppendLine("    if ($widgets) {");
+                    scriptBuilder.AppendLine("        foreach ($widget in $widgets) {");
+                    scriptBuilder.AppendLine("            try {");
+                    scriptBuilder.AppendLine("                Remove-AppxPackage -Package $widget.PackageFullName -ErrorAction SilentlyContinue");
+                    scriptBuilder.AppendLine("                Write-Green \"  Widget app removed successfully.\"");
+                    scriptBuilder.AppendLine("            } catch {");
+                    scriptBuilder.AppendLine("                Write-Yellow \"  Could not remove widget app: $_\"");
+                    scriptBuilder.AppendLine("            }");
+                    scriptBuilder.AppendLine("        }");
+                    scriptBuilder.AppendLine("    }");
+                    scriptBuilder.AppendLine("    # Disable widgets in registry with safer approach");
                     scriptBuilder.AppendLine("    $dshPath = 'HKLM:\\SOFTWARE\\Policies\\Microsoft\\Dsh'");
-                    scriptBuilder.AppendLine("    if (-not (Test-Path $dshPath)) {");
-                    scriptBuilder.AppendLine("        New-Item -Path $dshPath -Force -ErrorAction SilentlyContinue | Out-Null");
+                    scriptBuilder.AppendLine("    try {");
+                    scriptBuilder.AppendLine("        if (-not (Test-Path $dshPath)) {");
+                    scriptBuilder.AppendLine("            New-Item -Path $dshPath -Force -ErrorAction SilentlyContinue | Out-Null");
+                    scriptBuilder.AppendLine("        }");
+                    scriptBuilder.AppendLine("        Set-ItemProperty -Path $dshPath -Name 'AllowNewsAndInterests' -Value 0 -Type DWord -ErrorAction SilentlyContinue");
+                    scriptBuilder.AppendLine("        Write-Green \"  Registry settings updated successfully.\"");
+                    scriptBuilder.AppendLine("    } catch {");
+                    scriptBuilder.AppendLine("        Write-Yellow \"  Could not update registry settings: $_\"");
                     scriptBuilder.AppendLine("    }");
-                    scriptBuilder.AppendLine("    New-ItemProperty -Path $dshPath -Name 'AllowNewsAndInterests' -Value 0 -PropertyType DWORD -Force -ErrorAction SilentlyContinue | Out-Null");
-                    scriptBuilder.AppendLine("    # Try to deprovision WebExperience");
-                    scriptBuilder.AppendLine("    $webExpPath = 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Appx\\AppxAllUserStore\\Deprovisioned\\MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy'");
-                    scriptBuilder.AppendLine("    if (-not (Test-Path $webExpPath)) {");
-                    scriptBuilder.AppendLine("        New-Item -Path $webExpPath -Force -ErrorAction SilentlyContinue | Out-Null");
+                    scriptBuilder.AppendLine("    # Try to disable the service");
+                    scriptBuilder.AppendLine("    try {");
+                    scriptBuilder.AppendLine("        $service = Get-Service -Name 'WebExperience' -ErrorAction SilentlyContinue");
+                    scriptBuilder.AppendLine("        if ($service) {");
+                    scriptBuilder.AppendLine("            Stop-Service -Name 'WebExperience' -Force -ErrorAction SilentlyContinue");
+                    scriptBuilder.AppendLine("            Set-Service -Name 'WebExperience' -StartupType Disabled -ErrorAction SilentlyContinue");
+                    scriptBuilder.AppendLine("            Write-Green \"  Widget service disabled successfully.\"");
+                    scriptBuilder.AppendLine("        }");
+                    scriptBuilder.AppendLine("    } catch {");
+                    scriptBuilder.AppendLine("        Write-Yellow \"  Could not disable widget service: $_\"");
                     scriptBuilder.AppendLine("    }");
-                    scriptBuilder.AppendLine("    Write-Green \"  " + GetLocalizedString("DebloatPageFeatureRemoved") + "\"");
+                    scriptBuilder.AppendLine("    Write-Green \"  Widgets removal process completed.\"");
                     scriptBuilder.AppendLine("} catch {");
-                    scriptBuilder.AppendLine("    Write-Red \"  " + GetLocalizedString("DebloatPageError") + " $_\"");
+                    scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
                     scriptBuilder.AppendLine("}");
                     scriptBuilder.AppendLine();
                 }
@@ -873,6 +894,74 @@ namespace WinFlux.Pages
             File.WriteAllText(scriptPath, scriptBuilder.ToString());
 
             return scriptPath;
+        }
+
+        // Method to get selected apps for preset service
+        public List<string> GetAppsToRemove()
+        {
+            List<string> appsToRemove = new List<string>();
+            
+            // Windows Features
+            if (chkConsumerFeatures.IsChecked == true) appsToRemove.Add("ConsumerFeatures");
+            if (chkRecall.IsChecked == true) appsToRemove.Add("Recall");
+            if (chkInternetExplorer.IsChecked == true) appsToRemove.Add("InternetExplorer");
+            if (chkHyperV.IsChecked == true) appsToRemove.Add("HyperV");
+            if (chkFaxScan.IsChecked == true) appsToRemove.Add("FaxScan");
+            if (chkMediaPlayer.IsChecked == true) appsToRemove.Add("MediaPlayer");
+            
+            // System Apps
+            if (chkStore.IsChecked == true) appsToRemove.Add("Store");
+            if (chkOneDrive.IsChecked == true) appsToRemove.Add("OneDrive");
+            if (chkEdge.IsChecked == true) appsToRemove.Add("Edge");
+            if (chkEdgeRemove.IsChecked == true) appsToRemove.Add("EdgeRemove");
+            if (chkCopilot.IsChecked == true) appsToRemove.Add("Copilot");
+            if (chkWidgets.IsChecked == true) appsToRemove.Add("Widgets");
+            if (chkTaskbarWidgets.IsChecked == true) appsToRemove.Add("TaskbarWidgets");
+            
+            // Add all checkboxes from other sections
+            foreach (var checkbox in GetAllCheckBoxes().Where(c => c.IsChecked == true))
+            {
+                string appName = checkbox.Name.Replace("chk", "");
+                appsToRemove.Add(appName);
+            }
+            
+            return appsToRemove;
+        }
+        
+        // Method to apply preset settings
+        public void ApplyAppSettings(List<string> appsToRemove)
+        {
+            if (appsToRemove == null || appsToRemove.Count == 0) return;
+            
+            // First uncheck all checkboxes
+            DeselectAll(GetAllCheckBoxes());
+            
+            // Windows Features
+            chkConsumerFeatures.IsChecked = appsToRemove.Contains("ConsumerFeatures");
+            chkRecall.IsChecked = appsToRemove.Contains("Recall");
+            chkInternetExplorer.IsChecked = appsToRemove.Contains("InternetExplorer");
+            chkHyperV.IsChecked = appsToRemove.Contains("HyperV");
+            chkFaxScan.IsChecked = appsToRemove.Contains("FaxScan");
+            chkMediaPlayer.IsChecked = appsToRemove.Contains("MediaPlayer");
+            
+            // System Apps
+            chkStore.IsChecked = appsToRemove.Contains("Store");
+            chkOneDrive.IsChecked = appsToRemove.Contains("OneDrive");
+            chkEdge.IsChecked = appsToRemove.Contains("Edge");
+            chkEdgeRemove.IsChecked = appsToRemove.Contains("EdgeRemove");
+            chkCopilot.IsChecked = appsToRemove.Contains("Copilot");
+            chkWidgets.IsChecked = appsToRemove.Contains("Widgets");
+            chkTaskbarWidgets.IsChecked = appsToRemove.Contains("TaskbarWidgets");
+            
+            // Standard Apps
+            foreach (var checkbox in GetAllCheckBoxes())
+            {
+                string appName = checkbox.Name.Replace("chk", "");
+                if (appsToRemove.Contains(appName))
+                {
+                    checkbox.IsChecked = true;
+                }
+            }
         }
     }
 } 

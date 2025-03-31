@@ -1,5 +1,5 @@
 ﻿WinFlux
-1.0.0.1
+1.0.0.2
 
 winexe
 C#
@@ -10,11 +10,11 @@ none
 false
 TRACE;RELEASE;NET;NET9_0;NETCOREAPP
 C:\Users\shades\Desktop\WinFlux\App.xaml
-12456013496
+131499706486
 1-1606303973
-22-567168816
+21276411513
 2061218079635
-Assets\Icons.xaml;MainWindow.xaml;Pages\AboutPage.xaml;Pages\AppInstallerPage.xaml;Pages\DebloatPage.xaml;Pages\GameOptimizationPage.xaml;Pages\PerformancePage.xaml;Pages\PrivacyPage.xaml;Pages\SettingsPage.xaml;Pages\TelemetryPage.xaml;Pages\ToolsPage.xaml;Windows\SplashWindow.xaml;
+Assets\Icons.xaml;MainWindow.xaml;Pages\AboutPage.xaml;Pages\AppInstallerPage.xaml;Pages\CustomizePage.xaml;Pages\DebloatPage.xaml;Pages\GameOptimizationPage.xaml;Pages\PerformancePage.xaml;Pages\PrivacyPage.xaml;Pages\SettingsPage.xaml;Pages\TelemetryPage.xaml;Pages\ToolsPage.xaml;Windows\SplashWindow.xaml;
 
 False
 

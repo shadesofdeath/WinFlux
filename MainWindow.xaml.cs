@@ -53,6 +53,7 @@ namespace WinFlux
                     InitializePageIfNeeded("telemetryPage");
                     InitializePageIfNeeded("gameOptimizationPage");
                     InitializePageIfNeeded("performancePage");
+                    InitializePageIfNeeded("customizePage");
                     InitializePageIfNeeded("settings");
                     InitializePageIfNeeded("about");
                 });
@@ -88,6 +89,9 @@ namespace WinFlux
                         break;
                     case "performancePage":
                         page = new Pages.PerformancePage();
+                        break;
+                    case "customizePage":
+                        page = new Pages.CustomizePage();
                         break;
                     case "settings":
                         page = new Pages.SettingsPage();

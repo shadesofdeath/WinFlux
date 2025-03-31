@@ -1,0 +1,199 @@
+<ui:Page
+    x:Class="WinFlux.Pages.CustomizePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    Title="{DynamicResource CustomizePageTitle}">
+
+    <ui:ScrollViewerEx ForceUseSmoothScroll="True">
+        <ikw:SimpleStackPanel Margin="14,14,20,14" Spacing="8">
+            <TextBlock
+                Margin="4,0,0,0"
+                FontSize="24"
+                FontWeight="Medium"
+                Text="{DynamicResource CustomizePageTitle}" />
+
+            <!-- Bing Search in Start Menu -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageBingSearchDesc}"
+                Header="{DynamicResource CustomizePageBingSearch}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE721;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleBingSearch" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Center Taskbar Items -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageTaskbarAlignmentDesc}"
+                Header="{DynamicResource CustomizePageTaskbarAlignment}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE90E;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleTaskbarAlignment" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Dark Theme -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageDarkModeDesc}"
+                Header="{DynamicResource CustomizePageDarkMode}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE706;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleDarkMode" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Detailed BSoD -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageDetailedBSoDDesc}"
+                Header="{DynamicResource CustomizePageDetailedBSoD}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE783;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleDetailedBSoD" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Mouse Acceleration -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageMouseAccelerationDesc}"
+                Header="{DynamicResource CustomizePageMouseAcceleration}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE962;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleMouseAcceleration" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- NumLock on Startup -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageNumLockDesc}"
+                Header="{DynamicResource CustomizePageNumLock}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE765;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleNumLock" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Search Button in Taskbar -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageSearchButtonDesc}"
+                Header="{DynamicResource CustomizePageSearchButton}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE721;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleSearchButton" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Show File Extensions -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageShowFileExtDesc}"
+                Header="{DynamicResource CustomizePageShowFileExt}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE8A5;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleShowFileExt" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Show Hidden Files -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageShowHiddenFilesDesc}"
+                Header="{DynamicResource CustomizePageShowHiddenFiles}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE8B9;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleShowHiddenFiles" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Snap Assist Flyout -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageSnapAssistFlyoutDesc}"
+                Header="{DynamicResource CustomizePageSnapAssistFlyout}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE8A7;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleSnapAssistFlyout" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Snap Assist Suggestion -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageSnapAssistSuggestionDesc}"
+                Header="{DynamicResource CustomizePageSnapAssistSuggestion}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE8B2;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleSnapAssistSuggestion" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Snap Window -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageSnapWindowDesc}"
+                Header="{DynamicResource CustomizePageSnapWindow}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE8A8;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleSnapWindow" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Sticky Keys -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageStickyKeysDesc}"
+                Header="{DynamicResource CustomizePageStickyKeys}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE92E;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleStickyKeys" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Task View Button in Taskbar -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageTaskViewButtonDesc}"
+                Header="{DynamicResource CustomizePageTaskViewButton}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE8A9;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleTaskViewButton" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Verbose Messages During Logon -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageVerboseLogonDesc}"
+                Header="{DynamicResource CustomizePageVerboseLogon}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE9CE;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleVerboseLogon" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Widgets Button in Taskbar -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageWidgetsButtonDesc}"
+                Header="{DynamicResource CustomizePageWidgetsButton}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE8E1;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleWidgetsButton" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Classic Right-Click Menu -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageClassicRightClickDesc}"
+                Header="{DynamicResource CustomizePageClassicRightClick}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE700;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleClassicRightClick" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+            <!-- Gallery in Navigation Pane -->
+            <ui:SettingsCard
+                Description="{DynamicResource CustomizePageGalleryNavigationPaneDesc}"
+                Header="{DynamicResource CustomizePageGalleryNavigationPane}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xEB9F;" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch x:Name="toggleGalleryNavigationPane" OnContent="{DynamicResource ToggleOn}" OffContent="{DynamicResource ToggleOff}" />
+            </ui:SettingsCard>
+
+        </ikw:SimpleStackPanel>
+    </ui:ScrollViewerEx>
+</ui:Page> 

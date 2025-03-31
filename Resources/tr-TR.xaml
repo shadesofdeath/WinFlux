@@ -13,6 +13,7 @@
     <system:String x:Key="TelemetryMenuItem">Telemetri</system:String>
     <system:String x:Key="GameOptimizationMenuItem">Oyun Optimizasyonu</system:String>
     <system:String x:Key="PerformanceMenuItem">Performans</system:String>
+    <system:String x:Key="CustomizeMenuItem">Özelleştirme</system:String>
     <system:String x:Key="InformationMenuItem">Hakkında</system:String>
     <system:String x:Key="SettingsPageTitle">Ayarlar</system:String>
     <system:String x:Key="SettingPageLanguage">Dil</system:String>
@@ -61,11 +62,23 @@
     <system:String x:Key="ToolsPageBrowserHistory">Tarayıcı Geçmişini Temizle</system:String>
     <system:String x:Key="ToolsPageBrowserHistoryDesc">Chrome, Edge, Firefox ve Brave tarayıcılarının geçmiş, önbellek ve çerezlerini temizler.</system:String>
 
-    <system:String x:Key="ToolsPageNetworkReset">Ağ Ayarlarını Sıfırla</system:String>
+    <system:String x:Key="ToolsPageNetworkReset">Ağ Ayarlarını Yenile</system:String>
     <system:String x:Key="ToolsPageNetworkResetDesc">DNS önbelleğini temizler, IP adreslerini serbest bırakır ve yeniler.</system:String>
 
     <system:String x:Key="ToolsPageMAS">Microsoft Etkinleştirme</system:String>
     <system:String x:Key="ToolsPageMASDesc">Windows ve Office'i etkinleştirmek için Microsoft Activation Scripts'i çalıştırır.</system:String>
+
+    <system:String x:Key="ToolsPageRemoveAdobeCC">Adobe Creative Cloud Kaldır</system:String>
+    <system:String x:Key="ToolsPageRemoveAdobeCCDesc">Adobe ürünlerini kaldırmak veya düzeltmek için Adobe Creative Cloud Cleaner aracını indirir ve çalıştırır.</system:String>
+
+    <system:String x:Key="ToolsPageResetNetwork">Ağ Protokollerini Sıfırla</system:String>
+    <system:String x:Key="ToolsPageResetNetworkDesc">WinSock, WinHTTP proxy ve IP ayarlarını sıfırlar. İnternet bağlantı sorunlarını çözmek için kullanılır.</system:String>
+
+    <system:String x:Key="ToolsPageAutologin">Otomatik Oturum Açma Ayarla</system:String>
+    <system:String x:Key="ToolsPageAutologinDesc">Windows'ta otomatik oturum açmayı yapılandırmak için Microsoft Sysinternals Autologon aracını çalıştırır.</system:String>
+
+    <system:String x:Key="ToolsPageWingetReinstall">Winget Yeniden Kur</system:String>
+    <system:String x:Key="ToolsPageWingetReinstallDesc">GitHub'dan son sürüm Winget paket yöneticisini indirir ve kurar. Gerekli tüm bağımlılıkları otomatik olarak yükleme işlemi içerir.</system:String>
 
     <!--  Privacy Page  -->
     <system:String x:Key="PrivacyPageTitle">Gizlilik ve Güvenlik</system:String>
@@ -199,11 +212,11 @@
     <system:String x:Key="TelemetryPageCCleaner">CCleaner Telemetri</system:String>
     <system:String x:Key="TelemetryPageCCleanerDesc">CCleaner'ın izleme ve kullanım verisi toplama özelliklerini kontrol eder.</system:String>
 
-    <system:String x:Key="TelemetryPageGoogleUpdates">Google Arkaplan Güncellemeleri</system:String>
-    <system:String x:Key="TelemetryPageGoogleUpdatesDesc">Google ürünlerinin otomatik güncelleme hizmetlerini kontrol eder.</system:String>
+    <system:String x:Key="TelemetryPageGoogleUpdates">Google Arka Plan Güncellemeleri</system:String>
+    <system:String x:Key="TelemetryPageGoogleUpdatesDesc">Google Chrome ve diğer Google uygulamalarının arka planda güncelleme servislerini kontrol eder.</system:String>
 
-    <system:String x:Key="TelemetryPageAdobeUpdates">Adobe Arkaplan Güncellemeleri</system:String>
-    <system:String x:Key="TelemetryPageAdobeUpdatesDesc">Adobe ürünlerinin otomatik güncelleme hizmetlerini kontrol eder.</system:String>
+    <system:String x:Key="TelemetryPageAdobeUpdates">Adobe Arka Plan Güncellemeleri</system:String>
+    <system:String x:Key="TelemetryPageAdobeUpdatesDesc">Adobe Creative Cloud ve diğer Adobe uygulamalarının arka planda güncelleme servislerini kontrol eder.</system:String>
 
     <!--  Game Optimization Page  -->
     <system:String x:Key="GameOptimizationPageTitle">Oyun Optimizasyonu</system:String>
@@ -454,4 +467,61 @@
     <system:String x:Key="DebloatPageDisablingMediaPlayer">Windows Media Player Devre Dışı Bırakılıyor...</system:String>
     <system:String x:Key="DebloatPageThirdPartyAppsSection">3. Parti Uygulamalar İşleniyor...</system:String>
     <system:String x:Key="DebloatPageThirdPartyAppsCompleted">3. parti uygulamalar bölümü tamamlandı.</system:String>
+
+    <!-- Customize Page -->
+    <system:String x:Key="CustomizePageTitle">Windows Özelleştirme</system:String>
+    
+    <system:String x:Key="CustomizePageBingSearch">Başlat Menüsünde Bing Arama</system:String>
+    <system:String x:Key="CustomizePageBingSearchDesc">Windows başlat menüsündeki arama kutusunun Bing ile web araması yapma özelliğini kontrol eder.</system:String>
+    
+    <system:String x:Key="CustomizePageTaskbarAlignment">Görev Çubuğu Hizalama</system:String>
+    <system:String x:Key="CustomizePageTaskbarAlignmentDesc">Görev çubuğu simgelerinin ortalı veya sola hizalı görüntülenmesini kontrol eder.</system:String>
+    
+    <system:String x:Key="CustomizePageDarkMode">Karanlık Mod</system:String>
+    <system:String x:Key="CustomizePageDarkModeDesc">Windows'un karanlık temayı kullanmasını kontrol eder. Uygulamalar ve sistem arayüzü için geçerlidir.</system:String>
+    
+    <system:String x:Key="CustomizePageDetailedBSoD">Detaylı Mavi Ekran</system:String>
+    <system:String x:Key="CustomizePageDetailedBSoDDesc">Mavi ekran hatalarında detaylı teknik bilgilerin görüntülenmesini kontrol eder.</system:String>
+
+    <system:String x:Key="CustomizePageMouseAcceleration">Fare İvmesi</system:String>
+    <system:String x:Key="CustomizePageMouseAccelerationDesc">Etkinleştirildiğinde imleç hareketi, fiziksel fare hareketlerinizin hızından etkilenir.</system:String>
+
+    <system:String x:Key="CustomizePageNumLock">Başlangıçta NumLock</system:String>
+    <system:String x:Key="CustomizePageNumLockDesc">Bilgisayarınız başladığında NumLock tuşunun durumunu kontrol eder.</system:String>
+
+    <system:String x:Key="CustomizePageSearchButton">Görev Çubuğunda Arama Düğmesi</system:String>
+    <system:String x:Key="CustomizePageSearchButtonDesc">Etkinleştirildiğinde görev çubuğunda arama düğmesi görüntülenir.</system:String>
+
+    <system:String x:Key="CustomizePageShowFileExt">Dosya Uzantılarını Göster</system:String>
+    <system:String x:Key="CustomizePageShowFileExtDesc">Etkinleştirildiğinde dosya uzantıları (.txt, .jpg vb.) görünür olur.</system:String>
+
+    <system:String x:Key="CustomizePageShowHiddenFiles">Gizli Dosyaları Göster</system:String>
+    <system:String x:Key="CustomizePageShowHiddenFilesDesc">Etkinleştirildiğinde gizli dosyalar gösterilir.</system:String>
+
+    <system:String x:Key="CustomizePageSnapAssistFlyout">Snap Assist Açılır Penceresi</system:String>
+    <system:String x:Key="CustomizePageSnapAssistFlyoutDesc">Etkinleştirildiğinde, fare ekran köşelerine götürüldüğünde veya pencere yerleştirme işlemi sırasında yardım açılır penceresi gösterilir.</system:String>
+
+    <system:String x:Key="CustomizePageSnapAssistSuggestion">Snap Assist Önerisi</system:String>
+    <system:String x:Key="CustomizePageSnapAssistSuggestionDesc">Etkinleştirildiğinde, pencere yerleştirme işlemi sırasında boşta kalan alanlara yerleştirilebilecek diğer uygulama önerileri gösterilir.</system:String>
+
+    <system:String x:Key="CustomizePageSnapWindow">Pencere Yerleştirme</system:String>
+    <system:String x:Key="CustomizePageSnapWindowDesc">Etkinleştirildiğinde pencereleri sürükleyerek ekranın kenarlarına yerleştirebilirsiniz. | Yeniden giriş gerektirir</system:String>
+
+    <system:String x:Key="CustomizePageStickyKeys">Yapışkan Tuşlar</system:String>
+    <system:String x:Key="CustomizePageStickyKeysDesc">Etkinleştirildiğinde Yapışkan Tuşlar özelliği aktifleştirilir - Yapışkan tuşlar, fiziksel engelli kullanıcılara yardımcı olan veya kullanıcıların tekrarlayan zorlanma yaralanmalarını azaltmasına yardımcı olan bir erişilebilirlik özelliğidir.</system:String>
+
+    <system:String x:Key="CustomizePageTaskViewButton">Görev Çubuğunda Görev Görünümü Düğmesi</system:String>
+    <system:String x:Key="CustomizePageTaskViewButtonDesc">Etkinleştirildiğinde görev çubuğunda Görev Görünümü düğmesi gösterilir.</system:String>
+
+    <system:String x:Key="CustomizePageVerboseLogon">Oturum Açma Sırasında Ayrıntılı Mesajlar</system:String>
+    <system:String x:Key="CustomizePageVerboseLogonDesc">Sorun giderme ve tanılama için oturum açma işlemi sırasında ayrıntılı mesajları gösterir.</system:String>
+
+    <system:String x:Key="CustomizePageWidgetsButton">Görev Çubuğunda Widget Düğmesi</system:String>
+    <system:String x:Key="CustomizePageWidgetsButtonDesc">Etkinleştirildiğinde görev çubuğunda Widget düğmesi gösterilir.</system:String>
+
+    <system:String x:Key="CustomizePageClassicRightClick">Klasik Sağ Tık Menüsü</system:String>
+    <system:String x:Key="CustomizePageClassicRightClickDesc">Windows 11'de dosya gezgininde sağ tıkladığınızda eski (kompakt) bağlam menüsünü gösterir.</system:String>
+
+    <system:String x:Key="CustomizePageGalleryNavigationPane">Galeriyi Gezgin Panelinden Kaldır</system:String>
+    <system:String x:Key="CustomizePageGalleryNavigationPaneDesc">Dosya Gezgini'nin sol tarafındaki gezinti panelinden Galeri öğesini kaldırır veya ekler.</system:String>
 </ResourceDictionary>

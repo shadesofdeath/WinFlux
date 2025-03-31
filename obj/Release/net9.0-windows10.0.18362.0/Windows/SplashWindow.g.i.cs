@@ -91,7 +91,7 @@ namespace WinFlux.Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WinFlux;V1.0.0.1;component/windows/splashwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WinFlux;V1.0.0.2;component/windows/splashwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Windows\SplashWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

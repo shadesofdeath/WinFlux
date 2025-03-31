@@ -13,6 +13,7 @@
     <system:String x:Key="TelemetryMenuItem">Telemetry</system:String>
     <system:String x:Key="GameOptimizationMenuItem">Game Optimization</system:String>
     <system:String x:Key="PerformanceMenuItem">Performance</system:String>
+    <system:String x:Key="CustomizeMenuItem">Customization</system:String>
     <system:String x:Key="InformationMenuItem">About</system:String>
     <system:String x:Key="SettingsPageTitle">Settings</system:String>
     <system:String x:Key="SettingPageLanguage">Language</system:String>
@@ -66,6 +67,18 @@
 
     <system:String x:Key="ToolsPageMAS">Microsoft Activation</system:String>
     <system:String x:Key="ToolsPageMASDesc">Runs Microsoft Activation Scripts (MAS) to activate Windows and Office.</system:String>
+
+    <system:String x:Key="ToolsPageRemoveAdobeCC">Remove Adobe Creative Cloud</system:String>
+    <system:String x:Key="ToolsPageRemoveAdobeCCDesc">Downloads and runs the Adobe Creative Cloud Cleaner tool to remove or repair Adobe products.</system:String>
+
+    <system:String x:Key="ToolsPageResetNetwork">Reset Network Protocols</system:String>
+    <system:String x:Key="ToolsPageResetNetworkDesc">Resets WinSock, WinHTTP proxy and IP settings. Used to fix internet connection problems.</system:String>
+
+    <system:String x:Key="ToolsPageAutologin">Set Up Autologin</system:String>
+    <system:String x:Key="ToolsPageAutologinDesc">Runs Microsoft Sysinternals Autologon tool to configure automatic login in Windows.</system:String>
+
+    <system:String x:Key="ToolsPageWingetReinstall">Reinstall Winget</system:String>
+    <system:String x:Key="ToolsPageWingetReinstallDesc">Downloads and installs the latest version of Winget package manager from GitHub. Includes all necessary dependencies.</system:String>
 
     <!--  Privacy Page  -->
     <system:String x:Key="PrivacyPageTitle">Privacy &amp; Security</system:String>
@@ -454,4 +467,61 @@
     <system:String x:Key="DebloatPageDisablingMediaPlayer">Disabling Windows Media Player...</system:String>
     <system:String x:Key="DebloatPageThirdPartyAppsSection">Processing 3rd Party Apps...</system:String>
     <system:String x:Key="DebloatPageThirdPartyAppsCompleted">3rd party apps section completed.</system:String>
+
+    <!-- Customize Page -->
+    <system:String x:Key="CustomizePageTitle">Windows Customization</system:String>
+    
+    <system:String x:Key="CustomizePageBingSearch">Bing Search in Start Menu</system:String>
+    <system:String x:Key="CustomizePageBingSearchDesc">Controls whether the search box in the Windows start menu performs web searches with Bing.</system:String>
+    
+    <system:String x:Key="CustomizePageTaskbarAlignment">Taskbar Alignment</system:String>
+    <system:String x:Key="CustomizePageTaskbarAlignmentDesc">Controls whether taskbar icons are displayed centered or left-aligned.</system:String>
+    
+    <system:String x:Key="CustomizePageDarkMode">Dark Mode</system:String>
+    <system:String x:Key="CustomizePageDarkModeDesc">Controls whether Windows uses dark theme. Applies to apps and system interface.</system:String>
+    
+    <system:String x:Key="CustomizePageDetailedBSoD">Detailed Blue Screen</system:String>
+    <system:String x:Key="CustomizePageDetailedBSoDDesc">Controls whether detailed technical information is displayed during blue screen errors.</system:String>
+
+    <system:String x:Key="CustomizePageMouseAcceleration">Mouse Acceleration</system:String>
+    <system:String x:Key="CustomizePageMouseAccelerationDesc">When enabled, cursor movement is affected by the speed of your physical mouse movements.</system:String>
+
+    <system:String x:Key="CustomizePageNumLock">NumLock on Startup</system:String>
+    <system:String x:Key="CustomizePageNumLockDesc">Controls the state of the NumLock key when your computer starts.</system:String>
+
+    <system:String x:Key="CustomizePageSearchButton">Search Button in Taskbar</system:String>
+    <system:String x:Key="CustomizePageSearchButtonDesc">When enabled, the search button is displayed in the taskbar.</system:String>
+
+    <system:String x:Key="CustomizePageShowFileExt">Show File Extensions</system:String>
+    <system:String x:Key="CustomizePageShowFileExtDesc">When enabled, file extensions (.txt, .jpg, etc.) are visible.</system:String>
+
+    <system:String x:Key="CustomizePageShowHiddenFiles">Show Hidden Files</system:String>
+    <system:String x:Key="CustomizePageShowHiddenFilesDesc">When enabled, hidden files are shown.</system:String>
+
+    <system:String x:Key="CustomizePageSnapAssistFlyout">Snap Assist Flyout</system:String>
+    <system:String x:Key="CustomizePageSnapAssistFlyoutDesc">When enabled, a help flyout is shown when the mouse is brought to screen corners or during window arrangement.</system:String>
+
+    <system:String x:Key="CustomizePageSnapAssistSuggestion">Snap Assist Suggestion</system:String>
+    <system:String x:Key="CustomizePageSnapAssistSuggestionDesc">When enabled, suggestions for other applications that could be placed in the remaining areas are shown during window arrangement.</system:String>
+
+    <system:String x:Key="CustomizePageSnapWindow">Window Snapping</system:String>
+    <system:String x:Key="CustomizePageSnapWindowDesc">When enabled, you can snap windows to the edges of the screen by dragging them. | Requires relogin</system:String>
+
+    <system:String x:Key="CustomizePageStickyKeys">Sticky Keys</system:String>
+    <system:String x:Key="CustomizePageStickyKeysDesc">When enabled, the Sticky Keys feature is activated - Sticky keys is an accessibility feature that helps users with physical disabilities or helps users reduce repetitive strain injuries.</system:String>
+
+    <system:String x:Key="CustomizePageTaskViewButton">Task View Button in Taskbar</system:String>
+    <system:String x:Key="CustomizePageTaskViewButtonDesc">When enabled, the Task View button is displayed in the taskbar.</system:String>
+
+    <system:String x:Key="CustomizePageVerboseLogon">Verbose Messages During Logon</system:String>
+    <system:String x:Key="CustomizePageVerboseLogonDesc">Shows detailed messages during the logon process for troubleshooting and diagnostics.</system:String>
+
+    <system:String x:Key="CustomizePageWidgetsButton">Widgets Button in Taskbar</system:String>
+    <system:String x:Key="CustomizePageWidgetsButtonDesc">When enabled, the Widgets button is displayed in the taskbar.</system:String>
+
+    <system:String x:Key="CustomizePageClassicRightClick">Classic Right-Click Menu</system:String>
+    <system:String x:Key="CustomizePageClassicRightClickDesc">Shows the legacy (compact) context menu when right-clicking in file explorer in Windows 11.</system:String>
+
+    <system:String x:Key="CustomizePageGalleryNavigationPane">Remove Gallery from Navigation Pane</system:String>
+    <system:String x:Key="CustomizePageGalleryNavigationPaneDesc">Removes or adds the Gallery item from the navigation pane on the left side of File Explorer.</system:String>
 </ResourceDictionary>

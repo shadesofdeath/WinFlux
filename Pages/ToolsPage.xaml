@@ -156,6 +156,78 @@
                     </Button.Content>
                 </Button>
             </ui:SettingsCard>
+
+            <!--  Adobe Creative Cloud Kaldır  -->
+            <ui:SettingsCard
+                x:Name="RemoveAdobeCCCard"
+                Description="{DynamicResource ToolsPageRemoveAdobeCCDesc}"
+                Header="{DynamicResource ToolsPageRemoveAdobeCC}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Delete}" />
+                </ui:SettingsCard.HeaderIcon>
+                <Button x:Name="btnRemoveAdobeCC" Click="btnRemoveAdobeCC_Click">
+                    <Button.Content>
+                        <ui:PathIcon
+                            Width="12"
+                            Data="{StaticResource PlayIconData}"
+                            Opacity="0.8" />
+                    </Button.Content>
+                </Button>
+            </ui:SettingsCard>
+
+            <!--  Ağ Ayarlarını Sıfırla  -->
+            <ui:SettingsCard
+                x:Name="ResetNetworkCard"
+                Description="{DynamicResource ToolsPageResetNetworkDesc}"
+                Header="{DynamicResource ToolsPageResetNetwork}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Globe}" />
+                </ui:SettingsCard.HeaderIcon>
+                <Button x:Name="btnResetNetworkSettings" Click="btnResetNetworkSettings_Click">
+                    <Button.Content>
+                        <ui:PathIcon
+                            Width="12"
+                            Data="{StaticResource PlayIconData}"
+                            Opacity="0.8" />
+                    </Button.Content>
+                </Button>
+            </ui:SettingsCard>
+
+            <!--  Otomatik Oturum Açma Ayarla  -->
+            <ui:SettingsCard
+                x:Name="AutologinCard"
+                Description="{DynamicResource ToolsPageAutologinDesc}"
+                Header="{DynamicResource ToolsPageAutologin}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Key12On}" />
+                </ui:SettingsCard.HeaderIcon>
+                <Button x:Name="btnSetupAutologin" Click="btnSetupAutologin_Click">
+                    <Button.Content>
+                        <ui:PathIcon
+                            Width="12"
+                            Data="{StaticResource PlayIconData}"
+                            Opacity="0.8" />
+                    </Button.Content>
+                </Button>
+            </ui:SettingsCard>
+
+            <!--  Winget Yeniden Kur  -->
+            <ui:SettingsCard
+                x:Name="WingetReinstallCard"
+                Description="{DynamicResource ToolsPageWingetReinstallDesc}"
+                Header="{DynamicResource ToolsPageWingetReinstall}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Package}" />
+                </ui:SettingsCard.HeaderIcon>
+                <Button x:Name="btnReinstallWinget" Click="btnReinstallWinget_Click">
+                    <Button.Content>
+                        <ui:PathIcon
+                            Width="12"
+                            Data="{StaticResource PlayIconData}"
+                            Opacity="0.8" />
+                    </Button.Content>
+                </Button>
+            </ui:SettingsCard>
         </ikw:SimpleStackPanel>
     </ui:ScrollViewerEx>
 </ui:Page>

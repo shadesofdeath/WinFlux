@@ -69,6 +69,12 @@
                         <ui:PathIcon Data="{StaticResource SpeedIconData}" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="{DynamicResource CustomizeMenuItem}" Tag="customizePage">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xE771;" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>
             <ui:NavigationView.FooterMenuItems>
                 <ui:NavigationViewItem Content="{DynamicResource SettingsMenuItem}" Tag="settings">

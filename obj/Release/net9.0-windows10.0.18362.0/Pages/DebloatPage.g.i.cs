@@ -619,7 +619,7 @@ namespace WinFlux.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WinFlux;V1.0.0.1;component/pages/debloatpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WinFlux;V1.0.0.2;component/pages/debloatpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\DebloatPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
