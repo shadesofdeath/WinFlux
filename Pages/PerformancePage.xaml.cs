@@ -339,7 +339,7 @@ namespace WinFlux.Pages
                 processInfo.UseShellExecute = false;
                 processInfo.RedirectStandardOutput = true;
                 processInfo.RedirectStandardError = true;
-                processInfo.Verb = "runas"; // Run as administrator
+                processInfo.Verb = "runas";
 
                 Process process = new Process();
                 process.StartInfo = processInfo;

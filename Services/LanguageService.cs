@@ -6,6 +6,9 @@ namespace WinFlux.Services
 {
     public class LanguageService
     {
+        // Dil değiştiğinde tetiklenecek olay
+        public static event EventHandler LanguageChanged;
+        
         public static string[] AvailableLanguages => new[] { "Türkçe", "English" };
         
         public static void ChangeLanguage(string language)
@@ -36,6 +39,9 @@ namespace WinFlux.Services
                 
                 // Save language preference
                 UserSettingsService.Instance.PreferredLanguage = language;
+                
+                // Dil değişikliği olayını tetikle
+                LanguageChanged?.Invoke(null, EventArgs.Empty);
             }
             catch (Exception ex)
             {

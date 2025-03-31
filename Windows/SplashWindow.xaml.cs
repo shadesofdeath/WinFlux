@@ -1,7 +1,11 @@
 using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using System.Windows.Media.Animation;
+using WinFlux.Services;
+using MessageBox = iNKORE.UI.WPF.Modern.Controls.MessageBox;
 
 namespace WinFlux.Windows
 {
@@ -89,17 +93,91 @@ namespace WinFlux.Windows
             {
                 timer.Stop();
                 
-                // Kısa bir gecikme ve pencereyi kapat
-                var closeTimer = new DispatcherTimer();
-                closeTimer.Interval = TimeSpan.FromMilliseconds(500);
-                closeTimer.Tick += (s, args) =>
-                {
-                    closeTimer.Stop();
-                    LoadingComplete?.Invoke(this, EventArgs.Empty);
-                    this.Close();
-                };
-                closeTimer.Start();
+                // Güncellemeleri kontrol et
+                CheckForUpdates();
             }
+        }
+        
+        private async void CheckForUpdates()
+        {
+            try
+            {
+                // Güncelleme kontrol ediliyor mesajını göster
+                statusText.Text = FindResource("UpdateNotification_CheckingUpdates") as string;
+                
+                // Güncelleme kontrolü yap
+                var (hasUpdate, latestVersion, downloadUrl) = await UpdateService.CheckForUpdatesAsync();
+                
+                if (hasUpdate)
+                {
+                    // Kullanıcıya güncelleme bildirimi göster
+                    ShowUpdateNotification(latestVersion, downloadUrl);
+                }
+                else
+                {
+                    // Güncelleme yoksa normal akışı devam ettir
+                    CloseAndContinue();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda normal akışı devam ettir
+                Console.WriteLine($"Error checking for updates: {ex.Message}");
+                CloseAndContinue();
+            }
+        }
+        
+        private void ShowUpdateNotification(string latestVersion, string downloadUrl)
+        {
+            string title = FindResource("UpdateNotification_Title") as string;
+            string message = string.Format(FindResource("UpdateNotification_Message") as string, latestVersion);
+            
+            // Kullanıcıya güncelleme bildirimini göster
+            MessageBoxResult result = MessageBox.Show(
+                message,
+                title,
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Information);
+                
+            if (result == MessageBoxResult.Yes)
+            {
+                // Tarayıcıda indirme sayfasını aç
+                try
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = downloadUrl,
+                        UseShellExecute = true
+                    });
+                    
+                    // Uygulama kapatılacak, kullanıcı yeni sürümü indirecek
+                    Application.Current.Shutdown();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error opening download URL: {ex.Message}");
+                    CloseAndContinue();
+                }
+            }
+            else
+            {
+                // Kullanıcı güncellemeyi istemiyorsa normal akışı devam ettir
+                CloseAndContinue();
+            }
+        }
+        
+        private void CloseAndContinue()
+        {
+            // Kısa bir gecikme ve pencereyi kapat
+            var closeTimer = new DispatcherTimer();
+            closeTimer.Interval = TimeSpan.FromMilliseconds(500);
+            closeTimer.Tick += (s, args) =>
+            {
+                closeTimer.Stop();
+                LoadingComplete?.Invoke(this, EventArgs.Empty);
+                this.Close();
+            };
+            closeTimer.Start();
         }
     }
 } 

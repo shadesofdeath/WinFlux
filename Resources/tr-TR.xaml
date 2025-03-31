@@ -37,6 +37,17 @@
     <system:String x:Key="SplashScreen_Step4">Arayüz hazırlanıyor...</system:String>
     <system:String x:Key="SplashScreen_Step5">İşlem tamamlanıyor...</system:String>
 
+    <!--  Update Notification  -->
+    <system:String x:Key="UpdateNotification_Title">Güncelleme Mevcut</system:String>
+    <system:String x:Key="UpdateNotification_Message">
+        WinFlux'un yeni bir sürümü mevcut: {0}
+        Şimdi indirmek ister misiniz?
+    </system:String>
+    <system:String x:Key="UpdateNotification_Yes">Evet</system:String>
+    <system:String x:Key="UpdateNotification_No">Hayır</system:String>
+    <system:String x:Key="UpdateNotification_CheckingUpdates">Güncellemeler kontrol ediliyor...</system:String>
+    <system:String x:Key="UpdateNotification_ErrorChecking">Güncellemeler kontrol edilirken hata oluştu</system:String>
+
     <!--  TelemetryPage MessageBox Texts  -->
     <system:String x:Key="TelemetryPageMessageBox_HostsFileUpdateError">Hosts dosyası güncellenirken hata oluştu:</system:String>
     <system:String x:Key="TelemetryPageMessageBox_CommandError">Komut çalıştırılırken hata oluştu:</system:String>
@@ -280,7 +291,7 @@
     <system:String x:Key="PerformancePageMessageBox_SelectDNSProvider">Lütfen bir DNS sağlayıcısı seçin.</system:String>
     <system:String x:Key="PerformancePageMessageBox_DNSApplied">DNS ayarları başarıyla uygulandı.</system:String>
     <system:String x:Key="PerformancePageMessageBox_UltimatePerformanceEnabled">Ultimate Performance güç planı başarıyla etkinleştirildi.</system:String>
-    <system:String x:Key="PerformancePageMessageBox_ServicesConfirmation">Bu işlem Windows servislerini manuel başlangıca ayarlayacak.\nBazı servisler tamamen devre dışı bırakılacak.\n\nBu işlem birkaç dakika sürebilir.\nDevam etmek istiyor musunuz?</system:String>
+    <system:String x:Key="PerformancePageMessageBox_ServicesConfirmation">Bu işlem Windows servislerini manuel başlangıca ayarlayacak. Bazı servisler tamamen devre dışı bırakılacak.  Bu işlem birkaç dakika sürebilir. Devam etmek istiyor musunuz?</system:String>
     <system:String x:Key="PerformancePageMessageBox_ServicesOptimized">Servisler optimize edildi. Bazı değişikliklerin etkili olması için sistem yeniden başlatılmalıdır.</system:String>
     <system:String x:Key="PerformancePageMessageBox_NoNetworkInterfaces">Aktif ağ arayüzü bulunamadı.</system:String>
 
@@ -408,6 +419,13 @@
     <system:String x:Key="DebloatPageRemovalCompleted">Kaldırma işlemi tamamlandı</system:String>
     <system:String x:Key="DebloatPageRunAsAdminWarning">Bu işlem yönetici hakları gerektirir. Komut dosyasını onaylamanız gerekecek.</system:String>
     <system:String x:Key="DebloatPageAdminRights">Yönetici Hakları Gerekli</system:String>
+    <system:String x:Key="DebloatPageNoSelectedConfirmEnable">Hiçbir öğe seçmediniz. Windows özelliklerini etkinleştirmek istiyor musunuz?</system:String>
+    <system:String x:Key="DebloatPageOperationMode">İşlem Modu</system:String>
+    <system:String x:Key="DebloatPageDisableFeatures">Özellikleri Devre Dışı Bırak</system:String>
+    <system:String x:Key="DebloatPageEnableFeatures">Özellikleri Etkinleştir</system:String>
+    <system:String x:Key="DebloatPageEnableSelected">Seçili Özellikleri Etkinleştir</system:String>
+    <system:String x:Key="DebloatPageSystemAppsTitle">Sistem Uygulamalarını Kaldır</system:String>
+    <system:String x:Key="DebloatPageSystemAppsDesc">Windows ile birlikte gelen sistem uygulamalarını kaldırarak sisteminizi daha sade hale getirebilirsiniz.</system:String>
 
     <!--  Windows Features  -->
     <system:String x:Key="DebloatPageWindowsFeaturesTitle">Windows Özelliklerini Devre Dışı Bırak</system:String>
@@ -454,7 +472,6 @@
     <system:String x:Key="DebloatPageUninstallingOneDriveSystem32">OneDrive System32'den kaldırılıyor...</system:String>
     <system:String x:Key="DebloatPageUninstallingOneDriveSysWOW64">OneDrive SysWOW64'den kaldırılıyor...</system:String>
     <system:String x:Key="DebloatPageRemoveApps">Uygulamaları Kaldır</system:String>
-    <system:String x:Key="DebloatPageDisableFeatures">Özellikleri Devre Dışı Bırak</system:String>
     <system:String x:Key="DebloatPageDisableFeaturesToolTip">Seçili Windows özelliklerini devre dışı bırakır (Internet Explorer, Hyper-V, vb.)</system:String>
     <system:String x:Key="DebloatPageRemoveAppsToolTip">Seçili uygulamaları kaldırır (Store, OneDrive, Edge, vb.)</system:String>
     <system:String x:Key="DebloatPageWindowsFeaturesSection">Windows Özellikleri İşleniyor...</system:String>
@@ -468,18 +485,18 @@
     <system:String x:Key="DebloatPageThirdPartyAppsSection">3. Parti Uygulamalar İşleniyor...</system:String>
     <system:String x:Key="DebloatPageThirdPartyAppsCompleted">3. parti uygulamalar bölümü tamamlandı.</system:String>
 
-    <!-- Customize Page -->
+    <!--  Customize Page  -->
     <system:String x:Key="CustomizePageTitle">Windows Özelleştirme</system:String>
-    
+
     <system:String x:Key="CustomizePageBingSearch">Başlat Menüsünde Bing Arama</system:String>
     <system:String x:Key="CustomizePageBingSearchDesc">Windows başlat menüsündeki arama kutusunun Bing ile web araması yapma özelliğini kontrol eder.</system:String>
-    
+
     <system:String x:Key="CustomizePageTaskbarAlignment">Görev Çubuğu Hizalama</system:String>
     <system:String x:Key="CustomizePageTaskbarAlignmentDesc">Görev çubuğu simgelerinin ortalı veya sola hizalı görüntülenmesini kontrol eder.</system:String>
-    
+
     <system:String x:Key="CustomizePageDarkMode">Karanlık Mod</system:String>
     <system:String x:Key="CustomizePageDarkModeDesc">Windows'un karanlık temayı kullanmasını kontrol eder. Uygulamalar ve sistem arayüzü için geçerlidir.</system:String>
-    
+
     <system:String x:Key="CustomizePageDetailedBSoD">Detaylı Mavi Ekran</system:String>
     <system:String x:Key="CustomizePageDetailedBSoDDesc">Mavi ekran hatalarında detaylı teknik bilgilerin görüntülenmesini kontrol eder.</system:String>
 
@@ -524,4 +541,52 @@
 
     <system:String x:Key="CustomizePageGalleryNavigationPane">Galeriyi Gezgin Panelinden Kaldır</system:String>
     <system:String x:Key="CustomizePageGalleryNavigationPaneDesc">Dosya Gezgini'nin sol tarafındaki gezinti panelinden Galeri öğesini kaldırır veya ekler.</system:String>
+
+    <!--  Explorer Privacy Settings  -->
+    <system:String x:Key="PrivacyPageOnlineTips">Çevrimiçi İpuçları</system:String>
+    <system:String x:Key="PrivacyPageOnlineTipsDesc">Windows'un çeşitli özellikler için çevrimiçi ipuçlarını ve önerileri gösterip göstermeyeceğini kontrol eder.</system:String>
+
+    <system:String x:Key="PrivacyPageFileAssociation">İnternet Dosya İlişkilendirmesi</system:String>
+    <system:String x:Key="PrivacyPageFileAssociationDesc">Windows'un yerel bir uygulama bulunamadığında, dosya ilişkilendirmeleri için internet araması yapıp yapmayacağını kontrol eder.</system:String>
+
+    <system:String x:Key="PrivacyPageOrderPrints">Baskı Siparişi Resim Görevi</system:String>
+    <system:String x:Key="PrivacyPageOrderPrintsDesc">Kullanıcıların fotoğraf uygulamasından çevrimiçi baskı siparişi servislerine erişimini kontrol eder.</system:String>
+
+    <system:String x:Key="PrivacyPagePublishToWeb">Web'de Yayınla</system:String>
+    <system:String x:Key="PrivacyPagePublishToWebDesc">Windows Dosya Gezgini'nde dosyalar ve klasörler için "Web'de Yayınla" seçeneğini kontrol eder.</system:String>
+
+    <system:String x:Key="PrivacyPageProviderList">Sağlayıcı Listesi İndirmeleri</system:String>
+    <system:String x:Key="PrivacyPageProviderListDesc">Windows'un sihirbazlar için sağlayıcı bilgilerini ve servis listelerini indirip indirmeyeceğini kontrol eder.</system:String>
+
+    <system:String x:Key="PrivacyPageRecentDocsHistory">Son Belgeler Geçmişi</system:String>
+    <system:String x:Key="PrivacyPageRecentDocsHistoryDesc">Windows'un son açılan belgelerin geçmişini tutup tutmayacağını kontrol eder.</system:String>
+
+    <system:String x:Key="PrivacyPageClearRecentDocs">Çıkışta Son Belge Geçmişini Temizle</system:String>
+    <system:String x:Key="PrivacyPageClearRecentDocsDesc">Windows'tan çıkarken son belgeler geçmişinin temizlenip temizlenmeyeceğini kontrol eder.</system:String>
+
+    <system:String x:Key="PrivacyPageLockScreenNotif">Kilit Ekranı Uygulama Bildirimleri</system:String>
+    <system:String x:Key="PrivacyPageLockScreenNotifDesc">Uygulamaların kilit ekranında bildirim gösterip gösteremeyeceğini kontrol eder.</system:String>
+
+    <system:String x:Key="PrivacyPageLiveTileNotif">Canlı Kutucuk Bildirimleri</system:String>
+    <system:String x:Key="PrivacyPageLiveTileNotifDesc">Canlı Kutucukların anlık bildirim alıp içeriklerini güncelleyebilmesini kontrol eder.</system:String>
+
+    <system:String x:Key="PrivacyPageStoreOpenWith">Mağaza Uygulama Önerileri</system:String>
+    <system:String x:Key="PrivacyPageStoreOpenWithDesc">Bir dosya türü için ilişkilendirilmiş bir uygulamanız olmadığında Windows'un Mağaza uygulamaları önermesini kontrol eder.</system:String>
+
+    <system:String x:Key="PrivacyPageRecentFiles">Hızlı Erişim'de Son Dosyaları Göster</system:String>
+    <system:String x:Key="PrivacyPageRecentFilesDesc">Windows'un Dosya Gezgini'nde Hızlı Erişim'de son kullanılan dosyaları gösterip göstermeyeceğini kontrol eder.</system:String>
+
+    <system:String x:Key="PrivacyPageSyncNotifications">Senkronizasyon Sağlayıcı Bildirimleri</system:String>
+    <system:String x:Key="PrivacyPageSyncNotificationsDesc">Windows'un OneDrive gibi bulut depolama sağlayıcılarından bildirimleri gösterip göstermeyeceğini kontrol eder.</system:String>
+
+    <system:String x:Key="PrivacyPageRecentApps">Son Kullanılan Uygulamalar</system:String>
+    <system:String x:Key="PrivacyPageRecentAppsDesc">Windows'un Görev Görünümü gibi çeşitli yerlerde son kullanılan uygulamaları gösterip göstermeyeceğini kontrol eder.</system:String>
+
+    <system:String x:Key="PrivacyPageAppTracking">Uygulama Kullanım Takibi</system:String>
+    <system:String x:Key="PrivacyPageAppTrackingDesc">Windows'un hangi uygulamaları en sık kullandığınızı takip edip etmeyeceğini kontrol eder (MFU izleme).</system:String>
+
+    <system:String x:Key="PrivacyPageBacktracking">Geri Takip</system:String>
+    <system:String x:Key="PrivacyPageBacktrackingDesc">Windows'un sistem kullanıcı arayüzü bileşenlerinde gezinme geçmişini hatırlayıp hatırlamayacağını kontrol eder.</system:String>
+
+    <system:String x:Key="PrivacyPageExplorerSettings">Explorer Gizlilik Ayarları</system:String>
 </ResourceDictionary>

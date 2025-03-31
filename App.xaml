@@ -12,9 +12,6 @@
                 <ResourceDictionary Source="Assets\Icons.xaml" />
                 <ResourceDictionary Source="/Resources/tr-TR.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <!--  Your other resources here (if exists)  -->
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>

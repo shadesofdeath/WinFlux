@@ -45,12 +45,8 @@
                     x:Name="btnRemoveSelected"
                     Grid.Column="2"
                     Click="btnRemoveSelected_Click"
-                    Style="{StaticResource AccentButtonStyle}">
-                    <ikw:SimpleStackPanel Orientation="Horizontal" Spacing="8">
-                        <ui:FontIcon FontSize="16" Icon="{x:Static ui:SegoeFluentIcons.Delete}" />
-                        <TextBlock Text="{DynamicResource DebloatPageRemoveSelected}" />
-                    </ikw:SimpleStackPanel>
-                </Button>
+                    Style="{StaticResource AccentButtonStyle}"
+                    Content="{DynamicResource DebloatPageRemoveSelected}"/>
             </Grid>
 
             <!--  3rd Party Apps Card  -->
@@ -452,6 +448,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <!--  Header  -->
@@ -481,8 +478,17 @@
                         </ikw:SimpleStackPanel>
                     </Grid>
 
+                    <!-- Toggle Switch -->
+                    <Grid Grid.Row="1" Margin="24,0,24,16">
+                        <ui:ToggleSwitch x:Name="tglEnableFeatures" 
+                                         Header="{DynamicResource DebloatPageOperationMode}" 
+                                         OffContent="{DynamicResource DebloatPageDisableFeatures}" 
+                                         OnContent="{DynamicResource DebloatPageEnableFeatures}"
+                                         Margin="0,8,0,8" />
+                    </Grid>
+
                     <!--  Feature Checkboxes  -->
-                    <Grid Grid.Row="1" Margin="24,16,24,16">
+                    <Grid Grid.Row="2" Margin="24,16,24,16">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
@@ -556,60 +562,114 @@
                             Content="{DynamicResource DebloatPageMediaPlayer}"
                             IsChecked="True"
                             ToolTip="{DynamicResource DebloatPageMediaPlayerDesc}" />
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!--  System Apps Card  -->
+            <Border
+                Padding="0"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="12">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Header  -->
+                    <Grid Grid.Row="0" Margin="24,24,24,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <ui:FontIcon
+                            Grid.Column="0"
+                            Margin="0,0,16,0"
+                            FontSize="28"
+                            Foreground="{DynamicResource SystemAccentColorLight1Brush}"
+                            Icon="{x:Static ui:SegoeFluentIcons.OEM}" />
+
+                        <ikw:SimpleStackPanel Grid.Column="1">
+                            <TextBlock
+                                FontSize="18"
+                                FontWeight="SemiBold"
+                                Text="{DynamicResource DebloatPageSystemAppsTitle}" />
+                            <TextBlock
+                                Margin="0,8,0,0"
+                                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                Text="{DynamicResource DebloatPageSystemAppsDesc}"
+                                TextWrapping="Wrap" />
+                        </ikw:SimpleStackPanel>
+                    </Grid>
+
+                    <!--  System Apps Checkboxes  -->
+                    <Grid Grid.Row="1" Margin="24,16,24,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Column 1  -->
                         <CheckBox
                             x:Name="chkStore"
-                            Grid.Row="3"
-                            Grid.Column="1"
+                            Grid.Row="0"
+                            Grid.Column="0"
                             Content="{DynamicResource DebloatPageStore}"
                             IsChecked="True"
                             ToolTip="{DynamicResource DebloatPageStoreDesc}" />
                         <CheckBox
                             x:Name="chkOneDrive"
-                            Grid.Row="4"
-                            Grid.Column="1"
+                            Grid.Row="1"
+                            Grid.Column="0"
                             Content="{DynamicResource DebloatPageOneDrive}"
                             IsChecked="True"
                             ToolTip="{DynamicResource DebloatPageOneDriveDesc}" />
 
-                        <!--  Column 3  -->
-                        <TextBlock
-                            Grid.Row="0"
-                            Grid.Column="2"
-                            Margin="0,8,0,4"
-                            FontWeight="SemiBold"
-                            Text="{DynamicResource DebloatPageWindowsFeaturesTitle}"
-                            Visibility="Hidden" />
+                        <!--  Column 2  -->
                         <CheckBox
                             x:Name="chkEdge"
-                            Grid.Row="1"
-                            Grid.Column="2"
+                            Grid.Row="0"
+                            Grid.Column="1"
                             Content="{DynamicResource DebloatPageEdge}"
                             IsChecked="True"
                             ToolTip="{DynamicResource DebloatPageEdgeDesc}" />
                         <CheckBox
                             x:Name="chkEdgeRemove"
-                            Grid.Row="2"
-                            Grid.Column="2"
+                            Grid.Row="1"
+                            Grid.Column="1"
                             Content="{DynamicResource DebloatPageEdgeRemove}"
                             IsChecked="False"
                             ToolTip="{DynamicResource DebloatPageEdgeRemoveDesc}" />
+
+                        <!--  Column 3  -->
                         <CheckBox
                             x:Name="chkCopilot"
-                            Grid.Row="3"
+                            Grid.Row="0"
                             Grid.Column="2"
                             Content="{DynamicResource DebloatPageCopilot}"
                             IsChecked="True"
                             ToolTip="{DynamicResource DebloatPageCopilotDesc}" />
                         <CheckBox
                             x:Name="chkWidgets"
-                            Grid.Row="4"
+                            Grid.Row="1"
                             Grid.Column="2"
                             Content="{DynamicResource DebloatPageWidgets}"
                             IsChecked="True"
                             ToolTip="{DynamicResource DebloatPageWidgetsDesc}" />
                         <CheckBox
                             x:Name="chkTaskbarWidgets"
-                            Grid.Row="5"
+                            Grid.Row="2"
                             Grid.Column="2"
                             Content="{DynamicResource DebloatPageTaskbarWidgets}"
                             IsChecked="True"

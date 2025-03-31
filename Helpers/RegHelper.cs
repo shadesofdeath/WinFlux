@@ -8,7 +8,7 @@ namespace WinFlux.Helpers
     {
         private static RegistryKey GetKey(RegistryHive hive, string keyPath) => RegistryKey.OpenBaseKey(hive, RegistryView.Registry64)?.OpenSubKey(keyPath);
 
-        private static RegistryKey SetKey(RegistryHive hive, string keyPath) => RegistryKey.OpenBaseKey(hive, RegistryView.Registry64).OpenSubKey(keyPath, true) ?? RegistryKey.OpenBaseKey(hive, RegistryView.Registry64).CreateSubKey(keyPath, true);
+        public static RegistryKey SetKey(RegistryHive hive, string keyPath) => RegistryKey.OpenBaseKey(hive, RegistryView.Registry64).OpenSubKey(keyPath, true) ?? RegistryKey.OpenBaseKey(hive, RegistryView.Registry64).CreateSubKey(keyPath, true);
 
         internal static void DeleteKey(RegistryHive hive, string path, string name) => SetKey(hive, path).DeleteValue(name, false);
 

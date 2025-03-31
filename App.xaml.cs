@@ -43,9 +43,7 @@ namespace WinFlux
             }
             catch (Exception ex)
             {
-                // Hata durumunda direkt ana pencereyi göster
-                MessageBox.Show($"Splash screen açılırken hata oluştu: {ex.Message}\nUygulama normal olarak açılacak.");
-                
+
                 if (mainWindow == null)
                     mainWindow = new MainWindow();
                 

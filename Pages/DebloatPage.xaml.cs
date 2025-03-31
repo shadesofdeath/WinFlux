@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using iNKORE.UI.WPF.Modern.Controls;
 using MessageBox = System.Windows.MessageBox;
+using WinFlux.Services;
 
 namespace WinFlux.Pages
 {
@@ -21,6 +22,51 @@ namespace WinFlux.Pages
         {
             InitializeComponent();
             Instance = this;
+            
+            // ToggleSwitch için olay dinleyicisini ekle
+            tglEnableFeatures.Toggled += tglEnableFeatures_Toggled;
+            
+            // Dil değişikliği olayını dinle
+            LanguageService.LanguageChanged += LanguageService_LanguageChanged;
+            
+            // Sayfa kapandığında olay dinleyicilerini kaldırmak için Unloaded olayını dinle
+            this.Unloaded += DebloatPage_Unloaded;
+            
+            // Başlangıçta buton metnini güncelle
+            UpdateButtonText();
+        }
+
+        private void DebloatPage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            // Olası bellek sızıntılarını önlemek için olay dinleyicilerini kaldır
+            LanguageService.LanguageChanged -= LanguageService_LanguageChanged;
+            this.Unloaded -= DebloatPage_Unloaded;
+        }
+
+        private void LanguageService_LanguageChanged(object sender, EventArgs e)
+        {
+            // Dil değiştiğinde buton metinlerini güncelle
+            UpdateButtonText();
+        }
+        
+        private void tglEnableFeatures_Toggled(object sender, RoutedEventArgs e)
+        {
+            UpdateButtonText();
+        }
+        
+        private void UpdateButtonText()
+        {
+            // Buton içeriği XAML'de Dynamic Resource'a bağlı olduğu için
+            // burada sadece DataContext değiştiriyoruz, böylece dil değiştirildiğinde
+            // buton direkt olarak yeni dil dosyasındaki metni alacak
+            if (tglEnableFeatures.IsOn)
+            {
+                btnRemoveSelected.SetResourceReference(Button.ContentProperty, "DebloatPageEnableSelected");
+            }
+            else
+            {
+                btnRemoveSelected.SetResourceReference(Button.ContentProperty, "DebloatPageRemoveSelected");
+            }
         }
 
         private void RunCommandAsAdmin(string scriptPath)
@@ -344,19 +390,39 @@ namespace WinFlux.Pages
         private void ProcessSelectedItems()
         {
             bool hasAppsToRemove = GetAllCheckBoxes().Any(cb => cb.IsChecked == true);
-            bool hasFeaturesToDisable = HasWindowsFeaturesToDisable();
+            bool hasFeaturesToManage = HasWindowsFeaturesToManage();
             bool hasAppsToRemoveFromFeatures = HasWindowsAppsToRemove();
+            bool isEnableMode = tglEnableFeatures.IsOn;
 
-            if (!hasAppsToRemove && !hasFeaturesToDisable && !hasAppsToRemoveFromFeatures)
+            // Kullanıcı mesajını güncelleyelim - Şimdi lokalize dizeleri kullanıyoruz
+            string confirmMessage = GetLocalizedString("DebloatPageNoSelectedConfirmEnable");
+
+            // Değiştirildi: Hiçbir öğe seçili olmasa bile Windows özelliklerini işlemek için devam et
+            if (!hasAppsToRemove && !hasFeaturesToManage && !hasAppsToRemoveFromFeatures)
             {
-                MessageBox.Show(GetLocalizedString("DebloatPageNoAppSelected"), GetLocalizedString("MessageBox_Information"), MessageBoxButton.OK, MessageBoxImage.Information);
+                // Kullanıcıya soralım: Hiçbir özellik seçilmedi, etkinleştirmek istiyor mu?
+                MessageBoxResult result = MessageBox.Show(
+                    confirmMessage,
+                    GetLocalizedString("MessageBox_Confirmation"),
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    // Kullanıcı onayladıysa, Windows özelliklerini işlemek için devam et
+                    ShowProcessingDialog(GetLocalizedString("DebloatPagePreparingScript"));
+                    string enableScriptPath = CreateCombinedScript(true, false, false);
+                    HideProcessingDialog();
+                    RunCommandAsAdmin(enableScriptPath);
+                    ShowCompletionDialog(GetLocalizedString("DebloatPageCompleted"));
+                }
                 return;
             }
 
             ShowProcessingDialog(GetLocalizedString("DebloatPagePreparingScript"));
             
             // Create a combined script
-            string scriptPath = CreateCombinedScript(hasFeaturesToDisable, hasAppsToRemoveFromFeatures, hasAppsToRemove);
+            string scriptPath = CreateCombinedScript(hasFeaturesToManage || !hasAppsToRemove, hasAppsToRemoveFromFeatures, hasAppsToRemove);
             
             HideProcessingDialog();
 
@@ -366,14 +432,14 @@ namespace WinFlux.Pages
             ShowCompletionDialog(GetLocalizedString("DebloatPageCompleted"));
         }
 
-        private bool HasWindowsFeaturesToDisable()
+        private bool HasWindowsFeaturesToManage()
         {
-            return chkConsumerFeatures.IsChecked == true ||
-                   chkRecall.IsChecked == true ||
-                   chkInternetExplorer.IsChecked == true ||
-                   chkHyperV.IsChecked == true ||
-                   chkFaxScan.IsChecked == true ||
-                   chkMediaPlayer.IsChecked == true;
+            // Bu metot Windows özelliklerini yönetmek istiyorsak true döndürecek
+            // Kullanıcı özellikler kısmını görüntülediği anda bu fonksiyon true dönecek
+            // Bu sayede checkbox'ları seçmeden de Windows özellikleri işlenecek
+            // Eğer seçili checkbox varsa, seçilenleri işlem yapacağız
+            // Eğer hiçbir checkbox seçili değilse, tümünü işleyeceğiz
+            return true;
         }
 
         private bool HasWindowsAppsToRemove()
@@ -390,6 +456,7 @@ namespace WinFlux.Pages
         private string CreateCombinedScript(bool includeWindowsFeatures, bool includeSystemApps, bool includeStandardApps)
         {
             var scriptBuilder = new StringBuilder();
+            bool isEnableMode = tglEnableFeatures.IsOn;
             
             // Add script header
             scriptBuilder.AppendLine("# WinFlux Combined Optimization Script");
@@ -426,147 +493,297 @@ namespace WinFlux.Pages
                 scriptBuilder.AppendLine("Write-Cyan \"Processing Windows Features...\"");
                 scriptBuilder.AppendLine();
 
-                // Add selected features to disable
+                // Consumer Features - Registry based so handle differently
                 if (chkConsumerFeatures.IsChecked == true)
                 {
-                    scriptBuilder.AppendLine("# Disable Consumer Features");
-                    scriptBuilder.AppendLine("Write-Cyan \"Disabling Consumer Features...\"");
-                    scriptBuilder.AppendLine("try {");
-                    scriptBuilder.AppendLine("    New-Item -Path \"HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent\" -Force -ErrorAction SilentlyContinue | Out-Null");
-                    scriptBuilder.AppendLine("    New-ItemProperty -Path \"HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent\" -Name \"DisableWindowsConsumerFeatures\" -Value 1 -PropertyType DWORD -Force | Out-Null");
-                    scriptBuilder.AppendLine("    Write-Green \"  Feature successfully disabled.\"");
-                    scriptBuilder.AppendLine("} catch {");
-                    scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
-                    scriptBuilder.AppendLine("}");
-                    scriptBuilder.AppendLine();
+                    if (!isEnableMode)
+                    {
+                        scriptBuilder.AppendLine("# Disable Consumer Features");
+                        scriptBuilder.AppendLine("Write-Cyan \"Disabling Consumer Features...\"");
+                        scriptBuilder.AppendLine("try {");
+                        scriptBuilder.AppendLine("    New-Item -Path \"HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent\" -Force -ErrorAction SilentlyContinue | Out-Null");
+                        scriptBuilder.AppendLine("    New-ItemProperty -Path \"HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent\" -Name \"DisableWindowsConsumerFeatures\" -Value 1 -PropertyType DWORD -Force | Out-Null");
+                        scriptBuilder.AppendLine("    Write-Green \"  Feature successfully disabled.\"");
+                        scriptBuilder.AppendLine("} catch {");
+                        scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
+                        scriptBuilder.AppendLine("}");
+                        scriptBuilder.AppendLine();
+                    }
+                    else 
+                    {
+                        scriptBuilder.AppendLine("# Enable Consumer Features");
+                        scriptBuilder.AppendLine("Write-Cyan \"Enabling Consumer Features...\"");
+                        scriptBuilder.AppendLine("try {");
+                        scriptBuilder.AppendLine("    Remove-ItemProperty -Path \"HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent\" -Name \"DisableWindowsConsumerFeatures\" -Force -ErrorAction SilentlyContinue | Out-Null");
+                        scriptBuilder.AppendLine("    Write-Green \"  Feature successfully enabled.\"");
+                        scriptBuilder.AppendLine("} catch {");
+                        scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
+                        scriptBuilder.AppendLine("}");
+                        scriptBuilder.AppendLine();
+                    }
                 }
 
+                // Recall feature
                 if (chkRecall.IsChecked == true)
                 {
-                    scriptBuilder.AppendLine("# Disable Recall");
-                    scriptBuilder.AppendLine("Write-Cyan \"Disabling Recall...\"");
-                    scriptBuilder.AppendLine("try {");
-                    // Düzeltildi: Recall feature'ı bazı Windows sürümlerinde olmayabilir
-                    scriptBuilder.AppendLine("    $feature = Get-WindowsOptionalFeature -Online -FeatureName \"WindowsMediaPlayer\" -ErrorAction SilentlyContinue");
-                    scriptBuilder.AppendLine("    if ($feature) {");
-                    scriptBuilder.AppendLine("        Disable-WindowsOptionalFeature -Online -FeatureName \"Recall\" -NoRestart -ErrorAction SilentlyContinue | Out-Null");
-                    scriptBuilder.AppendLine("        Write-Green \"  Feature successfully disabled.\"");
-                    scriptBuilder.AppendLine("    } else {");
-                    scriptBuilder.AppendLine("        Write-Yellow \"  Feature not found.\"");
-                    scriptBuilder.AppendLine("    }");
-                    scriptBuilder.AppendLine("} catch {");
-                    scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
-                    scriptBuilder.AppendLine("}");
-                    scriptBuilder.AppendLine();
+                    if (!isEnableMode)
+                    {
+                        scriptBuilder.AppendLine("# Disable Recall");
+                        scriptBuilder.AppendLine("Write-Cyan \"Disabling Recall...\"");
+                        scriptBuilder.AppendLine("try {");
+                        // Düzeltildi: Recall feature'ı bazı Windows sürümlerinde olmayabilir
+                        scriptBuilder.AppendLine("    $feature = Get-WindowsOptionalFeature -Online -FeatureName \"Recall\" -ErrorAction SilentlyContinue");
+                        scriptBuilder.AppendLine("    if ($feature) {");
+                        scriptBuilder.AppendLine("        Disable-WindowsOptionalFeature -Online -FeatureName \"Recall\" -NoRestart -ErrorAction SilentlyContinue | Out-Null");
+                        scriptBuilder.AppendLine("        Write-Green \"  Feature successfully disabled.\"");
+                        scriptBuilder.AppendLine("    } else {");
+                        scriptBuilder.AppendLine("        Write-Yellow \"  Feature not found.\"");
+                        scriptBuilder.AppendLine("    }");
+                        scriptBuilder.AppendLine("} catch {");
+                        scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
+                        scriptBuilder.AppendLine("}");
+                        scriptBuilder.AppendLine();
+                    }
+                    else
+                    {
+                        scriptBuilder.AppendLine("# Enable Recall");
+                        scriptBuilder.AppendLine("Write-Cyan \"Enabling Recall...\"");
+                        scriptBuilder.AppendLine("try {");
+                        scriptBuilder.AppendLine("    $feature = Get-WindowsOptionalFeature -Online -FeatureName \"Recall\" -ErrorAction SilentlyContinue");
+                        scriptBuilder.AppendLine("    if ($feature) {");
+                        scriptBuilder.AppendLine("        Enable-WindowsOptionalFeature -Online -FeatureName \"Recall\" -NoRestart -ErrorAction SilentlyContinue | Out-Null");
+                        scriptBuilder.AppendLine("        Write-Green \"  Feature successfully enabled.\"");
+                        scriptBuilder.AppendLine("    } else {");
+                        scriptBuilder.AppendLine("        Write-Yellow \"  Feature not found.\"");
+                        scriptBuilder.AppendLine("    }");
+                        scriptBuilder.AppendLine("} catch {");
+                        scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
+                        scriptBuilder.AppendLine("}");
+                        scriptBuilder.AppendLine();
+                    }
                 }
 
                 if (chkInternetExplorer.IsChecked == true)
                 {
-                    scriptBuilder.AppendLine("# Disable Internet Explorer");
-                    scriptBuilder.AppendLine("Write-Cyan \"Disabling Internet Explorer...\"");
-                    scriptBuilder.AppendLine("try {");
-                    // Windows 11 ve 10'da IE özelliği farklı isimlerde olabilir
-                    scriptBuilder.AppendLine("    $ieFeatureNames = @(");
-                    scriptBuilder.AppendLine("        'Internet-Explorer-Optional-amd64',");
-                    scriptBuilder.AppendLine("        'Internet-Explorer-Optional-x86',");
-                    scriptBuilder.AppendLine("        'Internet-Explorer-Optional-x64',");
-                    scriptBuilder.AppendLine("        'InternetExplorer',");
-                    scriptBuilder.AppendLine("        'Internet-Explorer',");
-                    scriptBuilder.AppendLine("        'Microsoft-Windows-InternetExplorer-Optional-Package'");
-                    scriptBuilder.AppendLine("    )");
-                    scriptBuilder.AppendLine("    $found = $false");
-                    scriptBuilder.AppendLine("    foreach ($featureName in $ieFeatureNames) {");
-                    scriptBuilder.AppendLine("        $feature = Get-WindowsOptionalFeature -Online -FeatureName $featureName -ErrorAction SilentlyContinue");
-                    scriptBuilder.AppendLine("        if ($feature -and $feature.State -eq 'Enabled') {");
-                    scriptBuilder.AppendLine("            Disable-WindowsOptionalFeature -Online -FeatureName $featureName -NoRestart -ErrorAction SilentlyContinue | Out-Null");
-                    scriptBuilder.AppendLine("            $found = $true");
-                    scriptBuilder.AppendLine("            Write-Green \"  Feature successfully disabled ($featureName).\"");
-                    scriptBuilder.AppendLine("        }");
-                    scriptBuilder.AppendLine("    }");
-                    scriptBuilder.AppendLine("    if (-not $found) {");
-                    scriptBuilder.AppendLine("        # Alternatif olarak DISM komutu deneyelim");
-                    scriptBuilder.AppendLine("        try {");
-                    scriptBuilder.AppendLine("            Start-Process -FilePath \"DISM.exe\" -ArgumentList \"/Online /Disable-Feature /FeatureName:Internet-Explorer-Optional-amd64 /NoRestart\" -Wait -WindowStyle Hidden");
-                    scriptBuilder.AppendLine("            $found = $true");
-                    scriptBuilder.AppendLine("        } catch {");
-                    scriptBuilder.AppendLine("            # DISM komutu da çalışmazsa hata mesajı verelim");
-                    scriptBuilder.AppendLine("        }");
-                    scriptBuilder.AppendLine("    }");
-                    scriptBuilder.AppendLine("    if (-not $found) {");
-                    scriptBuilder.AppendLine("        Write-Yellow \"  Feature not found.\"");
-                    scriptBuilder.AppendLine("    }");
-                    scriptBuilder.AppendLine("} catch {");
-                    scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
-                    scriptBuilder.AppendLine("}");
-                    scriptBuilder.AppendLine();
+                    if (!isEnableMode)
+                    {
+                        scriptBuilder.AppendLine("# Disable Internet Explorer");
+                        scriptBuilder.AppendLine("Write-Cyan \"Disabling Internet Explorer...\"");
+                        scriptBuilder.AppendLine("try {");
+                        // Windows 11 ve 10'da IE özelliği farklı isimlerde olabilir
+                        scriptBuilder.AppendLine("    $ieFeatureNames = @(");
+                        scriptBuilder.AppendLine("        'Internet-Explorer-Optional-amd64',");
+                        scriptBuilder.AppendLine("        'Internet-Explorer-Optional-x86',");
+                        scriptBuilder.AppendLine("        'Internet-Explorer-Optional-x64',");
+                        scriptBuilder.AppendLine("        'InternetExplorer',");
+                        scriptBuilder.AppendLine("        'Internet-Explorer',");
+                        scriptBuilder.AppendLine("        'Microsoft-Windows-InternetExplorer-Optional-Package'");
+                        scriptBuilder.AppendLine("    )");
+                        scriptBuilder.AppendLine("    $found = $false");
+                        scriptBuilder.AppendLine("    foreach ($featureName in $ieFeatureNames) {");
+                        scriptBuilder.AppendLine("        $feature = Get-WindowsOptionalFeature -Online -FeatureName $featureName -ErrorAction SilentlyContinue");
+                        scriptBuilder.AppendLine("        if ($feature -and $feature.State -eq 'Enabled') {");
+                        scriptBuilder.AppendLine("            Disable-WindowsOptionalFeature -Online -FeatureName $featureName -NoRestart -ErrorAction SilentlyContinue | Out-Null");
+                        scriptBuilder.AppendLine("            $found = $true");
+                        scriptBuilder.AppendLine("            Write-Green \"  Feature successfully disabled ($featureName).\"");
+                        scriptBuilder.AppendLine("        }");
+                        scriptBuilder.AppendLine("    }");
+                        scriptBuilder.AppendLine("    if (-not $found) {");
+                        scriptBuilder.AppendLine("        # Alternatif olarak DISM komutu deneyelim");
+                        scriptBuilder.AppendLine("        try {");
+                        scriptBuilder.AppendLine("            Start-Process -FilePath \"DISM.exe\" -ArgumentList \"/Online /Disable-Feature /FeatureName:Internet-Explorer-Optional-amd64 /NoRestart\" -Wait -WindowStyle Hidden");
+                        scriptBuilder.AppendLine("            $found = $true");
+                        scriptBuilder.AppendLine("        } catch {");
+                        scriptBuilder.AppendLine("            # DISM komutu da çalışmazsa hata mesajı verelim");
+                        scriptBuilder.AppendLine("        }");
+                        scriptBuilder.AppendLine("    }");
+                        scriptBuilder.AppendLine("    if (-not $found) {");
+                        scriptBuilder.AppendLine("        Write-Yellow \"  Feature not found.\"");
+                        scriptBuilder.AppendLine("    }");
+                        scriptBuilder.AppendLine("} catch {");
+                        scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
+                        scriptBuilder.AppendLine("}");
+                        scriptBuilder.AppendLine();
+                    }
+                    else
+                    {
+                        scriptBuilder.AppendLine("# Enable Internet Explorer");
+                        scriptBuilder.AppendLine("Write-Cyan \"Enabling Internet Explorer...\"");
+                        scriptBuilder.AppendLine("try {");
+                        scriptBuilder.AppendLine("    $ieFeatureNames = @(");
+                        scriptBuilder.AppendLine("        'Internet-Explorer-Optional-amd64',");
+                        scriptBuilder.AppendLine("        'Internet-Explorer-Optional-x86',");
+                        scriptBuilder.AppendLine("        'Internet-Explorer-Optional-x64',");
+                        scriptBuilder.AppendLine("        'InternetExplorer',");
+                        scriptBuilder.AppendLine("        'Internet-Explorer',");
+                        scriptBuilder.AppendLine("        'Microsoft-Windows-InternetExplorer-Optional-Package'");
+                        scriptBuilder.AppendLine("    )");
+                        scriptBuilder.AppendLine("    $found = $false");
+                        scriptBuilder.AppendLine("    foreach ($featureName in $ieFeatureNames) {");
+                        scriptBuilder.AppendLine("        $feature = Get-WindowsOptionalFeature -Online -FeatureName $featureName -ErrorAction SilentlyContinue");
+                        scriptBuilder.AppendLine("        if ($feature -and $feature.State -eq 'Disabled') {");
+                        scriptBuilder.AppendLine("            Enable-WindowsOptionalFeature -Online -FeatureName $featureName -NoRestart -ErrorAction SilentlyContinue | Out-Null");
+                        scriptBuilder.AppendLine("            $found = $true");
+                        scriptBuilder.AppendLine("            Write-Green \"  Feature successfully enabled ($featureName).\"");
+                        scriptBuilder.AppendLine("        }");
+                        scriptBuilder.AppendLine("    }");
+                        scriptBuilder.AppendLine("    if (-not $found) {");
+                        scriptBuilder.AppendLine("        # Alternatif olarak DISM komutu deneyelim");
+                        scriptBuilder.AppendLine("        try {");
+                        scriptBuilder.AppendLine("            Start-Process -FilePath \"DISM.exe\" -ArgumentList \"/Online /Enable-Feature /FeatureName:Internet-Explorer-Optional-amd64 /NoRestart\" -Wait -WindowStyle Hidden");
+                        scriptBuilder.AppendLine("            $found = $true");
+                        scriptBuilder.AppendLine("        } catch {");
+                        scriptBuilder.AppendLine("            # DISM komutu da çalışmazsa hata mesajı verelim");
+                        scriptBuilder.AppendLine("        }");
+                        scriptBuilder.AppendLine("    }");
+                        scriptBuilder.AppendLine("    if (-not $found) {");
+                        scriptBuilder.AppendLine("        Write-Yellow \"  Feature not found.\"");
+                        scriptBuilder.AppendLine("    }");
+                        scriptBuilder.AppendLine("} catch {");
+                        scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
+                        scriptBuilder.AppendLine("}");
+                        scriptBuilder.AppendLine();
+                    }
                 }
 
                 if (chkHyperV.IsChecked == true)
                 {
-                    scriptBuilder.AppendLine("# Disable Hyper-V");
-                    scriptBuilder.AppendLine("Write-Cyan \"Disabling Hyper-V...\"");
-                    scriptBuilder.AppendLine("try {");
-                    scriptBuilder.AppendLine("    Disable-WindowsOptionalFeature -FeatureName 'Microsoft-Hyper-V-All' -Online -NoRestart -ErrorAction SilentlyContinue | Out-Null");
-                    scriptBuilder.AppendLine("    Write-Green \"  Feature successfully disabled.\"");
-                    scriptBuilder.AppendLine("} catch {");
-                    scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
-                    scriptBuilder.AppendLine("}");
-                    scriptBuilder.AppendLine();
+                    if (!isEnableMode)
+                    {
+                        scriptBuilder.AppendLine("# Disable Hyper-V");
+                        scriptBuilder.AppendLine("Write-Cyan \"Disabling Hyper-V...\"");
+                        scriptBuilder.AppendLine("try {");
+                        scriptBuilder.AppendLine("    Disable-WindowsOptionalFeature -FeatureName 'Microsoft-Hyper-V-All' -Online -NoRestart -ErrorAction SilentlyContinue | Out-Null");
+                        scriptBuilder.AppendLine("    Write-Green \"  Feature successfully disabled.\"");
+                        scriptBuilder.AppendLine("} catch {");
+                        scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
+                        scriptBuilder.AppendLine("}");
+                        scriptBuilder.AppendLine();
+                    }
+                    else
+                    {
+                        scriptBuilder.AppendLine("# Enable Hyper-V");
+                        scriptBuilder.AppendLine("Write-Cyan \"Enabling Hyper-V...\"");
+                        scriptBuilder.AppendLine("try {");
+                        scriptBuilder.AppendLine("    Enable-WindowsOptionalFeature -FeatureName 'Microsoft-Hyper-V-All' -Online -NoRestart -ErrorAction SilentlyContinue | Out-Null");
+                        scriptBuilder.AppendLine("    Write-Green \"  Feature successfully enabled.\"");
+                        scriptBuilder.AppendLine("} catch {");
+                        scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
+                        scriptBuilder.AppendLine("}");
+                        scriptBuilder.AppendLine();
+                    }
                 }
 
                 if (chkFaxScan.IsChecked == true)
                 {
-                    scriptBuilder.AppendLine("# Disable Fax and Scan");
-                    scriptBuilder.AppendLine("Write-Cyan \"Disabling Fax and Scan...\"");
-                    scriptBuilder.AppendLine("try {");
-                    // Farklı Windows sürümlerinde Fax özellikleri değişik isimlerde olabilir
-                    scriptBuilder.AppendLine("    $faxFeatureNames = @(");
-                    scriptBuilder.AppendLine("        'FaxServicesClientPackage',");
-                    scriptBuilder.AppendLine("        'Printing-FaxServicesClientPackage',");
-                    scriptBuilder.AppendLine("        'Scan-UI-Fax',");
-                    scriptBuilder.AppendLine("        'Windows-Fax-And-Scan'");
-                    scriptBuilder.AppendLine("    )");
-                    scriptBuilder.AppendLine("    $found = $false");
-                    scriptBuilder.AppendLine("    foreach ($featureName in $faxFeatureNames) {");
-                    scriptBuilder.AppendLine("        $feature = Get-WindowsOptionalFeature -Online -FeatureName $featureName -ErrorAction SilentlyContinue");
-                    scriptBuilder.AppendLine("        if ($feature -and $feature.State -eq 'Enabled') {");
-                    scriptBuilder.AppendLine("            Disable-WindowsOptionalFeature -Online -FeatureName $featureName -NoRestart -ErrorAction SilentlyContinue | Out-Null");
-                    scriptBuilder.AppendLine("            $found = $true");
-                    scriptBuilder.AppendLine("            Write-Green \"  Feature successfully disabled ($featureName).\"");
-                    scriptBuilder.AppendLine("        }");
-                    scriptBuilder.AppendLine("    }");
-                    scriptBuilder.AppendLine("    if (-not $found) {");
-                    scriptBuilder.AppendLine("        # Servis bazlı devre dışı bırakma deneyelim");
-                    scriptBuilder.AppendLine("        $services = @('Fax')");
-                    scriptBuilder.AppendLine("        foreach ($service in $services) {");
-                    scriptBuilder.AppendLine("            if (Get-Service -Name $service -ErrorAction SilentlyContinue) {");
-                    scriptBuilder.AppendLine("                Stop-Service -Name $service -Force -ErrorAction SilentlyContinue");
-                    scriptBuilder.AppendLine("                Set-Service -Name $service -StartupType Disabled -ErrorAction SilentlyContinue");
-                    scriptBuilder.AppendLine("                $found = $true");
-                    scriptBuilder.AppendLine("                Write-Green \"  Feature successfully disabled (Service: $service).\"");
-                    scriptBuilder.AppendLine("            }");
-                    scriptBuilder.AppendLine("        }");
-                    scriptBuilder.AppendLine("    }");
-                    scriptBuilder.AppendLine("    if (-not $found) {");
-                    scriptBuilder.AppendLine("        Write-Yellow \"  Feature not found.\"");
-                    scriptBuilder.AppendLine("    }");
-                    scriptBuilder.AppendLine("} catch {");
-                    scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
-                    scriptBuilder.AppendLine("}");
-                    scriptBuilder.AppendLine();
+                    if (!isEnableMode)
+                    {
+                        scriptBuilder.AppendLine("# Disable Fax and Scan");
+                        scriptBuilder.AppendLine("Write-Cyan \"Disabling Fax and Scan...\"");
+                        scriptBuilder.AppendLine("try {");
+                        // Farklı Windows sürümlerinde Fax özellikleri değişik isimlerde olabilir
+                        scriptBuilder.AppendLine("    $faxFeatureNames = @(");
+                        scriptBuilder.AppendLine("        'FaxServicesClientPackage',");
+                        scriptBuilder.AppendLine("        'Printing-FaxServicesClientPackage',");
+                        scriptBuilder.AppendLine("        'Scan-UI-Fax',");
+                        scriptBuilder.AppendLine("        'Windows-Fax-And-Scan'");
+                        scriptBuilder.AppendLine("    )");
+                        scriptBuilder.AppendLine("    $found = $false");
+                        scriptBuilder.AppendLine("    foreach ($featureName in $faxFeatureNames) {");
+                        scriptBuilder.AppendLine("        $feature = Get-WindowsOptionalFeature -Online -FeatureName $featureName -ErrorAction SilentlyContinue");
+                        scriptBuilder.AppendLine("        if ($feature -and $feature.State -eq 'Enabled') {");
+                        scriptBuilder.AppendLine("            Disable-WindowsOptionalFeature -Online -FeatureName $featureName -NoRestart -ErrorAction SilentlyContinue | Out-Null");
+                        scriptBuilder.AppendLine("            $found = $true");
+                        scriptBuilder.AppendLine("            Write-Green \"  Feature successfully disabled ($featureName).\"");
+                        scriptBuilder.AppendLine("        }");
+                        scriptBuilder.AppendLine("    }");
+                        scriptBuilder.AppendLine("    if (-not $found) {");
+                        scriptBuilder.AppendLine("        # Servis bazlı devre dışı bırakma deneyelim");
+                        scriptBuilder.AppendLine("        $services = @('Fax')");
+                        scriptBuilder.AppendLine("        foreach ($service in $services) {");
+                        scriptBuilder.AppendLine("            if (Get-Service -Name $service -ErrorAction SilentlyContinue) {");
+                        scriptBuilder.AppendLine("                Stop-Service -Name $service -Force -ErrorAction SilentlyContinue");
+                        scriptBuilder.AppendLine("                Set-Service -Name $service -StartupType Disabled -ErrorAction SilentlyContinue");
+                        scriptBuilder.AppendLine("                $found = $true");
+                        scriptBuilder.AppendLine("                Write-Green \"  Feature successfully disabled (Service: $service).\"");
+                        scriptBuilder.AppendLine("            }");
+                        scriptBuilder.AppendLine("        }");
+                        scriptBuilder.AppendLine("    }");
+                        scriptBuilder.AppendLine("    if (-not $found) {");
+                        scriptBuilder.AppendLine("        Write-Yellow \"  Feature not found.\"");
+                        scriptBuilder.AppendLine("    }");
+                        scriptBuilder.AppendLine("} catch {");
+                        scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
+                        scriptBuilder.AppendLine("}");
+                        scriptBuilder.AppendLine();
+                    }
+                    else
+                    {
+                        scriptBuilder.AppendLine("# Enable Fax and Scan");
+                        scriptBuilder.AppendLine("Write-Cyan \"Enabling Fax and Scan...\"");
+                        scriptBuilder.AppendLine("try {");
+                        scriptBuilder.AppendLine("    $faxFeatureNames = @(");
+                        scriptBuilder.AppendLine("        'FaxServicesClientPackage',");
+                        scriptBuilder.AppendLine("        'Printing-FaxServicesClientPackage',");
+                        scriptBuilder.AppendLine("        'Scan-UI-Fax',");
+                        scriptBuilder.AppendLine("        'Windows-Fax-And-Scan'");
+                        scriptBuilder.AppendLine("    )");
+                        scriptBuilder.AppendLine("    $found = $false");
+                        scriptBuilder.AppendLine("    foreach ($featureName in $faxFeatureNames) {");
+                        scriptBuilder.AppendLine("        $feature = Get-WindowsOptionalFeature -Online -FeatureName $featureName -ErrorAction SilentlyContinue");
+                        scriptBuilder.AppendLine("        if ($feature -and $feature.State -eq 'Disabled') {");
+                        scriptBuilder.AppendLine("            Enable-WindowsOptionalFeature -Online -FeatureName $featureName -NoRestart -ErrorAction SilentlyContinue | Out-Null");
+                        scriptBuilder.AppendLine("            $found = $true");
+                        scriptBuilder.AppendLine("            Write-Green \"  Feature successfully enabled ($featureName).\"");
+                        scriptBuilder.AppendLine("        }");
+                        scriptBuilder.AppendLine("    }");
+                        scriptBuilder.AppendLine("    if (-not $found) {");
+                        scriptBuilder.AppendLine("        # Servis bazlı etkinleştirme deneyelim");
+                        scriptBuilder.AppendLine("        $services = @('Fax')");
+                        scriptBuilder.AppendLine("        foreach ($service in $services) {");
+                        scriptBuilder.AppendLine("            if (Get-Service -Name $service -ErrorAction SilentlyContinue) {");
+                        scriptBuilder.AppendLine("                Set-Service -Name $service -StartupType Manual -ErrorAction SilentlyContinue");
+                        scriptBuilder.AppendLine("                $found = $true");
+                        scriptBuilder.AppendLine("                Write-Green \"  Feature successfully enabled (Service: $service).\"");
+                        scriptBuilder.AppendLine("            }");
+                        scriptBuilder.AppendLine("        }");
+                        scriptBuilder.AppendLine("    }");
+                        scriptBuilder.AppendLine("    if (-not $found) {");
+                        scriptBuilder.AppendLine("        Write-Yellow \"  Feature not found.\"");
+                        scriptBuilder.AppendLine("    }");
+                        scriptBuilder.AppendLine("} catch {");
+                        scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
+                        scriptBuilder.AppendLine("}");
+                        scriptBuilder.AppendLine();
+                    }
                 }
 
                 if (chkMediaPlayer.IsChecked == true)
                 {
-                    scriptBuilder.AppendLine("# Disable Windows Media Player");
-                    scriptBuilder.AppendLine("Write-Cyan \"Disabling Windows Media Player...\"");
-                    scriptBuilder.AppendLine("try {");
-                    scriptBuilder.AppendLine("    Disable-WindowsOptionalFeature -FeatureName 'WindowsMediaPlayer' -Online -NoRestart -ErrorAction SilentlyContinue | Out-Null");
-                    scriptBuilder.AppendLine("    Write-Green \"  Feature successfully disabled.\"");
-                    scriptBuilder.AppendLine("} catch {");
-                    scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
-                    scriptBuilder.AppendLine("}");
-                    scriptBuilder.AppendLine();
+                    if (!isEnableMode)
+                    {
+                        scriptBuilder.AppendLine("# Disable Windows Media Player");
+                        scriptBuilder.AppendLine("Write-Cyan \"Disabling Windows Media Player...\"");
+                        scriptBuilder.AppendLine("try {");
+                        scriptBuilder.AppendLine("    Disable-WindowsOptionalFeature -FeatureName 'WindowsMediaPlayer' -Online -NoRestart -ErrorAction SilentlyContinue | Out-Null");
+                        scriptBuilder.AppendLine("    Write-Green \"  Feature successfully disabled.\"");
+                        scriptBuilder.AppendLine("} catch {");
+                        scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
+                        scriptBuilder.AppendLine("}");
+                        scriptBuilder.AppendLine();
+                    }
+                    else
+                    {
+                        scriptBuilder.AppendLine("# Enable Windows Media Player");
+                        scriptBuilder.AppendLine("Write-Cyan \"Enabling Windows Media Player...\"");
+                        scriptBuilder.AppendLine("try {");
+                        scriptBuilder.AppendLine("    Enable-WindowsOptionalFeature -FeatureName 'WindowsMediaPlayer' -Online -NoRestart -ErrorAction SilentlyContinue | Out-Null");
+                        scriptBuilder.AppendLine("    Write-Green \"  Feature successfully enabled.\"");
+                        scriptBuilder.AppendLine("} catch {");
+                        scriptBuilder.AppendLine("    Write-Red \"  Error: $_\"");
+                        scriptBuilder.AppendLine("}");
+                        scriptBuilder.AppendLine();
+                    }
                 }
                 
                 scriptBuilder.AppendLine("Write-Green \"Windows Features processing completed.\"");

@@ -28,98 +28,167 @@ namespace WinFlux.Pages
 
         private void LoadRegistrySettings()
         {
-            // Location Access
-            toggleLocation.IsOn = !IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location", "Value");
+            // Location
+            int locationValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessLocation") ?? 1);
+            toggleLocation.IsOn = locationValue != 0;
 
-            // Camera Access
-            toggleCamera.IsOn = !IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam", "Value");
+            // Camera
+            int cameraValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessCamera") ?? 1);
+            toggleCamera.IsOn = cameraValue != 0;
 
-            // Microphone Access
-            toggleMicrophone.IsOn = !IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone", "Value");
+            // Microphone
+            int microphoneValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessMicrophone") ?? 1);
+            toggleMicrophone.IsOn = microphoneValue != 0;
 
-            // System Files Access
-            toggleSystemFiles.IsOn = !(
-                IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\documentsLibrary", "Value") &&
-                IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\picturesLibrary", "Value") &&
-                IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\videosLibrary", "Value") &&
-                IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\broadFileSystemAccess", "Value")
-            );
+            // System Files
+            int systemFilesValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessDocuments") ?? 1);
+            toggleSystemFiles.IsOn = systemFilesValue != 0;
 
-            // Account Info Access
-            toggleAccountInfo.IsOn = !IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userAccountInformation", "Value");
+            // Account Info
+            int accountInfoValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessAccountInfo") ?? 1);
+            toggleAccountInfo.IsOn = accountInfoValue != 0;
 
-            // Contacts Access
-            toggleContacts.IsOn = !IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\contacts", "Value");
+            // Contacts
+            int contactsValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessContacts") ?? 1);
+            toggleContacts.IsOn = contactsValue != 0;
 
-            // Call History Access
-            toggleCallHistory.IsOn = !IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\phoneCallHistory", "Value");
+            // Call History
+            int callHistoryValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessCallHistory") ?? 1);
+            toggleCallHistory.IsOn = callHistoryValue != 0;
 
-            // Messaging Access
-            toggleMessaging.IsOn = !IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\chat", "Value");
+            // Messaging
+            int messagingValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessMessaging") ?? 1);
+            toggleMessaging.IsOn = messagingValue != 0;
 
-            // Notification Access
-            toggleNotifications.IsOn = !IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userNotificationListener", "Value");
+            // Notifications
+            int notificationsValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessNotifications") ?? 1);
+            toggleNotifications.IsOn = notificationsValue != 0;
 
-            // Email Access
-            toggleEmail.IsOn = !IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\email", "Value");
+            // Email
+            int emailValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessEmail") ?? 1);
+            toggleEmail.IsOn = emailValue != 0;
 
-            // Tasks Access
-            toggleTasks.IsOn = !IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userDataTasks", "Value");
+            // Tasks
+            int tasksValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessTasks") ?? 1);
+            toggleTasks.IsOn = tasksValue != 0;
 
-            // Diagnostics Access
-            toggleDiagnostics.IsOn = !IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics", "Value");
+            // Diagnostics
+            int diagnosticsValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsGetDiagnosticInfo") ?? 1);
+            toggleDiagnostics.IsOn = diagnosticsValue != 0;
 
-            // Voice Activation Access
-            int voiceActivationValue = (int)(RegHelper.GetValue(RegistryHive.CurrentUser, @"Software\Microsoft\Speech_OneCore\Settings\VoiceActivation\UserPreferenceForAllApps", "AgentActivationEnabled") ?? 1);
+            // Voice Activation
+            int voiceActivationValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsActivateWithVoice") ?? 1);
             toggleVoiceActivation.IsOn = voiceActivationValue != 0;
 
-            // Phone Access
-            int phoneValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessPhone") ?? 0);
-            togglePhone.IsOn = phoneValue != 2;
+            // Phone
+            int phoneValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessPhone") ?? 1);
+            togglePhone.IsOn = phoneValue != 0;
 
-            // Trusted Devices Access
-            toggleTrustedDevices.IsOn = !IsRegistryValueDeny(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{C1D23ACC-752B-43E5-8448-8D0E519CD6D6}", "Value");
+            // Trusted Devices
+            int trustedDevicesValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessTrustedDevices") ?? 1);
+            toggleTrustedDevices.IsOn = trustedDevicesValue != 0;
 
-            // Calendar Access
-            toggleCalendar.IsOn = !IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appointments", "Value");
+            // Calendar
+            int calendarValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessCalendar") ?? 1);
+            toggleCalendar.IsOn = calendarValue != 0;
 
-            // Motion Access
-            toggleMotion.IsOn = !IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\activity", "Value");
+            // Motion
+            int motionValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessMotion") ?? 1);
+            toggleMotion.IsOn = motionValue != 0;
 
-            // Radio Access
-            toggleRadio.IsOn = !IsRegistryValueDeny(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\radios", "Value");
+            // Radio
+            int radioValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessRadios") ?? 1);
+            toggleRadio.IsOn = radioValue != 0;
 
             // Cloud Sync
-            int settingSyncValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableSettingSync") ?? 0);
-            toggleCloudSync.IsOn = settingSyncValue != 2;
+            int cloudSyncValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\OneDrive", "DisableFileSyncNGSC") ?? 0);
+            toggleCloudSync.IsOn = cloudSyncValue != 1;
 
             // Activity Feed
             int activityFeedValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\System", "EnableActivityFeed") ?? 1);
             toggleActivityFeed.IsOn = activityFeedValue != 0;
 
-            // Screen Recording (Game DVR)
-            int gameDvrValue = (int)(RegHelper.GetValue(RegistryHive.CurrentUser, @"System\GameConfigStore", "GameDVR_Enabled") ?? 1);
-            int allowGameDvrValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\GameDVR", "AllowGameDVR") ?? 1);
-            toggleScreenRecording.IsOn = gameDvrValue != 0 || allowGameDvrValue != 0;
+            // Screen Recording
+            int screenRecordingValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessGraphicsCaptureProgrammatic") ?? 1);
+            toggleScreenRecording.IsOn = screenRecordingValue != 0;
 
-            // Notifications Tray
-            int notificationCenterValue = (int)(RegHelper.GetValue(RegistryHive.CurrentUser, @"Software\Policies\Microsoft\Windows\Explorer", "DisableNotificationCenter") ?? 0);
-            int toastEnabledValue = (int)(RegHelper.GetValue(RegistryHive.CurrentUser, @"Software\Microsoft\Windows\CurrentVersion\PushNotifications", "ToastEnabled") ?? 1);
-            toggleNotificationsTray.IsOn = notificationCenterValue != 1 && toastEnabledValue != 0;
+            // Notification Tray
+            int notificationsTrayValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Explorer", "DisableNotificationCenter") ?? 0);
+            toggleNotificationsTray.IsOn = notificationsTrayValue != 1;
 
             // Map Downloads
-            int mapTrafficValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Maps", "AllowUntriggeredNetworkTrafficOnSettingsPage") ?? 1);
-            int mapAutoDownloadValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Maps", "AutoDownloadAndUpdateMapData") ?? 1);
-            toggleMapDownloads.IsOn = mapTrafficValue != 0 || mapAutoDownloadValue != 0;
+            int mapDownloadsValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessLocation") ?? 1);
+            toggleMapDownloads.IsOn = mapDownloadsValue != 0;
 
             // Lockscreen Camera
-            int lockScreenCameraValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Personalization", "NoLockScreenCamera") ?? 0);
-            toggleLockscreenCamera.IsOn = lockScreenCameraValue != 1;
+            int lockscreenCameraValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Personalization", "NoLockScreenCamera") ?? 0);
+            toggleLockscreenCamera.IsOn = lockscreenCameraValue != 1;
 
             // Biometrics
             int biometricsValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Biometrics", "Enabled") ?? 1);
             int credProviderValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Biometrics\Credential Provider", "Enabled") ?? 1);
             toggleBiometrics.IsOn = biometricsValue != 0 && credProviderValue != 0;
+
+            // Explorer Gizlilik Ayarları
+            // Online Tips
+            int onlineTipsValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\System", "AllowOnlineTips") ?? 1);
+            toggleOnlineTips.IsOn = onlineTipsValue != 0;
+
+            // Internet File Association
+            int fileAssociationValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoInternetOpenWith") ?? 0);
+            toggleFileAssociation.IsOn = fileAssociationValue != 1;
+
+            // Order Prints
+            int orderPrintsValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoOnlinePrintsWizard") ?? 0);
+            toggleOrderPrints.IsOn = orderPrintsValue != 1;
+
+            // Publish to Web
+            int publishToWebValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoPublishingWizard") ?? 0);
+            togglePublishToWeb.IsOn = publishToWebValue != 1;
+
+            // Provider List
+            int providerListValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoWebServices") ?? 0);
+            toggleProviderList.IsOn = providerListValue != 1;
+
+            // Recent Documents History
+            int recentDocsHistoryValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoRecentDocsHistory") ?? 0);
+            toggleRecentDocsHistory.IsOn = recentDocsHistoryValue != 1;
+
+            // Clear Recent Documents on Exit
+            int clearRecentDocsValue = (int)(RegHelper.GetValue(RegistryHive.CurrentUser, @"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer", "ClearRecentDocsOnExit") ?? 0);
+            toggleClearRecentDocs.IsOn = clearRecentDocsValue == 1;
+
+            // Lock Screen App Notifications
+            int lockScreenNotifValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\System", "DisableLockScreenAppNotifications") ?? 0);
+            toggleLockScreenNotif.IsOn = lockScreenNotifValue != 1;
+
+            // Live Tiles Notifications
+            int liveTileNotifValue = (int)(RegHelper.GetValue(RegistryHive.CurrentUser, @"SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications", "NoTileApplicationNotification") ?? 0);
+            toggleLiveTileNotif.IsOn = liveTileNotifValue != 1;
+
+            // Store App Suggestions
+            int storeOpenWithValue = (int)(RegHelper.GetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Explorer", "NoUseStoreOpenWith") ?? 0);
+            toggleStoreOpenWith.IsOn = storeOpenWithValue != 1;
+
+            // Show Recent Files in Quick Access
+            int recentFilesValue = (int)(RegHelper.GetValue(RegistryHive.CurrentUser, @"Software\Microsoft\Windows\CurrentVersion\Explorer", "ShowRecent") ?? 1);
+            toggleRecentFiles.IsOn = recentFilesValue == 1;
+
+            // Sync Provider Notifications
+            int syncNotificationsValue = (int)(RegHelper.GetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "ShowSyncProviderNotifications") ?? 1);
+            toggleSyncNotifications.IsOn = syncNotificationsValue == 1;
+
+            // Recent Apps
+            int recentAppsValue = (int)(RegHelper.GetValue(RegistryHive.CurrentUser, @"Software\Policies\Microsoft\Windows\EdgeUI", "DisableRecentApps") ?? 0);
+            toggleRecentApps.IsOn = recentAppsValue != 1;
+
+            // App Usage Tracking
+            int appTrackingValue = (int)(RegHelper.GetValue(RegistryHive.CurrentUser, @"Software\Policies\Microsoft\Windows\EdgeUI", "DisableMFUTracking") ?? 0);
+            toggleAppTracking.IsOn = appTrackingValue != 1;
+
+            // Backtracking
+            int backtrackingValue = (int)(RegHelper.GetValue(RegistryHive.CurrentUser, @"Software\Policies\Microsoft\Windows\EdgeUI", "TurnOffBackstack") ?? 0);
+            toggleBacktracking.IsOn = backtrackingValue != 1;
         }
 
         private bool IsRegistryValueDeny(RegistryHive hive, string path, string name)
@@ -204,153 +273,147 @@ namespace WinFlux.Pages
 
             // Biometrics
             toggleBiometrics.Toggled += (s, e) => SetBiometricsPrivacy(toggleBiometrics.IsOn);
+            
+            // Explorer Gizlilik Ayarları
+            // Online Tips
+            toggleOnlineTips.Toggled += (s, e) => SetOnlineTipsPrivacy(toggleOnlineTips.IsOn);
+            
+            // File Association
+            toggleFileAssociation.Toggled += (s, e) => SetFileAssociationPrivacy(toggleFileAssociation.IsOn);
+            
+            // Order Prints
+            toggleOrderPrints.Toggled += (s, e) => SetOrderPrintsPrivacy(toggleOrderPrints.IsOn);
+            
+            // Publish to Web
+            togglePublishToWeb.Toggled += (s, e) => SetPublishToWebPrivacy(togglePublishToWeb.IsOn);
+            
+            // Provider List
+            toggleProviderList.Toggled += (s, e) => SetProviderListPrivacy(toggleProviderList.IsOn);
+            
+            // Recent Documents History
+            toggleRecentDocsHistory.Toggled += (s, e) => SetRecentDocsHistoryPrivacy(toggleRecentDocsHistory.IsOn);
+            
+            // Clear Recent Documents on Exit
+            toggleClearRecentDocs.Toggled += (s, e) => SetClearRecentDocsPrivacy(toggleClearRecentDocs.IsOn);
+            
+            // Lock Screen App Notifications
+            toggleLockScreenNotif.Toggled += (s, e) => SetLockScreenNotifPrivacy(toggleLockScreenNotif.IsOn);
+            
+            // Live Tiles Notifications
+            toggleLiveTileNotif.Toggled += (s, e) => SetLiveTileNotifPrivacy(toggleLiveTileNotif.IsOn);
+            
+            // Store App Suggestions
+            toggleStoreOpenWith.Toggled += (s, e) => SetStoreOpenWithPrivacy(toggleStoreOpenWith.IsOn);
+            
+            // Show Recent Files in Quick Access
+            toggleRecentFiles.Toggled += (s, e) => SetRecentFilesPrivacy(toggleRecentFiles.IsOn);
+            
+            // Sync Provider Notifications
+            toggleSyncNotifications.Toggled += (s, e) => SetSyncNotificationsPrivacy(toggleSyncNotifications.IsOn);
+            
+            // Recent Apps
+            toggleRecentApps.Toggled += (s, e) => SetRecentAppsPrivacy(toggleRecentApps.IsOn);
+            
+            // App Usage Tracking
+            toggleAppTracking.Toggled += (s, e) => SetAppTrackingPrivacy(toggleAppTracking.IsOn);
+            
+            // Backtracking
+            toggleBacktracking.Toggled += (s, e) => SetBacktrackingPrivacy(toggleBacktracking.IsOn);
         }
 
         private void SetLocationPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location", "Value", enabled ? "Allow" : "Deny", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessLocation", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetCameraPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam", "Value", enabled ? "Allow" : "Deny", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessCamera", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetMicrophonePrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone", "Value", enabled ? "Allow" : "Deny", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessMicrophone", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetSystemFilesPrivacy(bool enabled)
         {
-            string value = enabled ? "Allow" : "Deny";
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\documentsLibrary", "Value", value, RegistryValueKind.String);
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\picturesLibrary", "Value", value, RegistryValueKind.String);
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\videosLibrary", "Value", value, RegistryValueKind.String);
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\broadFileSystemAccess", "Value", value, RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessDocuments", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetAccountInfoPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userAccountInformation", "Value", enabled ? "Allow" : "Deny", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessAccountInfo", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetContactsPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\contacts", "Value", enabled ? "Allow" : "Deny", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessContacts", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetCallHistoryPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\phoneCallHistory", "Value", enabled ? "Allow" : "Deny", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessCallHistory", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetMessagingPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\chat", "Value", enabled ? "Allow" : "Deny", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessMessaging", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetNotificationsPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userNotificationListener", "Value", enabled ? "Allow" : "Deny", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessNotifications", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetEmailPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\email", "Value", enabled ? "Allow" : "Deny", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessEmail", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetTasksPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userDataTasks", "Value", enabled ? "Allow" : "Deny", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessTasks", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetDiagnosticsPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics", "Value", enabled ? "Allow" : "Deny", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsGetDiagnosticInfo", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetVoiceActivationPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.CurrentUser, @"Software\Microsoft\Speech_OneCore\Settings\VoiceActivation\UserPreferenceForAllApps", "AgentActivationEnabled", enabled ? 1 : 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsActivateWithVoice", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetPhonePrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessPhone", enabled ? 0 : 2, RegistryValueKind.DWord);
-            if (!enabled)
-            {
-                RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessPhone_UserInControlOfTheseApps", string.Empty, RegistryValueKind.String);
-                RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessPhone_ForceAllowTheseApps", string.Empty, RegistryValueKind.String);
-                RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessPhone_ForceDenyTheseApps", string.Empty, RegistryValueKind.String);
-            }
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessPhone", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetTrustedDevicesPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{C1D23ACC-752B-43E5-8448-8D0E519CD6D6}", "Value", enabled ? "Allow" : "Deny", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessTrustedDevices", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetCalendarPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appointments", "Value", enabled ? "Allow" : "Deny", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessCalendar", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetMotionPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\activity", "Value", enabled ? "Allow" : "Deny", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessMotion", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetRadioPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\radios", "Value", enabled ? "Allow" : "Deny", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessRadios", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetCloudSyncPrivacy(bool enabled)
         {
-            int value = enabled ? 0 : 2;
-            int userOverride = enabled ? 0 : 1;
-
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableSettingSync", value, RegistryValueKind.DWord);
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableSettingSyncUserOverride", userOverride, RegistryValueKind.DWord);
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableSyncOnPaidNetwork", enabled ? 0 : 1, RegistryValueKind.DWord);
-            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync", "SyncPolicy", enabled ? 1 : 5, RegistryValueKind.DWord);
-            
-            // Application settings sync
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableApplicationSettingSync", value, RegistryValueKind.DWord);
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableApplicationSettingSyncUserOverride", userOverride, RegistryValueKind.DWord);
-            
-            // App sync settings sync
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableAppSyncSettingSync", value, RegistryValueKind.DWord);
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableAppSyncSettingSyncUserOverride", userOverride, RegistryValueKind.DWord);
-            
-            // Credentials setting sync
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableCredentialsSettingSync", value, RegistryValueKind.DWord);
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableCredentialsSettingSyncUserOverride", userOverride, RegistryValueKind.DWord);
-            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Credentials", "Enabled", enabled ? 1 : 0, RegistryValueKind.DWord);
-            
-            // Desktop theme setting sync
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableDesktopThemeSettingSync", value, RegistryValueKind.DWord);
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableDesktopThemeSettingSyncUserOverride", userOverride, RegistryValueKind.DWord);
-            
-            // Personalization setting sync
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisablePersonalizationSettingSync", value, RegistryValueKind.DWord);
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisablePersonalizationSettingSyncUserOverride", userOverride, RegistryValueKind.DWord);
-            
-            // Start layout setting sync
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableStartLayoutSettingSync", value, RegistryValueKind.DWord);
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableStartLayoutSettingSyncUserOverride", userOverride, RegistryValueKind.DWord);
-            
-            // Web browser setting sync
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableWebBrowserSettingSync", value, RegistryValueKind.DWord);
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableWebBrowserSettingSyncUserOverride", userOverride, RegistryValueKind.DWord);
-            
-            // Windows setting sync
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableWindowsSettingSync", value, RegistryValueKind.DWord);
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\SettingSync", "DisableWindowsSettingSyncUserOverride", userOverride, RegistryValueKind.DWord);
-            
-            // Language setting sync
-            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language", "Enabled", enabled ? 1 : 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\OneDrive", "DisableFileSyncNGSC", enabled ? 0 : 1, RegistryValueKind.DWord);
         }
 
         private void SetActivityFeedPrivacy(bool enabled)
@@ -360,20 +423,17 @@ namespace WinFlux.Pages
 
         private void SetScreenRecordingPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.CurrentUser, @"System\GameConfigStore", "GameDVR_Enabled", enabled ? 1 : 0, RegistryValueKind.DWord);
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\GameDVR", "AllowGameDVR", enabled ? 1 : 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessGraphicsCaptureProgrammatic", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetNotificationsTrayPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.CurrentUser, @"Software\Policies\Microsoft\Windows\Explorer", "DisableNotificationCenter", enabled ? 0 : 1, RegistryValueKind.DWord);
-            RegHelper.SetValue(RegistryHive.CurrentUser, @"Software\Microsoft\Windows\CurrentVersion\PushNotifications", "ToastEnabled", enabled ? 1 : 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Explorer", "DisableNotificationCenter", enabled ? 0 : 1, RegistryValueKind.DWord);
         }
 
         private void SetMapDownloadsPrivacy(bool enabled)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Maps", "AllowUntriggeredNetworkTrafficOnSettingsPage", enabled ? 1 : 0, RegistryValueKind.DWord);
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Maps", "AutoDownloadAndUpdateMapData", enabled ? 1 : 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppPrivacy", "LetAppsAccessLocation", enabled ? 1 : 0, RegistryValueKind.DWord);
         }
 
         private void SetLockscreenCameraPrivacy(bool enabled)
@@ -385,6 +445,196 @@ namespace WinFlux.Pages
         {
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Biometrics", "Enabled", enabled ? 1 : 0, RegistryValueKind.DWord);
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Biometrics\Credential Provider", "Enabled", enabled ? 1 : 0, RegistryValueKind.DWord);
+        }
+
+        // Explorer Gizlilik Ayarları için yeni metotlar
+        private void SetOnlineTipsPrivacy(bool enabled)
+        {
+            try
+            {
+                RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\System", "AllowOnlineTips", enabled ? 1 : 0, RegistryValueKind.DWord);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Çevrimiçi İpuçları ayarı değiştirilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SetFileAssociationPrivacy(bool enabled)
+        {
+            try
+            {
+                RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoInternetOpenWith", enabled ? 0 : 1, RegistryValueKind.DWord);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"İnternet Dosya İlişkilendirmesi ayarı değiştirilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SetOrderPrintsPrivacy(bool enabled)
+        {
+            try
+            {
+                RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoOnlinePrintsWizard", enabled ? 0 : 1, RegistryValueKind.DWord);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Baskı Siparişi Resim Görevi ayarı değiştirilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SetPublishToWebPrivacy(bool enabled)
+        {
+            try
+            {
+                RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoPublishingWizard", enabled ? 0 : 1, RegistryValueKind.DWord);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Web'de Yayınla ayarı değiştirilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SetProviderListPrivacy(bool enabled)
+        {
+            try
+            {
+                RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoWebServices", enabled ? 0 : 1, RegistryValueKind.DWord);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Sağlayıcı Listesi İndirmeleri ayarı değiştirilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SetRecentDocsHistoryPrivacy(bool enabled)
+        {
+            try
+            {
+                RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoRecentDocsHistory", enabled ? 0 : 1, RegistryValueKind.DWord);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Son Belgeler Geçmişi ayarı değiştirilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SetClearRecentDocsPrivacy(bool enabled)
+        {
+            try
+            {
+                RegHelper.SetValue(RegistryHive.CurrentUser, @"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer", "ClearRecentDocsOnExit", enabled ? 1 : 0, RegistryValueKind.DWord);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Çıkışta Son Belge Geçmişini Temizle ayarı değiştirilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SetLockScreenNotifPrivacy(bool enabled)
+        {
+            try
+            {
+                RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\System", "DisableLockScreenAppNotifications", enabled ? 0 : 1, RegistryValueKind.DWord);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Kilit Ekranı Uygulama Bildirimleri ayarı değiştirilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SetLiveTileNotifPrivacy(bool enabled)
+        {
+            try
+            {
+                RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications", "NoTileApplicationNotification", enabled ? 0 : 1, RegistryValueKind.DWord);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Canlı Kutucuk Bildirimleri ayarı değiştirilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SetStoreOpenWithPrivacy(bool enabled)
+        {
+            try
+            {
+                RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Explorer", "NoUseStoreOpenWith", enabled ? 0 : 1, RegistryValueKind.DWord);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Mağaza Uygulama Önerileri ayarı değiştirilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SetRecentFilesPrivacy(bool enabled)
+        {
+            try
+            {
+                RegHelper.SetValue(RegistryHive.CurrentUser, @"Software\Microsoft\Windows\CurrentVersion\Explorer", "ShowRecent", enabled ? 1 : 0, RegistryValueKind.DWord);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hızlı Erişim'de Son Dosyaları Göster ayarı değiştirilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SetSyncNotificationsPrivacy(bool enabled)
+        {
+            try
+            {
+                RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "ShowSyncProviderNotifications", enabled ? 1 : 0, RegistryValueKind.DWord);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Senkronizasyon Sağlayıcı Bildirimleri ayarı değiştirilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SetRecentAppsPrivacy(bool enabled)
+        {
+            try
+            {
+                using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"Software\Policies\Microsoft\Windows\EdgeUI", true))
+                {
+                    key.SetValue("DisableRecentApps", enabled ? 0 : 1, RegistryValueKind.DWord);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Son Kullanılan Uygulamalar ayarı değiştirilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SetAppTrackingPrivacy(bool enabled)
+        {
+            try
+            {
+                using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"Software\Policies\Microsoft\Windows\EdgeUI", true))
+                {
+                    key.SetValue("DisableMFUTracking", enabled ? 0 : 1, RegistryValueKind.DWord);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Uygulama Kullanım Takibi ayarı değiştirilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SetBacktrackingPrivacy(bool enabled)
+        {
+            try
+            {
+                using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"Software\Policies\Microsoft\Windows\EdgeUI", true))
+                {
+                    key.SetValue("TurnOffBackstack", enabled ? 0 : 1, RegistryValueKind.DWord);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Geri Takip ayarı değiştirilirken hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         // Method to collect all toggle settings for preset export
@@ -418,6 +668,21 @@ namespace WinFlux.Pages
             settings.Add("MapDownloads", toggleMapDownloads.IsOn);
             settings.Add("LockscreenCamera", toggleLockscreenCamera.IsOn);
             settings.Add("Biometrics", toggleBiometrics.IsOn);
+            settings.Add("OnlineTips", toggleOnlineTips.IsOn);
+            settings.Add("FileAssociation", toggleFileAssociation.IsOn);
+            settings.Add("OrderPrints", toggleOrderPrints.IsOn);
+            settings.Add("PublishToWeb", togglePublishToWeb.IsOn);
+            settings.Add("ProviderList", toggleProviderList.IsOn);
+            settings.Add("RecentDocsHistory", toggleRecentDocsHistory.IsOn);
+            settings.Add("ClearRecentDocs", toggleClearRecentDocs.IsOn);
+            settings.Add("LockScreenNotif", toggleLockScreenNotif.IsOn);
+            settings.Add("LiveTileNotif", toggleLiveTileNotif.IsOn);
+            settings.Add("StoreOpenWith", toggleStoreOpenWith.IsOn);
+            settings.Add("RecentFiles", toggleRecentFiles.IsOn);
+            settings.Add("SyncNotifications", toggleSyncNotifications.IsOn);
+            settings.Add("RecentApps", toggleRecentApps.IsOn);
+            settings.Add("AppTracking", toggleAppTracking.IsOn);
+            settings.Add("Backtracking", toggleBacktracking.IsOn);
 
             return settings;
         }
@@ -503,6 +768,51 @@ namespace WinFlux.Pages
             if (settings.TryGetValue("Biometrics", out bool biometricsValue))
                 toggleBiometrics.IsOn = biometricsValue;
                 
+            if (settings.TryGetValue("OnlineTips", out bool onlineTipsValue))
+                toggleOnlineTips.IsOn = onlineTipsValue;
+                
+            if (settings.TryGetValue("FileAssociation", out bool fileAssociationValue))
+                toggleFileAssociation.IsOn = fileAssociationValue;
+                
+            if (settings.TryGetValue("OrderPrints", out bool orderPrintsValue))
+                toggleOrderPrints.IsOn = orderPrintsValue;
+                
+            if (settings.TryGetValue("PublishToWeb", out bool publishToWebValue))
+                togglePublishToWeb.IsOn = publishToWebValue;
+                
+            if (settings.TryGetValue("ProviderList", out bool providerListValue))
+                toggleProviderList.IsOn = providerListValue;
+                
+            if (settings.TryGetValue("RecentDocsHistory", out bool recentDocsHistoryValue))
+                toggleRecentDocsHistory.IsOn = recentDocsHistoryValue;
+                
+            if (settings.TryGetValue("ClearRecentDocs", out bool clearRecentDocsValue))
+                toggleClearRecentDocs.IsOn = clearRecentDocsValue;
+                
+            if (settings.TryGetValue("LockScreenNotif", out bool lockScreenNotifValue))
+                toggleLockScreenNotif.IsOn = lockScreenNotifValue;
+                
+            if (settings.TryGetValue("LiveTileNotif", out bool liveTileNotifValue))
+                toggleLiveTileNotif.IsOn = liveTileNotifValue;
+                
+            if (settings.TryGetValue("StoreOpenWith", out bool storeOpenWithValue))
+                toggleStoreOpenWith.IsOn = storeOpenWithValue;
+                
+            if (settings.TryGetValue("RecentFiles", out bool recentFilesValue))
+                toggleRecentFiles.IsOn = recentFilesValue;
+                
+            if (settings.TryGetValue("SyncNotifications", out bool syncNotificationsValue))
+                toggleSyncNotifications.IsOn = syncNotificationsValue;
+                
+            if (settings.TryGetValue("RecentApps", out bool recentAppsValue))
+                toggleRecentApps.IsOn = recentAppsValue;
+                
+            if (settings.TryGetValue("AppTracking", out bool appTrackingValue))
+                toggleAppTracking.IsOn = appTrackingValue;
+                
+            if (settings.TryGetValue("Backtracking", out bool backtrackingValue))
+                toggleBacktracking.IsOn = backtrackingValue;
+                
             // Apply toggles by applying the click events
             ApplyToggles();
         }
@@ -536,6 +846,21 @@ namespace WinFlux.Pages
             if (toggleMapDownloads.IsOn) SetMapDownloadsPrivacy(true);
             if (toggleLockscreenCamera.IsOn) SetLockscreenCameraPrivacy(true);
             if (toggleBiometrics.IsOn) SetBiometricsPrivacy(true);
+            if (toggleOnlineTips.IsOn) SetOnlineTipsPrivacy(true);
+            if (toggleFileAssociation.IsOn) SetFileAssociationPrivacy(true);
+            if (toggleOrderPrints.IsOn) SetOrderPrintsPrivacy(true);
+            if (togglePublishToWeb.IsOn) SetPublishToWebPrivacy(true);
+            if (toggleProviderList.IsOn) SetProviderListPrivacy(true);
+            if (toggleRecentDocsHistory.IsOn) SetRecentDocsHistoryPrivacy(true);
+            if (toggleClearRecentDocs.IsOn) SetClearRecentDocsPrivacy(true);
+            if (toggleLockScreenNotif.IsOn) SetLockScreenNotifPrivacy(true);
+            if (toggleLiveTileNotif.IsOn) SetLiveTileNotifPrivacy(true);
+            if (toggleStoreOpenWith.IsOn) SetStoreOpenWithPrivacy(true);
+            if (toggleRecentFiles.IsOn) SetRecentFilesPrivacy(true);
+            if (toggleSyncNotifications.IsOn) SetSyncNotificationsPrivacy(true);
+            if (toggleRecentApps.IsOn) SetRecentAppsPrivacy(true);
+            if (toggleAppTracking.IsOn) SetAppTrackingPrivacy(true);
+            if (toggleBacktracking.IsOn) SetBacktrackingPrivacy(true);
         }
     }
 }

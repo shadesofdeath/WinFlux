@@ -37,6 +37,17 @@
     <system:String x:Key="SplashScreen_Step4">Preparing interface...</system:String>
     <system:String x:Key="SplashScreen_Step5">Finalizing process...</system:String>
 
+    <!--  Update Notification  -->
+    <system:String x:Key="UpdateNotification_Title">Update Available</system:String>
+    <system:String x:Key="UpdateNotification_Message">
+        A new version of WinFlux is available: {0}
+        Would you like to download it now?
+    </system:String>
+    <system:String x:Key="UpdateNotification_Yes">Yes</system:String>
+    <system:String x:Key="UpdateNotification_No">No</system:String>
+    <system:String x:Key="UpdateNotification_CheckingUpdates">Checking for updates...</system:String>
+    <system:String x:Key="UpdateNotification_ErrorChecking">Error checking for updates</system:String>
+
     <!--  TelemetryPage MessageBox Texts  -->
     <system:String x:Key="TelemetryPageMessageBox_HostsFileUpdateError">Error updating Hosts file:</system:String>
     <system:String x:Key="TelemetryPageMessageBox_CommandError">Error executing command:</system:String>
@@ -216,7 +227,7 @@
     <system:String x:Key="TelemetryPageGoogleUpdatesDesc">Controls automatic update services for Google products.</system:String>
 
     <system:String x:Key="TelemetryPageAdobeUpdates">Adobe Background Updates</system:String>
-    <system:String x:Key="TelemetryPageAdobeUpdatesDesc">Controls automatic update services for Adobe products.</system:String>
+    <system:String x:Key="TelemetryPageAdobeUpdatesDesc">Controls background update services for Adobe Creative Cloud and other Adobe applications.</system:String>
 
     <!--  Game Optimization Page  -->
     <system:String x:Key="GameOptimizationPageTitle">Game Optimization</system:String>
@@ -280,7 +291,7 @@
     <system:String x:Key="PerformancePageMessageBox_SelectDNSProvider">Please select a DNS provider.</system:String>
     <system:String x:Key="PerformancePageMessageBox_DNSApplied">DNS settings applied successfully.</system:String>
     <system:String x:Key="PerformancePageMessageBox_UltimatePerformanceEnabled">Ultimate Performance power plan enabled successfully.</system:String>
-    <system:String x:Key="PerformancePageMessageBox_ServicesConfirmation">This action will set Windows services to manual startup.\nSome services will be completely disabled.\n\nThis process may take several minutes.\nDo you want to continue?</system:String>
+    <system:String x:Key="PerformancePageMessageBox_ServicesConfirmation">This action will set Windows services to manual startup. Some services will be completely disabled.  This process may take several minutes. Do you want to continue?</system:String>
     <system:String x:Key="PerformancePageMessageBox_ServicesOptimized">Services optimized. A system restart is required for some changes to take effect.</system:String>
     <system:String x:Key="PerformancePageMessageBox_NoNetworkInterfaces">No active network interfaces found.</system:String>
 
@@ -455,6 +466,12 @@
     <system:String x:Key="DebloatPageUninstallingOneDriveSysWOW64">Uninstalling OneDrive from SysWOW64...</system:String>
     <system:String x:Key="DebloatPageRemoveApps">Remove Apps</system:String>
     <system:String x:Key="DebloatPageDisableFeatures">Disable Features</system:String>
+    <system:String x:Key="DebloatPageNoSelectedConfirmEnable">You didn't select any items. Would you like to enable Windows features?</system:String>
+    <system:String x:Key="DebloatPageOperationMode">Operation Mode</system:String>
+    <system:String x:Key="DebloatPageEnableFeatures">Enable Features</system:String>
+    <system:String x:Key="DebloatPageEnableSelected">Enable Selected Features</system:String>
+    <system:String x:Key="DebloatPageSystemAppsTitle">Remove System Apps</system:String>
+    <system:String x:Key="DebloatPageSystemAppsDesc">Remove system applications that come with Windows to streamline your system.</system:String>
     <system:String x:Key="DebloatPageDisableFeaturesToolTip">Disables selected Windows features (Internet Explorer, Hyper-V, etc.)</system:String>
     <system:String x:Key="DebloatPageRemoveAppsToolTip">Removes selected applications (Store, OneDrive, Edge, etc.)</system:String>
     <system:String x:Key="DebloatPageWindowsFeaturesSection">Processing Windows Features...</system:String>
@@ -468,18 +485,18 @@
     <system:String x:Key="DebloatPageThirdPartyAppsSection">Processing 3rd Party Apps...</system:String>
     <system:String x:Key="DebloatPageThirdPartyAppsCompleted">3rd party apps section completed.</system:String>
 
-    <!-- Customize Page -->
+    <!--  Customize Page  -->
     <system:String x:Key="CustomizePageTitle">Windows Customization</system:String>
-    
+
     <system:String x:Key="CustomizePageBingSearch">Bing Search in Start Menu</system:String>
     <system:String x:Key="CustomizePageBingSearchDesc">Controls whether the search box in the Windows start menu performs web searches with Bing.</system:String>
-    
+
     <system:String x:Key="CustomizePageTaskbarAlignment">Taskbar Alignment</system:String>
     <system:String x:Key="CustomizePageTaskbarAlignmentDesc">Controls whether taskbar icons are displayed centered or left-aligned.</system:String>
-    
+
     <system:String x:Key="CustomizePageDarkMode">Dark Mode</system:String>
     <system:String x:Key="CustomizePageDarkModeDesc">Controls whether Windows uses dark theme. Applies to apps and system interface.</system:String>
-    
+
     <system:String x:Key="CustomizePageDetailedBSoD">Detailed Blue Screen</system:String>
     <system:String x:Key="CustomizePageDetailedBSoDDesc">Controls whether detailed technical information is displayed during blue screen errors.</system:String>
 
@@ -524,4 +541,52 @@
 
     <system:String x:Key="CustomizePageGalleryNavigationPane">Remove Gallery from Navigation Pane</system:String>
     <system:String x:Key="CustomizePageGalleryNavigationPaneDesc">Removes or adds the Gallery item from the navigation pane on the left side of File Explorer.</system:String>
+
+    <!--  Explorer Privacy Settings  -->
+    <system:String x:Key="PrivacyPageOnlineTips">Online Tips</system:String>
+    <system:String x:Key="PrivacyPageOnlineTipsDesc">Controls whether Windows displays online tips and suggestions for various features.</system:String>
+
+    <system:String x:Key="PrivacyPageFileAssociation">Internet File Association</system:String>
+    <system:String x:Key="PrivacyPageFileAssociationDesc">Controls whether Windows connects to the internet to search for file associations when no local application is found.</system:String>
+
+    <system:String x:Key="PrivacyPageOrderPrints">Order Prints Picture Task</system:String>
+    <system:String x:Key="PrivacyPageOrderPrintsDesc">Controls whether users can access online print ordering services from the photos app.</system:String>
+
+    <system:String x:Key="PrivacyPagePublishToWeb">Publish to Web</system:String>
+    <system:String x:Key="PrivacyPagePublishToWebDesc">Controls the "Publish to Web" option for files and folders in Windows Explorer.</system:String>
+
+    <system:String x:Key="PrivacyPageProviderList">Provider List Downloads</system:String>
+    <system:String x:Key="PrivacyPageProviderListDesc">Controls whether Windows downloads provider information and service listings for wizards.</system:String>
+
+    <system:String x:Key="PrivacyPageRecentDocsHistory">Recent Documents History</system:String>
+    <system:String x:Key="PrivacyPageRecentDocsHistoryDesc">Controls whether Windows keeps a history of recently opened documents.</system:String>
+
+    <system:String x:Key="PrivacyPageClearRecentDocs">Clear Recent Documents History on Exit</system:String>
+    <system:String x:Key="PrivacyPageClearRecentDocsDesc">Controls whether Windows clears the recent documents history when you exit Windows.</system:String>
+
+    <system:String x:Key="PrivacyPageLockScreenNotif">Lock Screen App Notifications</system:String>
+    <system:String x:Key="PrivacyPageLockScreenNotifDesc">Controls whether apps can display notifications on the lock screen.</system:String>
+
+    <system:String x:Key="PrivacyPageLiveTileNotif">Live Tiles Notifications</system:String>
+    <system:String x:Key="PrivacyPageLiveTileNotifDesc">Controls whether Live Tiles can receive push notifications and update their content.</system:String>
+
+    <system:String x:Key="PrivacyPageStoreOpenWith">Store App Suggestions</system:String>
+    <system:String x:Key="PrivacyPageStoreOpenWithDesc">Controls whether Windows suggests Store apps when you have no application associated with a file type.</system:String>
+
+    <system:String x:Key="PrivacyPageRecentFiles">Display Recent Files in Quick Access</system:String>
+    <system:String x:Key="PrivacyPageRecentFilesDesc">Controls whether Windows displays recently used files in Quick Access in File Explorer.</system:String>
+
+    <system:String x:Key="PrivacyPageSyncNotifications">Sync Provider Notifications</system:String>
+    <system:String x:Key="PrivacyPageSyncNotificationsDesc">Controls whether Windows displays notifications from cloud storage providers like OneDrive.</system:String>
+
+    <system:String x:Key="PrivacyPageRecentApps">Recent Apps</system:String>
+    <system:String x:Key="PrivacyPageRecentAppsDesc">Controls whether Windows displays recently used apps in various places like Task View.</system:String>
+
+    <system:String x:Key="PrivacyPageAppTracking">App Usage Tracking</system:String>
+    <system:String x:Key="PrivacyPageAppTrackingDesc">Controls whether Windows tracks which apps you use most frequently (MFU tracking).</system:String>
+
+    <system:String x:Key="PrivacyPageBacktracking">Backtracking</system:String>
+    <system:String x:Key="PrivacyPageBacktrackingDesc">Controls whether Windows remembers the navigation history in system UI components.</system:String>
+
+    <system:String x:Key="PrivacyPageExplorerSettings">Explorer Privacy Settings</system:String>
 </ResourceDictionary>
