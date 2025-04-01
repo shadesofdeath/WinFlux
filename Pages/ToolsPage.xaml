@@ -14,6 +14,20 @@
                 FontWeight="Medium"
                 Text="{DynamicResource ToolsPageTitle}" />
 
+            <!--  MemFlux Ram Cleaner  -->
+            <ui:SettingsCard
+                x:Name="MemFluxRamCleanerCard"
+                Description="{DynamicResource ToolsPageMemFluxRamCleanerDesc}"
+                Header="{DynamicResource ToolsPageMemFluxRamCleaner}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:PathIcon Data="{StaticResource RamIconData}" />
+                </ui:SettingsCard.HeaderIcon>
+                <ui:ToggleSwitch
+                    x:Name="toggleMemFluxRamCleaner"
+                    OffContent="{DynamicResource ToggleOff}"
+                    OnContent="{DynamicResource ToggleOn}" />
+            </ui:SettingsCard>
+
             <!--  Geçici Dosyaları Temizle  -->
             <ui:SettingsCard
                 x:Name="TempFilesCard"

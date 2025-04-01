@@ -5,6 +5,12 @@ using System.Windows;
 using System.Linq;
 using System.Diagnostics;
 using MessageBox = iNKORE.UI.WPF.Modern.Controls.MessageBox;
+using Microsoft.Win32;
+using System.IO;
+using System.IO.Compression;
+using WinFlux.Helpers;
+using System;
+using System.Windows.Resources;
 
 namespace WinFlux.Pages
 {
@@ -13,6 +19,139 @@ namespace WinFlux.Pages
         public ToolsPage()
         {
             InitializeComponent();
+            
+            // Register event handler for the MemFlux Ram Cleaner toggle
+            toggleMemFluxRamCleaner.Toggled += ToggleMemFluxRamCleaner_Toggled;
+            
+            // Check if MemFlux Ram Cleaner is already installed
+            CheckMemFluxRamCleanerStatus();
+        }
+        
+        // Check if the MemFlux Ram Cleaner registry entry exists and set toggle state accordingly
+        private void CheckMemFluxRamCleanerStatus()
+        {
+            bool isEnabled = RegHelper.SubKeyExist(RegistryHive.ClassesRoot, @"DesktopBackground\Shell\RamTemizle");
+            toggleMemFluxRamCleaner.IsOn = isEnabled;
+        }
+        
+        // Handle toggle event for MemFlux Ram Cleaner
+        private void ToggleMemFluxRamCleaner_Toggled(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (toggleMemFluxRamCleaner.IsOn)
+                {
+                    // Enable MemFlux Ram Cleaner
+                    EnableMemFluxRamCleaner();
+                }
+                else
+                {
+                    // Disable MemFlux Ram Cleaner
+                    DisableMemFluxRamCleaner();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"MemFlux Ram Cleaner işlemi sırasında bir hata oluştu: {ex.Message}",
+                    Application.Current.Resources["MessageBox_Error"] as string,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                
+                // Revert toggle state if there was an error
+                toggleMemFluxRamCleaner.IsOn = !toggleMemFluxRamCleaner.IsOn;
+            }
+        }
+        
+        // Enable MemFlux Ram Cleaner by adding registry entries and extracting the zip file
+        private void EnableMemFluxRamCleaner()
+        {
+            // Get localized label for the context menu item
+            string contextMenuLabel = Application.Current.Resources["RamCleanerContextMenuLabel"] as string;
+            
+            // Add registry entries
+            RegHelper.SetValue(RegistryHive.ClassesRoot, @"DesktopBackground\Shell\RamTemizle", "", contextMenuLabel, RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.ClassesRoot, @"DesktopBackground\Shell\RamTemizle", "Icon", @"C:\Windows\MemFlux\icon.ico", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.ClassesRoot, @"DesktopBackground\Shell\RamTemizle", "Position", "Bottom", RegistryValueKind.String);
+            RegHelper.SetValue(RegistryHive.ClassesRoot, @"DesktopBackground\Shell\RamTemizle", "HasLUAShield", "", RegistryValueKind.String);
+            
+            // Add command
+            RegHelper.SetValue(RegistryHive.ClassesRoot, @"DesktopBackground\Shell\RamTemizle\command", "", @"wscript.exe ""C:\Windows\MemFlux\invisible.vbs"" ""C:\Windows\MemFlux\MemFlux.exe"" ""-c -s""", RegistryValueKind.String);
+            
+            // Create MemFlux directory if it doesn't exist
+            string memFluxPath = @"C:\Windows\MemFlux";
+            if (!Directory.Exists(memFluxPath))
+            {
+                Directory.CreateDirectory(memFluxPath);
+            }
+            
+            // Extract zip file from resource
+            ExtractMemFluxZip(memFluxPath);
+        }
+        
+        // Extract MemFlux.zip to the destination directory
+        private void ExtractMemFluxZip(string destinationPath)
+        {
+            try
+            {
+                // Get the resource
+                Uri resourceUri = new Uri("/WinFlux;component/Other/MemFlux.zip", UriKind.Relative);
+                StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+                
+                if (streamInfo == null)
+                {
+                    throw new Exception("MemFlux.zip kaynağı bulunamadı.");
+                }
+                
+                using (Stream zipStream = streamInfo.Stream)
+                {
+                    // Create a temporary file to store the zip
+                    string tempZipPath = Path.Combine(Path.GetTempPath(), "MemFlux.zip");
+                    using (FileStream fs = new FileStream(tempZipPath, FileMode.Create))
+                    {
+                        zipStream.CopyTo(fs);
+                    }
+                    
+                    // Extract the zip file
+                    ZipFile.ExtractToDirectory(tempZipPath, destinationPath, true);
+                    
+                    // Delete the temporary zip file
+                    File.Delete(tempZipPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Zip dosyası çıkarılırken hata oluştu: {ex.Message}", ex);
+            }
+        }
+        
+        // Disable MemFlux Ram Cleaner by removing registry entries and deleting the directory
+        private void DisableMemFluxRamCleaner()
+        {
+            // Remove registry entries
+            if (RegHelper.SubKeyExist(RegistryHive.ClassesRoot, @"DesktopBackground\Shell\RamTemizle\command"))
+            {
+                RegHelper.TryDeleteSubKeyTree(RegistryHive.ClassesRoot, @"DesktopBackground\Shell\RamTemizle\command");
+            }
+            
+            if (RegHelper.SubKeyExist(RegistryHive.ClassesRoot, @"DesktopBackground\Shell\RamTemizle"))
+            {
+                RegHelper.TryDeleteSubKeyTree(RegistryHive.ClassesRoot, @"DesktopBackground\Shell\RamTemizle");
+            }
+            
+            // Delete the MemFlux directory
+            string memFluxPath = @"C:\Windows\MemFlux";
+            if (Directory.Exists(memFluxPath))
+            {
+                try
+                {
+                    Directory.Delete(memFluxPath, true);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"MemFlux klasörü silinirken hata oluştu: {ex.Message}", ex);
+                }
+            }
         }
 
         private void RunCommandAsAdmin(string command, string arguments)
@@ -212,4 +351,4 @@ namespace WinFlux.Pages
             """);
         }
     }
-}
+} 

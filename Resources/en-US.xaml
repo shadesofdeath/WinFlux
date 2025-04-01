@@ -55,8 +55,12 @@
     <!--  Tools Page  -->
     <system:String x:Key="ToolsPageTitle">Tools</system:String>
 
-    <system:String x:Key="ToolsPageTempFiles">Clear Temporary Files</system:String>
-    <system:String x:Key="ToolsPageTempFilesDesc">Deletes files in Windows Prefetch, User Temp, and Windows Temp folders.</system:String>
+    <system:String x:Key="ToolsPageMemFluxRamCleaner">Integrate MemFlux Ram Cleaner</system:String>
+    <system:String x:Key="ToolsPageMemFluxRamCleanerDesc">Adds advanced RAM cleaning tool to the context menu. Accessible by right-clicking on the desktop.</system:String>
+    <system:String x:Key="RamCleanerContextMenuLabel">Clean RAM</system:String>
+
+    <system:String x:Key="ToolsPageTempFiles">Clean Temporary Files</system:String>
+    <system:String x:Key="ToolsPageTempFilesDesc">Deletes files from Windows Prefetch, User Temp, and Windows Temp folders.</system:String>
 
     <system:String x:Key="ToolsPageDiskCleanup">Disk Cleanup</system:String>
     <system:String x:Key="ToolsPageDiskCleanupDesc">Runs the Windows Disk Cleanup tool to clean your system.</system:String>

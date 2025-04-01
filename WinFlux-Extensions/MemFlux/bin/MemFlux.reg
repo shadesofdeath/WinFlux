@@ -1,0 +1,10 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\DesktopBackground\Shell\RamTemizle]
+"Icon"="C:\\Windows\\MemFlux\\icon.ico"
+"Position"="Bottom"
+@="RAM Temizle"
+"HasLUAShield"=""
+
+[HKEY_CLASSES_ROOT\DesktopBackground\Shell\RamTemizle\command]
+@="wscript.exe \"C:\\Windows\\MemFlux\\invisible.vbs\" \"C:\\Windows\\MemFlux\\MemFlux.exe\" \"-c -s\""

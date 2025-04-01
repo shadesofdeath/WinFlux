@@ -55,6 +55,10 @@
     <!--  Tools Page  -->
     <system:String x:Key="ToolsPageTitle">Araçlar</system:String>
 
+    <system:String x:Key="ToolsPageMemFluxRamCleaner">MemFlux Ram Cleaner Entegre et</system:String>
+    <system:String x:Key="ToolsPageMemFluxRamCleanerDesc">ContextMenüye gelişmiş RAM temizleme aracını ekler. Masaüstünde sağ tıklatarak erişilebilir.</system:String>
+    <system:String x:Key="RamCleanerContextMenuLabel">RAM Temizle</system:String>
+
     <system:String x:Key="ToolsPageTempFiles">Geçici Dosyaları Temizle</system:String>
     <system:String x:Key="ToolsPageTempFilesDesc">Windows Prefetch, User Temp ve Windows Temp klasörlerindeki dosyaları siler.</system:String>
 
